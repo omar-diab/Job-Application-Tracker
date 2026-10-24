@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Make Icons</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 32px 16px;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+    }
+
+    h1 {
+      margin: 0 0 4px;
+      font-size: 22px;
+    }
+
+    .hint {
+      margin: 0 0 24px;
+      color: #475569;
+    }
+
+    #icons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .card h2 {
+      margin: 0 0 12px;
+      font-size: 16px;
+    }
+
+    .previews {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .preview {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-width: 96px;
+      min-height: 96px;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 12px;
+    }
+
+    /* The same colors as the Chrome toolbar in light and dark theme. */
+    .preview.light {
+      background: #f1f3f4;
+      color: #3c4043;
+    }
+
+    .preview.dark {
+      background: #202124;
+      color: #e8eaed;
+    }
+
+    /* Shows the small icon bigger, with sharp pixels, so you can check the details. */
+    .preview canvas.zoom {
+      width: 128px;
+      height: 128px;
+      image-rendering: pixelated;
+    }
+
+    button {
+      width: 100%;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 8px;
+      background: #4f46e5;
+      color: #ffffff;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #4338ca;
+    }
+  </style>
+</head>
+<body>
+  <h1>Job Application Tracker icons</h1>
+  <p class="hint">Download the 3 files and put them in the "icons" folder of the extension.</p>
+
+  <div id="icons"></div>
+
+  <script src="make-icons.js"></script>
+</body>
+</html>
