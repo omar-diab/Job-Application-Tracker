@@ -1,1 +1,15 @@
+# Operating system files
 .DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor folders and files
+.vscode/
+.idea/
+*.swp
+*~
+
+# Extension packages and private keys (never commit a .pem key!)
+*.zip
+*.crx
+*.pem

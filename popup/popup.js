@@ -39,10 +39,12 @@ function buildStatusPicker() {
   });
 }
 
+// The status chip that is chosen now.
 function getStatus() {
   return form.elements.status.value || 'saved';
 }
 
+// Chooses a status chip.
 function setStatus(id) {
   form.elements.status.value = id;
 }
@@ -77,6 +79,7 @@ function showNotice(type, ...children) {
   notice.hidden = false;
 }
 
+// Shows a red message above the Save button.
 function showError(message) {
   formError.textContent = message;
   formError.hidden = false;
@@ -103,6 +106,7 @@ function showSavedJob(job) {
 // Reading the current tab
 // ---------------------------------------------------------------------------
 
+// The tab the user is looking at now.
 async function getActiveTab() {
   const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
   return tabs[0] || null;
@@ -143,6 +147,7 @@ async function readPage(tab) {
 // Start
 // ---------------------------------------------------------------------------
 
+// Reads the current tab, then shows the saved job or the page data.
 async function init() {
   buildStatusPicker();
   setStatus('saved');

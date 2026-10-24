@@ -51,6 +51,7 @@ const fNotes = document.getElementById('f-notes');
 // Filtering and searching
 // ---------------------------------------------------------------------------
 
+// True if the job fits the chosen filter chip.
 function matchesFilter(job, filter) {
   if (filter === 'all') {
     return true;
@@ -80,22 +81,35 @@ const collator = new Intl.Collator(undefined, { sensitivity: 'base', numeric: tr
 
 // Text A–Z. Empty values always go to the end.
 function compareText(a, b) {
-  if (!a && !b) return 0;
-  if (!a) return 1;
-  if (!b) return -1;
+  if (!a && !b) {
+    return 0;
+  }
+  if (!a) {
+    return 1;
+  }
+  if (!b) {
+    return -1;
+  }
   return collator.compare(a, b);
 }
 
 // Dates ("YYYY-MM-DD" or ISO timestamps can be compared as text).
 // Empty values always go to the end, also when newest comes first.
 function compareDates(a, b, newestFirst) {
-  if (!a && !b) return 0;
-  if (!a) return 1;
-  if (!b) return -1;
+  if (!a && !b) {
+    return 0;
+  }
+  if (!a) {
+    return 1;
+  }
+  if (!b) {
+    return -1;
+  }
   const result = a < b ? -1 : a > b ? 1 : 0;
   return newestFirst ? -result : result;
 }
 
+// The position of a status in STATUSES: Saved = 0, Applied = 1, ... Rejected = 4.
 function statusOrder(id) {
   return STATUSES.findIndex(function (status) {
     return status.id === id;
@@ -160,6 +174,7 @@ async function changeStatus(jobId, status) {
   }
 }
 
+// Asks first, then deletes the job. The list redraws through chrome.storage.onChanged.
 async function deleteJob(job) {
   if (!confirm('Delete "' + (job.title || 'this job') + '"?')) {
     return;
@@ -175,10 +190,12 @@ async function deleteJob(job) {
 // Building the parts of the page (only with h(), never innerHTML)
 // ---------------------------------------------------------------------------
 
+// "1 job", "2 jobs"
 function plural(count, word) {
   return count + ' ' + word + (count === 1 ? '' : 's');
 }
 
+// Draws the "All" chip, one chip per status (with counts) and the follow-up chip.
 function renderFilters(followUpCount) {
   const chips = [];
 
@@ -215,6 +232,7 @@ function renderFilters(followUpCount) {
   filtersBox.replaceChildren(...chips);
 }
 
+// Shows the orange banner when some applications need a follow-up.
 function renderFollowUpBanner(followUpCount) {
   if (followUpCount === 0) {
     followUpBanner.hidden = true;
@@ -251,6 +269,7 @@ function textCell(label, value) {
   );
 }
 
+// Title cell: a safe link (or plain text), the follow-up badge and a notes preview.
 function titleCell(job) {
   const title = job.title || 'Untitled job';
   const href = safeHref(job.url);
@@ -280,6 +299,7 @@ function titleCell(job) {
   return h('td', { class: 'col-title', 'data-label': 'Title' }, titleEl, badge, notes);
 }
 
+// Status cell: a select that looks like a colored pill. Changing it saves right away.
 function statusCell(job) {
   const select = h('select', {
     class: 'status-select',
@@ -299,6 +319,7 @@ function statusCell(job) {
   );
 }
 
+// Actions cell: the Edit and Delete buttons.
 function actionsCell(job) {
   const name = job.title || 'this job';
   return h('td', { class: 'col-actions', 'data-label': 'Actions' },
@@ -324,6 +345,7 @@ function actionsCell(job) {
   );
 }
 
+// One table row for one job. data-label on each cell is used by the phone card view.
 function jobRow(job) {
   return h('tr', { dataset: { id: job.id } },
     titleCell(job),
@@ -336,6 +358,7 @@ function jobRow(job) {
   );
 }
 
+// Shows a friendly message instead of the table when there is nothing to show.
 function renderEmptyState(visibleCount) {
   if (state.jobs.length === 0) {
     emptyTitle.textContent = 'No jobs saved yet';
@@ -391,6 +414,7 @@ function buildStatusOptions() {
   );
 }
 
+// Shows a red message in the dialog.
 function showDialogError(message) {
   dialogError.textContent = message;
   dialogError.hidden = false;
@@ -420,6 +444,7 @@ function openEditor(job) {
   fTitle.focus();
 }
 
+// Reads what is in the dialog fields now.
 function readEditor() {
   return {
     title: fTitle.value,
@@ -432,6 +457,7 @@ function readEditor() {
   };
 }
 
+// Checks the dialog fields, then adds or updates the job.
 async function saveEditor() {
   hideDialogError();
   const values = readEditor();
@@ -503,6 +529,7 @@ function csvCell(value) {
   return '"' + text.replace(/"/g, '""') + '"';
 }
 
+// Makes the whole CSV text: a header row, then all jobs, newest saved first.
 function buildCsv(jobs) {
   const header = ['Title', 'Company', 'Location', 'Status', 'Date saved', 'Date applied', 'Link', 'Notes'];
   const rows = jobs
@@ -543,6 +570,7 @@ function downloadFile(text, fileName) {
   }, 1000);
 }
 
+// Exports ALL jobs (not only the filtered ones).
 function exportCsv() {
   if (state.jobs.length === 0) {
     alert('There are no jobs to export yet.');
@@ -607,6 +635,7 @@ chrome.storage.onChanged.addListener(function (changes, areaName) {
   }
 });
 
+// Loads the saved jobs and draws the page for the first time.
 async function init() {
   sortSelect.value = state.sort;
   try {

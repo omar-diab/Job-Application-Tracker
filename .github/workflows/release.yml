@@ -1,0 +1,45 @@
+# Runs when you push a tag like v1.0.0.
+# Makes a zip with ONLY the extension files and attaches it to a GitHub Release.
+# This zip is the file you upload to the Chrome Web Store.
+
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v5
+
+      - name: The tag matches the version in manifest.json
+        run: |
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          MANIFEST_VERSION=$(node -p "require('./manifest.json').version")
+          if [ "$TAG_VERSION" != "$MANIFEST_VERSION" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match manifest.json version $MANIFEST_VERSION"
+            exit 1
+          fi
+          echo "VERSION=$MANIFEST_VERSION" >> "$GITHUB_ENV"
+
+      - name: Make the zip (extension files only)
+        run: |
+          ZIP_NAME="job-application-tracker-$VERSION.zip"
+          zip -r "$ZIP_NAME" manifest.json icons shared popup dashboard -x '*.gitkeep' '*.DS_Store'
+          echo "ZIP_NAME=$ZIP_NAME" >> "$GITHUB_ENV"
+          unzip -l "$ZIP_NAME"
+
+      - name: Create the GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" "$ZIP_NAME" \
+            --title "v$VERSION" \
+            --notes "Download **$ZIP_NAME** below. To install it, unzip it and use **Load unpacked** on chrome://extensions. See [CHANGELOG.md](https://github.com/$GITHUB_REPOSITORY/blob/main/CHANGELOG.md) for what changed."

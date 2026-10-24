@@ -1,0 +1,65 @@
+# Runs on every push and pull request.
+# Checks that manifest.json is valid, that every .js file has no syntax error,
+# and that the extension asks only for the 3 allowed permissions.
+
+name: Check
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v5
+
+      - name: manifest.json is valid JSON
+        run: node -e "JSON.parse(require('fs').readFileSync('manifest.json', 'utf8')); console.log('manifest.json is valid JSON')"
+
+      - name: JavaScript files have no syntax errors
+        run: |
+          find . -name '*.js' -not -path './.git/*' -print0 | while IFS= read -r -d '' file; do
+            node --check "$file"
+            echo "OK $file"
+          done
+
+      - name: Only the allowed permissions
+        run: |
+          node <<'EOF'
+          const manifest = JSON.parse(require('fs').readFileSync('manifest.json', 'utf8'));
+          const allowed = ['activeTab', 'scripting', 'storage'];
+          const actual = [...(manifest.permissions || [])].sort();
+          const problems = [];
+
+          if (JSON.stringify(actual) !== JSON.stringify(allowed)) {
+            problems.push('permissions must be exactly ' + allowed.join(', ') + ' but are: ' + actual.join(', '));
+          }
+          for (const key of ['host_permissions', 'optional_permissions', 'optional_host_permissions']) {
+            if (manifest[key] && manifest[key].length) {
+              problems.push(key + ' is not allowed: ' + manifest[key].join(', '));
+            }
+          }
+
+          if (problems.length) {
+            problems.forEach((problem) => console.error('::error file=manifest.json::' + problem));
+            process.exit(1);
+          }
+          console.log('Permissions OK: ' + actual.join(', '));
+          EOF
+
+      - name: No innerHTML in the code
+        run: |
+          # Lines that only contain a comment are allowed.
+          matches=$(grep -rnE 'innerHTML|outerHTML|insertAdjacentHTML' --include='*.js' --include='*.html' . \
+            | grep -vE '^[^:]+:[0-9]+:[[:space:]]*//' || true)
+          if [ -n "$matches" ]; then
+            echo "$matches"
+            echo "::error::Do not use innerHTML, outerHTML or insertAdjacentHTML. Use textContent or h() from shared/core.js."
+            exit 1
+          fi
+          echo "No innerHTML found"
