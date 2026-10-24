@@ -1,0 +1,183 @@
+/* Styles only for the popup. The shared design is in ../shared/base.css. */
+
+/* Notice colors (info = blue, warning = orange, success = green). */
+:root {
+  --info-bg: #eff6ff;
+  --info-fg: #1e40af;
+  --info-border: #bfdbfe;
+  --warning-bg: #fff7ed;
+  --warning-fg: #9a3412;
+  --warning-border: #fed7aa;
+  --success-bg: #f0fdf4;
+  --success-fg: #166534;
+  --success-border: #bbf7d0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --info-bg: rgba(59, 130, 246, 0.12);
+    --info-fg: #93c5fd;
+    --info-border: rgba(59, 130, 246, 0.35);
+    --warning-bg: rgba(249, 115, 22, 0.12);
+    --warning-fg: #fdba74;
+    --warning-border: rgba(249, 115, 22, 0.35);
+    --success-bg: rgba(34, 197, 94, 0.12);
+    --success-fg: #86efac;
+    --success-border: rgba(34, 197, 94, 0.35);
+  }
+}
+
+body {
+  width: 360px;
+}
+
+/* --- Header ---------------------------------------------------------------- */
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.logo {
+  flex-shrink: 0;
+  border-radius: 8px;
+}
+
+.brand {
+  flex: 1;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* --- Content and form ------------------------------------------------------ */
+
+.content {
+  padding: 14px 16px 16px;
+}
+
+.field {
+  margin: 0 0 12px;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.field label,
+.field legend {
+  display: block;
+  margin-bottom: 4px;
+  padding: 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.required {
+  color: var(--danger);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.form-error {
+  margin: 0 0 10px;
+  color: var(--danger);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* --- Status picker: hidden radio inputs + visible chips --------------------- */
+
+/* All 5 chips share one line. */
+.status-picker {
+  display: flex;
+  gap: 4px;
+}
+
+.chip {
+  position: relative;
+  flex: 1 1 auto;
+}
+
+/* The real radio button is invisible, but still works with the keyboard. */
+.chip input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.chip span {
+  display: block;
+  padding: 5px 6px;
+  text-align: center;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.chip span:hover {
+  border-color: var(--muted);
+}
+
+/* The chosen status uses its own color. */
+.chip input:checked + span {
+  border-color: currentColor;
+  background: var(--st-bg);
+  color: var(--st-fg);
+}
+
+/* Visible ring when you move between chips with the keyboard (arrow keys). */
+.chip input:focus-visible + span {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* --- Notices ----------------------------------------------------------------- */
+
+.notice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  padding: 8px 10px;
+  border: 1px solid;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.notice-info {
+  border-color: var(--info-border);
+  background: var(--info-bg);
+  color: var(--info-fg);
+}
+
+.notice-warning {
+  border-color: var(--warning-border);
+  background: var(--warning-bg);
+  color: var(--warning-fg);
+}
+
+.notice-success {
+  border-color: var(--success-border);
+  background: var(--success-bg);
+  color: var(--success-fg);
+  font-weight: 600;
+}

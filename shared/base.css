@@ -1,0 +1,253 @@
+/* Shared design for the popup and the dashboard. */
+
+/* ---------------------------------------------------------------------------
+   Colors (light mode)
+   --------------------------------------------------------------------------- */
+:root {
+  color-scheme: light dark;
+
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-2: #f1f5f9;
+  --border: #e2e8f0;
+  --text: #0f172a;
+  --muted: #64748b;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-text: #ffffff;
+  --danger: #dc2626;
+  --focus: #6366f1;
+  --shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(15, 23, 42, 0.06);
+  --radius: 10px;
+
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Arabic", Tahoma, Arial, sans-serif;
+
+  /* Status colors: background and text for each status. */
+  --status-saved-bg: #f1f5f9;
+  --status-saved-fg: #475569;
+  --status-applied-bg: #dbeafe;
+  --status-applied-fg: #1d4ed8;
+  --status-interview-bg: #ede9fe;
+  --status-interview-fg: #6d28d9;
+  --status-offer-bg: #dcfce7;
+  --status-offer-fg: #15803d;
+  --status-rejected-bg: #fee2e2;
+  --status-rejected-fg: #b91c1c;
+}
+
+/* ---------------------------------------------------------------------------
+   Colors (dark mode, used when the computer is in dark mode)
+   --------------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1117;
+    --surface: #171a23;
+    --surface-2: #1f2330;
+    --border: #2b3040;
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+    --primary: #6366f1;
+    --primary-hover: #818cf8;
+    --primary-text: #ffffff;
+    --danger: #f87171;
+    --focus: #818cf8;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3);
+
+    --status-saved-bg: rgba(148, 163, 184, 0.16);
+    --status-saved-fg: #cbd5e1;
+    --status-applied-bg: rgba(59, 130, 246, 0.18);
+    --status-applied-fg: #93c5fd;
+    --status-interview-bg: rgba(139, 92, 246, 0.2);
+    --status-interview-fg: #c4b5fd;
+    --status-offer-bg: rgba(34, 197, 94, 0.18);
+    --status-offer-fg: #86efac;
+    --status-rejected-bg: rgba(239, 68, 68, 0.18);
+    --status-rejected-fg: #fca5a5;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Status classes: one class sets --st-bg and --st-fg, and .pill uses them.
+   Example: <span class="pill st-applied">Applied</span>
+   --------------------------------------------------------------------------- */
+.st-saved {
+  --st-bg: var(--status-saved-bg);
+  --st-fg: var(--status-saved-fg);
+}
+
+.st-applied {
+  --st-bg: var(--status-applied-bg);
+  --st-fg: var(--status-applied-fg);
+}
+
+.st-interview {
+  --st-bg: var(--status-interview-bg);
+  --st-fg: var(--status-interview-fg);
+}
+
+.st-offer {
+  --st-bg: var(--status-offer-bg);
+  --st-fg: var(--status-offer-fg);
+}
+
+.st-rejected {
+  --st-bg: var(--status-rejected-bg);
+  --st-fg: var(--status-rejected-fg);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--st-bg, var(--surface-2));
+  color: var(--st-fg, var(--muted));
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------------------
+   Page basics
+   --------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Make sure the "hidden" attribute always hides, even if a class sets display. */
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   Form fields
+   --------------------------------------------------------------------------- */
+input:not([type="radio"]):not([type="checkbox"]),
+select,
+textarea {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 2px);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+input:not([type="radio"]):not([type="checkbox"]):focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--focus);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 30%, transparent);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.8;
+}
+
+textarea {
+  min-height: 64px;
+  resize: vertical;
+}
+
+/* dir="auto": Arabic text starts on the right, English text on the left. */
+[dir="auto"] {
+  text-align: start;
+}
+
+/* In notes, each paragraph finds its own direction (Arabic and English lines can mix). */
+textarea[dir="auto"] {
+  unicode-bidi: plaintext;
+}
+
+/* ---------------------------------------------------------------------------
+   Buttons
+   --------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 2px);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.btn:hover {
+  background: var(--surface-2);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--primary-text);
+}
+
+.btn-primary:hover:not(:disabled) {
+  border-color: var(--primary-hover);
+  background: var(--primary-hover);
+}
+
+.btn-ghost {
+  border-color: transparent;
+  background: transparent;
+  color: var(--muted);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.btn-sm {
+  padding: 4px 10px;
+  font-size: 13px;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* Red button for actions like "Delete". */
+.btn.danger {
+  color: var(--danger);
+}
+
+.btn-primary.danger {
+  border-color: var(--danger);
+  background: var(--danger);
+  color: #ffffff;
+}

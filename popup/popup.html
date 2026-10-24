@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Job Tracker</title>
+  <link rel="stylesheet" href="../shared/base.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="header">
+    <img class="logo" src="../icons/icon48.png" alt="" width="32" height="32">
+    <h1 class="brand">Job Tracker</h1>
+    <button type="button" id="openDashboard" class="btn btn-ghost btn-sm">Dashboard ↗</button>
+  </header>
+
+  <main class="content">
+    <div id="notice" class="notice" role="status" hidden></div>
+
+    <form id="jobForm" novalidate>
+      <div class="field">
+        <label for="title">Job title <span class="required" aria-hidden="true">*</span></label>
+        <input id="title" name="title" type="text" dir="auto" maxlength="300" required autocomplete="off">
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="company">Company</label>
+          <input id="company" name="company" type="text" dir="auto" maxlength="200" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="location">Location</label>
+          <input id="location" name="location" type="text" dir="auto" maxlength="200" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="url">Link</label>
+        <input id="url" name="url" type="url" dir="ltr" maxlength="2000" placeholder="https://" autocomplete="off">
+      </div>
+
+      <fieldset class="field">
+        <legend>Status</legend>
+        <div id="statusPicker" class="status-picker"></div>
+      </fieldset>
+
+      <div class="field">
+        <label for="notes">Notes</label>
+        <textarea id="notes" name="notes" dir="auto" maxlength="5000" rows="3" placeholder="Recruiter, salary, next step..."></textarea>
+      </div>
+
+      <p id="formError" class="form-error" role="alert" hidden></p>
+
+      <button type="submit" id="saveBtn" class="btn btn-primary btn-block">Save job</button>
+    </form>
+  </main>
+
+  <script src="../shared/core.js"></script>
+  <script src="../shared/extractor.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
