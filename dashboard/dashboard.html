@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Job Application Tracker</title>
+  <link rel="icon" href="../icons/icon16.png">
+  <link rel="stylesheet" href="../shared/base.css">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <img class="logo" src="../icons/icon48.png" alt="" width="36" height="36">
+      <div class="brand">
+        <h1>Job Application Tracker</h1>
+        <p id="totalCount" class="total-count">0 jobs</p>
+      </div>
+      <div class="topbar-actions">
+        <button type="button" id="exportBtn" class="btn">Export CSV</button>
+        <button type="button" id="addBtn" class="btn btn-primary">+ Add job</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="toolbar" aria-label="Filter and sort">
+      <div id="filters" class="filters" role="group" aria-label="Filter by status"></div>
+      <div class="toolbar-controls">
+        <input id="search" type="search" dir="auto" placeholder="Search title, company, location, notes" aria-label="Search jobs" autocomplete="off">
+        <select id="sort" aria-label="Sort jobs">
+          <option value="saved-desc">Newest saved</option>
+          <option value="saved-asc">Oldest saved</option>
+          <option value="applied-desc">Recently applied</option>
+          <option value="updated-desc">Recently updated</option>
+          <option value="company-asc">Company A–Z</option>
+          <option value="title-asc">Title A–Z</option>
+          <option value="status">Status</option>
+        </select>
+      </div>
+    </section>
+
+    <div id="followUpBanner" class="banner" role="status" hidden></div>
+
+    <div id="tableWrap" class="table-wrap">
+      <table class="jobs-table">
+        <thead>
+          <tr>
+            <th scope="col" class="col-title">Title</th>
+            <th scope="col">Company</th>
+            <th scope="col">Location</th>
+            <th scope="col">Status</th>
+            <th scope="col">Saved</th>
+            <th scope="col">Applied</th>
+            <th scope="col" class="col-actions"><span class="visually-hidden">Actions</span></th>
+          </tr>
+        </thead>
+        <tbody id="jobsBody"></tbody>
+      </table>
+    </div>
+
+    <div id="emptyState" class="empty-state" hidden>
+      <h2 id="emptyTitle"></h2>
+      <p id="emptyText"></p>
+    </div>
+  </main>
+
+  <script src="../shared/core.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>
