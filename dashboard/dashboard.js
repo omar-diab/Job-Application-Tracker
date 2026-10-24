@@ -11,7 +11,8 @@ const state = {
   jobs: [],            // all saved jobs, from chrome.storage.local
   filter: 'all',       // 'all', a status id like 'applied', or 'followup'
   search: '',          // what is in the search box
-  sort: 'saved-desc'   // the value of the sort select
+  sort: 'saved-desc',  // the value of the sort select
+  editingId: null      // the id of the job open in the dialog, or null when adding a new job
 };
 
 // ---------------------------------------------------------------------------
@@ -28,6 +29,23 @@ const jobsBody = document.getElementById('jobsBody');
 const emptyState = document.getElementById('emptyState');
 const emptyTitle = document.getElementById('emptyTitle');
 const emptyText = document.getElementById('emptyText');
+const addBtn = document.getElementById('addBtn');
+const exportBtn = document.getElementById('exportBtn');
+
+// The add / edit dialog
+const jobDialog = document.getElementById('jobDialog');
+const dialogForm = document.getElementById('dialogForm');
+const dialogTitle = document.getElementById('dialogTitle');
+const dialogError = document.getElementById('dialogError');
+const dialogSaveBtn = document.getElementById('dialogSaveBtn');
+const cancelBtn = document.getElementById('cancelBtn');
+const fTitle = document.getElementById('f-title');
+const fCompany = document.getElementById('f-company');
+const fLocation = document.getElementById('f-location');
+const fUrl = document.getElementById('f-url');
+const fStatus = document.getElementById('f-status');
+const fDateApplied = document.getElementById('f-dateApplied');
+const fNotes = document.getElementById('f-notes');
 
 // ---------------------------------------------------------------------------
 // Filtering and searching
@@ -285,12 +303,14 @@ function actionsCell(job) {
   const name = job.title || 'this job';
   return h('td', { class: 'col-actions', 'data-label': 'Actions' },
     h('div', { class: 'row-actions' },
-      // The Edit button does nothing yet. It will open the edit dialog in step 7.
       h('button', {
         type: 'button',
         class: 'btn btn-ghost btn-sm',
         'aria-label': 'Edit ' + name,
-        dataset: { id: job.id, focusKey: 'edit-' + job.id }
+        dataset: { id: job.id, focusKey: 'edit-' + job.id },
+        onclick: function () {
+          openEditor(job);
+        }
       }, 'Edit'),
       h('button', {
         type: 'button',
@@ -359,8 +379,213 @@ function render() {
 }
 
 // ---------------------------------------------------------------------------
+// Add / edit dialog
+// ---------------------------------------------------------------------------
+
+// Fills the status select of the dialog once, from STATUSES.
+function buildStatusOptions() {
+  fStatus.replaceChildren(
+    ...STATUSES.map(function (status) {
+      return h('option', { value: status.id }, status.label);
+    })
+  );
+}
+
+function showDialogError(message) {
+  dialogError.textContent = message;
+  dialogError.hidden = false;
+}
+
+function hideDialogError() {
+  dialogError.textContent = '';
+  dialogError.hidden = true;
+}
+
+// Opens the dialog. With a job: "Edit job". Without: "Add a job" with empty fields.
+function openEditor(job) {
+  state.editingId = job ? job.id : null;
+  dialogTitle.textContent = job ? 'Edit job' : 'Add a job';
+
+  fTitle.value = job ? job.title || '' : '';
+  fCompany.value = job ? job.company || '' : '';
+  fLocation.value = job ? job.location || '' : '';
+  fUrl.value = job ? job.url || '' : '';
+  fStatus.value = job ? job.status : 'saved';
+  fDateApplied.value = job ? job.dateApplied || '' : '';
+  fNotes.value = job ? job.notes || '' : '';
+
+  hideDialogError();
+  dialogSaveBtn.disabled = false;
+  jobDialog.showModal();
+  fTitle.focus();
+}
+
+function readEditor() {
+  return {
+    title: fTitle.value,
+    company: fCompany.value,
+    location: fLocation.value,
+    url: fUrl.value,
+    status: fStatus.value,
+    dateApplied: fDateApplied.value,
+    notes: fNotes.value
+  };
+}
+
+async function saveEditor() {
+  hideDialogError();
+  const values = readEditor();
+
+  if (!values.title.trim()) {
+    showDialogError('Please enter a job title.');
+    fTitle.focus();
+    return;
+  }
+  if (values.url.trim() && !safeHref(values.url)) {
+    showDialogError('The link must start with http:// or https://');
+    fUrl.focus();
+    return;
+  }
+
+  dialogSaveBtn.disabled = true;
+  try {
+    // Read the jobs again: they may have changed since the dialog opened.
+    const jobs = await Store.all();
+
+    // The same link must not belong to another job.
+    const otherJobs = jobs.filter(function (job) {
+      return job.id !== state.editingId;
+    });
+    const duplicate = Store.findByUrl(otherJobs, values.url);
+    if (duplicate) {
+      showDialogError('This link is already saved: "' + (duplicate.title || 'Untitled job') + '"');
+      fUrl.focus();
+      return;
+    }
+
+    let job;
+    if (state.editingId) {
+      const original = jobs.find(function (saved) {
+        return saved.id === state.editingId;
+      });
+      if (!original) {
+        showDialogError('This job no longer exists. It may have been deleted in another tab.');
+        return;
+      }
+      job = updateJob(original, values);
+    } else {
+      job = createJob(values);
+    }
+
+    await Store.upsert(job);
+    // No render() here: chrome.storage.onChanged will redraw the list.
+    jobDialog.close();
+  } catch (error) {
+    console.error('Could not save the job:', error);
+    showDialogError('Could not save the job. Please try again.');
+  } finally {
+    dialogSaveBtn.disabled = false;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// CSV export
+// ---------------------------------------------------------------------------
+
+// One CSV cell: always in double quotes, and " inside becomes "".
+// A cell that starts with = + - @ tab or return gets a ' in front,
+// so Excel shows it as text and never runs it as a formula.
+function csvCell(value) {
+  let text = value === null || value === undefined ? '' : String(value);
+  if (/^[=+\-@\t\r]/.test(text)) {
+    text = "'" + text;
+  }
+  return '"' + text.replace(/"/g, '""') + '"';
+}
+
+function buildCsv(jobs) {
+  const header = ['Title', 'Company', 'Location', 'Status', 'Date saved', 'Date applied', 'Link', 'Notes'];
+  const rows = jobs
+    .slice()
+    .sort(byNewestSaved)
+    .map(function (job) {
+      return [
+        job.title,
+        job.company,
+        job.location,
+        statusLabel(job.status),
+        job.dateSaved,
+        job.dateApplied,
+        job.url,
+        job.notes
+      ];
+    });
+
+  const lines = [header].concat(rows).map(function (row) {
+    return row.map(csvCell).join(',');
+  });
+
+  // ﻿ (the BOM) tells Excel the file is UTF-8, so Arabic shows correctly.
+  // \r\n is the Windows line break, which Excel expects.
+  return '﻿' + lines.join('\r\n') + '\r\n';
+}
+
+// Saves text as a file, using a temporary link. Needs no extra permission.
+function downloadFile(text, fileName) {
+  const blob = new Blob([text], { type: 'text/csv;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const link = h('a', { href: url, download: fileName, hidden: true });
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  setTimeout(function () {
+    URL.revokeObjectURL(url);
+  }, 1000);
+}
+
+function exportCsv() {
+  if (state.jobs.length === 0) {
+    alert('There are no jobs to export yet.');
+    return;
+  }
+  downloadFile(buildCsv(state.jobs), 'job-applications-' + todayStr() + '.csv');
+}
+
+// ---------------------------------------------------------------------------
 // Start
 // ---------------------------------------------------------------------------
+
+addBtn.addEventListener('click', function () {
+  openEditor(null);
+});
+
+exportBtn.addEventListener('click', exportCsv);
+
+dialogForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+  saveEditor();
+});
+
+cancelBtn.addEventListener('click', function () {
+  jobDialog.close();
+});
+
+// Runs every time the dialog closes: Save, Cancel or the Escape key.
+jobDialog.addEventListener('close', function () {
+  state.editingId = null;
+});
+
+// Choosing "Applied" fills today's date, so you can see it (and change it).
+fStatus.addEventListener('change', function () {
+  if (fStatus.value === 'applied' && !fDateApplied.value) {
+    fDateApplied.value = todayStr();
+  }
+});
+
+// Hide the error as soon as the user starts fixing the form.
+dialogForm.addEventListener('input', hideDialogError);
+
+buildStatusOptions();
 
 searchInput.addEventListener('input', function () {
   state.search = searchInput.value;

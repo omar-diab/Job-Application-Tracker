@@ -65,6 +65,54 @@
     </div>
   </main>
 
+  <dialog id="jobDialog" class="job-dialog" aria-labelledby="dialogTitle">
+    <form id="dialogForm" novalidate>
+      <h2 id="dialogTitle" class="dialog-title">Add a job</h2>
+
+      <div class="dialog-grid">
+        <div class="field span-2">
+          <label for="f-title">Job title <span class="required" aria-hidden="true">*</span></label>
+          <input id="f-title" type="text" dir="auto" maxlength="300" required autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label for="f-company">Company</label>
+          <input id="f-company" type="text" dir="auto" maxlength="200" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="f-location">Location</label>
+          <input id="f-location" type="text" dir="auto" maxlength="200" autocomplete="off">
+        </div>
+
+        <div class="field span-2">
+          <label for="f-url">Link</label>
+          <input id="f-url" type="url" dir="ltr" maxlength="2000" placeholder="https://" autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label for="f-status">Status</label>
+          <select id="f-status"></select>
+        </div>
+        <div class="field">
+          <label for="f-dateApplied">Date applied</label>
+          <input id="f-dateApplied" type="date">
+        </div>
+
+        <div class="field span-2">
+          <label for="f-notes">Notes</label>
+          <textarea id="f-notes" dir="auto" maxlength="5000" rows="4" placeholder="Recruiter, salary, next step..."></textarea>
+        </div>
+      </div>
+
+      <p id="dialogError" class="form-error" role="alert" hidden></p>
+
+      <div class="dialog-actions">
+        <button type="button" id="cancelBtn" class="btn">Cancel</button>
+        <button type="submit" id="dialogSaveBtn" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+  </dialog>
+
   <script src="../shared/core.js"></script>
   <script src="dashboard.js"></script>
 </body>

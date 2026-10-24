@@ -354,6 +354,74 @@ a.job-title:hover {
   color: var(--muted);
 }
 
+/* --- Add / edit dialog ------------------------------------------------------------ */
+
+.job-dialog {
+  width: min(560px, 100vw - 32px);
+  max-height: calc(100vh - 32px);
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) + 4px);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+/* The dark layer behind the open dialog. */
+.job-dialog::backdrop {
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.job-dialog form {
+  padding: 20px 22px;
+}
+
+.dialog-title {
+  margin: 0 0 16px;
+  font-size: 18px;
+}
+
+.dialog-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.span-2 {
+  grid-column: 1 / -1;
+}
+
+.field {
+  min-width: 0;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.required {
+  color: var(--danger);
+}
+
+.form-error {
+  margin: 12px 0 0;
+  color: var(--danger);
+  font-size: 13px;
+  font-weight: 600;
+  unicode-bidi: plaintext;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 18px;
+}
+
 /* --- Small screens: each row becomes a card ------------------------------------- */
 
 @media (max-width: 820px) {
@@ -461,5 +529,14 @@ a.job-title:hover {
 
   .toolbar-controls select {
     width: 100%;
+  }
+
+  /* The dialog fields go in one column. */
+  .dialog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dialog-actions .btn {
+    flex: 1;
   }
 }
