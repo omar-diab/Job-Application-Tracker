@@ -1,8 +1,7 @@
 // The dashboard: shows all saved jobs, with filters, search and sort.
 // Uses t(), tCount(), I18n from ../shared/i18n.js,
-// readLicense(), refreshLicense(), activateLicense(), openUpgrade(), ... from ../shared/premium.js
+// STATUSES, h(), Store, updateJob(), followUpDue(), ... from ../shared/core.js
 // and showAds(), renderAd() from ../shared/ads.js.
-// and STATUSES, h(), Store, updateJob(), followUpDue(), ... from ../shared/core.js.
 
 'use strict';
 
@@ -15,12 +14,7 @@ const state = {
   filter: 'all',       // 'all', a status id like 'applied', or 'followup'
   search: '',          // what is in the search box
   sort: 'saved-desc',  // the value of the sort select
-  editingId: null,     // the id of the job open in the dialog, or null when adding a new job
-  premium: false,      // true if the user has Premium (saved on this computer)
-  license: null,       // the saved license (to show the end of the key)
-  licenseInput: '',    // what the user typed in the license key field
-  licenseBusy: false,  // true while the key is checked with Dodo
-  premiumError: ''     // an error to show in the Premium dialog
+  editingId: null      // the id of the job open in the dialog, or null when adding a new job
 };
 
 // ---------------------------------------------------------------------------
@@ -40,13 +34,7 @@ const emptyText = document.getElementById('emptyText');
 const addBtn = document.getElementById('addBtn');
 const exportBtn = document.getElementById('exportBtn');
 const languageSelect = document.getElementById('languageSelect');
-const premiumBtn = document.getElementById('premiumBtn');
 const adSlot = document.getElementById('adSlot');
-
-// The Premium dialog
-const premiumDialog = document.getElementById('premiumDialog');
-const premiumBody = document.getElementById('premiumBody');
-const premiumCloseBtn = document.getElementById('premiumCloseBtn');
 
 // The add / edit dialog
 const jobDialog = document.getElementById('jobDialog');
@@ -632,228 +620,6 @@ function exportCsv() {
 }
 
 // ---------------------------------------------------------------------------
-// Premium
-// ---------------------------------------------------------------------------
-
-// The top bar button: "⭐ Go Premium" for free users, a "⭐ Premium" badge for Premium users.
-function renderPremiumButton() {
-  premiumBtn.textContent = t(state.premium ? 'premiumBadge' : 'goPremium');
-  premiumBtn.classList.toggle('is-premium', state.premium);
-  premiumBtn.hidden = false;
-}
-
-// A price in the chosen language and the plan's currency: 499 cents + "usd" → "$4.99".
-function formatPrice(plan) {
-  const amount = plan.unitAmountCents / 100;
-  const currency = String(plan.currency || '').toUpperCase();
-  try {
-    return new Intl.NumberFormat(I18n.locale(), { style: 'currency', currency: currency }).format(amount);
-  } catch (error) {
-    return amount.toFixed(2) + ' ' + currency;
-  }
-}
-
-// "Monthly", "Yearly" or "One-time payment".
-function planName(plan) {
-  if (plan.interval === 'month') {
-    return t('planMonthly');
-  }
-  if (plan.interval === 'year') {
-    return t('planYearly');
-  }
-  return t('planOnce');
-}
-
-// "$4.99 / month", "$39 / year", "$9.99 every 3 months", "$59 once".
-function planPrice(plan) {
-  const price = formatPrice(plan);
-  const count = plan.intervalCount || 1;
-  if (plan.interval === 'month') {
-    return count > 1 ? t('pricePerMonths', [price, count]) : t('pricePerMonth', price);
-  }
-  if (plan.interval === 'year') {
-    return count > 1 ? t('pricePerYears', [price, count]) : t('pricePerYear', price);
-  }
-  return t('priceOnce', price);
-}
-
-// The license errors from premium.js, as message keys.
-const LICENSE_ERROR_KEYS = Object.freeze({
-  empty: 'licenseRequired',
-  not_found: 'licenseInvalid',
-  inactive: 'licenseInactive',
-  limit: 'licenseLimit',
-  network: 'licenseNetworkError'
-});
-
-// One plan: its name, its price and a "Choose" button that opens the Dodo checkout.
-function planCard(plan) {
-  const name = planName(plan);
-  return h('div', { class: 'plan-card' },
-    h('div', { class: 'plan-name', text: name }),
-    h('div', { class: 'plan-price', text: planPrice(plan) }),
-    h('button', {
-      type: 'button',
-      class: 'btn btn-primary btn-sm',
-      'aria-label': t('choosePlanLabel', name),
-      onclick: function () {
-        openUpgrade(plan.id).catch(function (error) {
-          console.error('Could not open the checkout page:', error);
-        });
-      }
-    }, t('choosePlan'))
-  );
-}
-
-// The plans, cheapest first.
-function plansSection() {
-  const plans = loadPlans().slice().sort(function (a, b) {
-    return a.unitAmountCents - b.unitAmountCents;
-  });
-  return h('div', { class: 'plan-list' }, plans.map(planCard));
-}
-
-// "Already bought Premium?": a field for the license key and an Activate button.
-function licenseForm() {
-  const input = h('input', {
-    type: 'text',
-    id: 'licenseInput',
-    class: 'license-input',
-    dir: 'ltr',
-    autocomplete: 'off',
-    spellcheck: 'false',
-    placeholder: t('licensePlaceholder'),
-    disabled: state.licenseBusy,
-    oninput: function (event) {
-      state.licenseInput = event.target.value;
-    }
-  });
-  input.value = state.licenseInput;
-
-  return h('form', {
-    class: 'license-form',
-    novalidate: true,
-    onsubmit: function (event) {
-      event.preventDefault();
-      activateFromForm();
-    }
-  },
-    h('label', { for: 'licenseInput', class: 'premium-heading license-label', text: t('licenseHaveKey') }),
-    h('div', { class: 'license-row' },
-      input,
-      h('button', { type: 'submit', class: 'btn btn-primary btn-sm', disabled: state.licenseBusy },
-        t(state.licenseBusy ? 'licenseActivating' : 'licenseActivate'))
-    ),
-    h('p', { class: 'premium-muted', text: t('licenseEmailHint') })
-  );
-}
-
-// Activates the key the user typed. On success, onPremiumChange() redraws the page.
-async function activateFromForm() {
-  state.licenseBusy = true;
-  state.premiumError = '';
-  renderPremiumDialog();
-  try {
-    await activateLicense(state.licenseInput);
-    state.licenseInput = '';
-  } catch (error) {
-    console.warn('Could not activate the license:', error);
-    state.premiumError = t(LICENSE_ERROR_KEYS[error.code] || 'licenseNetworkError');
-  } finally {
-    state.licenseBusy = false;
-    renderPremiumDialog();
-    const input = document.getElementById('licenseInput');
-    if (input && state.premiumError) {
-      input.focus();
-    }
-  }
-}
-
-// Removes the license from this computer (to use it on another one).
-async function removeLicenseFromComputer() {
-  if (!confirm(t('licenseRemoveConfirm'))) {
-    return;
-  }
-  try {
-    await removeLicense();
-  } catch (error) {
-    console.error('Could not remove the license:', error);
-  }
-}
-
-// Draws the inside of the Premium dialog again from the state.
-function renderPremiumDialog() {
-  const benefits = h('ul', { class: 'premium-benefits' },
-    ['premiumNoAds', 'premiumSupport', 'premiumAiSoon'].map(function (key) {
-      return h('li', { text: t(key) });
-    })
-  );
-  const parts = [];
-
-  if (state.premium) {
-    const licenseKey = state.license && state.license.licenseKey;
-    parts.push(
-      h('p', { class: 'premium-active', text: t('premiumActive') }),
-      h('h3', { class: 'premium-heading', text: t('premiumIncluded') }),
-      benefits,
-      licenseKey ? h('p', { class: 'premium-muted license-key', dir: 'auto', text: t('licenseOnThisComputer', maskLicenseKey(licenseKey)) }) : null,
-      h('p', { class: 'premium-muted', text: t('manageHint') }),
-      h('div', { class: 'premium-actions' },
-        h('button', { type: 'button', class: 'btn btn-sm danger', onclick: removeLicenseFromComputer }, t('licenseRemove'))
-      )
-    );
-  } else {
-    parts.push(
-      h('p', { class: 'premium-intro', text: t('premiumIntro') }),
-      h('h3', { class: 'premium-heading', text: t('premiumIncluded') }),
-      benefits,
-      h('h3', { class: 'premium-heading', text: t('premiumChoosePlan') }),
-      plansSection(),
-      licenseForm()
-    );
-  }
-
-  if (state.premiumError) {
-    parts.push(h('p', { class: 'form-error', role: 'alert', text: state.premiumError }));
-  }
-  parts.push(h('p', { class: 'premium-note', text: t('premiumSecureNote') }));
-
-  premiumBody.replaceChildren(...parts);
-}
-
-function openPremiumDialog() {
-  state.premiumError = '';
-  renderPremiumDialog();
-  if (!premiumDialog.open) {
-    premiumDialog.showModal();
-  }
-}
-
-premiumBtn.addEventListener('click', openPremiumDialog);
-
-premiumCloseBtn.addEventListener('click', function () {
-  premiumDialog.close();
-});
-
-// After an activation, a removal or a check in another tab, the saved status changes
-// and the page follows.
-onPremiumChange(function (premium, license) {
-  state.premium = premium;
-  state.license = license;
-  renderPremiumButton();
-  if (premiumDialog.open) {
-    renderPremiumDialog();
-  }
-});
-
-// ---------------------------------------------------------------------------
-// Sponsored card (free users only)
-// ---------------------------------------------------------------------------
-
-// "Remove ads" and the Premium ad open the Premium window.
-const AD_OPTIONS = Object.freeze({ compact: false, onRemoveAds: openPremiumDialog });
-
-// ---------------------------------------------------------------------------
 // Start
 // ---------------------------------------------------------------------------
 
@@ -938,11 +704,7 @@ function refreshLanguage() {
   if (jobDialog.open) {
     updateDialogTitle();
   }
-  renderPremiumButton();
-  if (premiumDialog.open) {
-    renderPremiumDialog();
-  }
-  renderAd(adSlot, AD_OPTIONS);
+  renderAd(adSlot);
   render();
 }
 
@@ -958,14 +720,7 @@ languageSelect.addEventListener('change', async function () {
 // Loads the translations and the saved jobs, and draws the page for the first time.
 async function init() {
   await I18n.init();
-
-  // Premium: show the saved status at once, then check online in the background
-  // (at most every 12 hours). If it changed, onPremiumChange() updates the page.
-  state.license = await readLicense();
-  state.premium = Boolean(state.license && state.license.premium);
-  renderPremiumButton();
-  refreshLicense();
-  showAds(adSlot, AD_OPTIONS);
+  showAds(adSlot);
 
   buildLanguageOptions();
   buildStatusOptions();
@@ -976,12 +731,6 @@ async function init() {
     console.error('Could not load jobs:', error);
   }
   render();
-
-  // The popup's "⭐ Premium" link opens dashboard.html#premium.
-  if (location.hash === '#premium') {
-    history.replaceState(null, '', location.pathname + location.search);
-    openPremiumDialog();
-  }
 }
 
 init();

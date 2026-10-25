@@ -41,7 +41,7 @@
 - 🌙 **وضع فاتح وداكن** حسب إعدادات جهازك.
 - 🌍 **دعم العربية والكتابة من اليمين لليسار** في كل الحقول.
 - 🔒 **محلي 100%**: بدون حساب، بدون خادم، بدون تتبع. بيانات وظائفك لا تغادر جهازك.
-- ⭐ **اشتراك Premium اختياري** لدعم المشروع وإزالة البطاقات الإعلانية الصغيرة (مزايا الذكاء الاصطناعي قريبًا). كل المزايا السابقة تبقى مجانية.
+- 🆓 **مجانية للجميع.** يُدعَم المشروع ببطاقات إعلانية صغيرة داخل الإضافة.
 
 ## صور الشاشة
 
@@ -66,7 +66,7 @@
 
 - تُحفظ الوظائف فقط في `chrome.storage.local` داخل متصفحك، ولا تُرسل إلى أي مكان.
 - لا حساب، لا إحصاءات، لا تتبع، لا شبكات إعلانية.
-- تعرض النسخة المجانية **بطاقات إعلانية صغيرة** داخل الإضافة فقط (وليس على أي موقع). هذه البطاقات موجودة داخل الإضافة نفسها ولا تتتبّع أي شيء، ويزيلها اشتراك Premium.
+- تعرض الإضافة **بطاقات إعلانية صغيرة** داخل نافذتها المنبثقة ولوحة التحكم فقط (وليس على أي موقع). هذه البطاقات موجودة داخل الإضافة نفسها ولا تتتبّع أي شيء.
 - تُقرأ الصفحة **فقط عندما تضغط على الأيقونة**.
 
 تطلب الإضافة 3 صلاحيات فقط:
@@ -76,12 +76,6 @@
 | `storage` | حفظ وظائفك على جهازك. |
 | `activeTab` | قراءة التبويب الذي أنت فيه، فقط بعد الضغط على الأيقونة. لا وصول إلى «كل المواقع». |
 | `scripting` | تشغيل قارئ الصفحة الصغير في ذلك التبويب لإيجاد تفاصيل الوظيفة. |
-
-### اشتراك Premium والدفع
-
-- تتم عمليات الدفع عبر **[Dodo Payments](https://dodopayments.com)** (التاجر المسجّل). **لا نرى بيانات بطاقتك أبدًا.**
-- بعد الدفع، ترسل Dodo إليك **مفتاح ترخيص** بالبريد الإلكتروني، فتلصقه في نافذة Premium.
-- تتصل الإضافة بـ Dodo فقط للتحقق من مفتاح الترخيص: عند إدخاله، ومرة واحدة كل 12 ساعة على الأكثر. وظائفك وملاحظاتك لا تُرسل أبدًا.
 
 اقرأ [سياسة الخصوصية](PRIVACY.md) كاملة.
 
@@ -130,7 +124,6 @@ job-application-tracker/
 │   ├── i18n.js              Translations: t(), language picker, right-to-left
 │   ├── core.js              Statuses, safe h() element helper, dates, links, jobs, storage
 │   ├── extractor.js         Reads the job from a page (LinkedIn, Indeed, JSON-LD, title)
-│   ├── premium.js           Premium: plans, Dodo checkout, license key activation and checks
 │   ├── ads.js               Sponsored cards for free users (no tracking, no ad network)
 │   └── ads.json             The list of sponsored cards (edit this file to change the ads)
 ├── popup/
@@ -143,7 +136,7 @@ job-application-tracker/
 │   └── dashboard.js         List, filters, search, sort, add/edit dialog, CSV export
 ├── tools/                   Helpers for developers (NOT part of the extension)
 │   ├── make-icons.html/.js  Draws the icons and downloads them as PNG
-│   ├── test-core.html/.js   Tests for shared/core.js, premium.js and ads.js
+│   ├── test-core.html/.js   Tests for shared/core.js, i18n.js and ads.js
 │   ├── test-extractor.html/.js  Tests for shared/extractor.js
 │   ├── check-locales.js     Checks all translations (node tools/check-locales.js)
 │   └── check-ads.js         Checks shared/ads.json (node tools/check-ads.js)
@@ -172,7 +165,6 @@ Click icon → popup.js → chrome.scripting.executeScript(extractJobInfo) → r
 - الدالة `extractJobInfo` مستقلة تمامًا، لأن Chrome ينسخ هذه الدالة وحدها إلى الصفحة.
 - كل النصوص تُضاف باستخدام `textContent` (عبر الدالة المساعدة `h()`)، وليس `innerHTML` أبدًا، فلا يمكن لعنوان وظيفة أن يحقن كود HTML.
 - تُوحَّد الروابط (`/jobs/view/123/` و`?jk=...` وحذف معاملات التتبع)، فلا تُحفظ الوظيفة نفسها مرتين.
-- **Premium:** يُفعَّل مفتاح الترخيص عبر واجهة التراخيص العامة في Dodo Payments (دون أي مفتاح سرّي داخل الإضافة)، وتُحفظ النتيجة في `chrome.storage.local`. تقرأ النافذة المنبثقة ولوحة التحكم هذه القيمة المحفوظة، فتفتحان بسرعة وتعملان دون إنترنت.
 
 ## تشغيل الاختبارات
 
@@ -187,13 +179,13 @@ Click icon → popup.js → chrome.scripting.executeScript(extractJobInfo) → r
 
 ومع كل `push`، يفحص GitHub Actions أيضًا ملف `manifest.json` وصحة كود JavaScript والصلاحيات والترجمات والإعلانات.
 
-## البطاقات الإعلانية (النسخة المجانية)
+## البطاقات الإعلانية
 
-يرى مستخدمو النسخة المجانية بطاقة **واحدة** صغيرة مكتوب عليها **«إعلان مموَّل»**: في لوحة التحكم (فوق القائمة أو في الصفحة الفارغة)، وسطرًا واحدًا أسفل النافذة المنبثقة. مستخدمو Premium لا يرونها أبدًا.
+الإضافة مجانية. يرى المستخدمون بطاقة **واحدة** صغيرة مكتوب عليها **«إعلان مموَّل»**: في لوحة التحكم (فوق القائمة أو في الصفحة الفارغة)، وسطرًا واحدًا أسفل النافذة المنبثقة.
 
 - البطاقات موجودة في الملف [`shared/ads.json`](shared/ads.json) داخل الإضافة. **لا توجد شبكة إعلانية**، ولا كود من الإنترنت، ولا تتبّع، ولا ملفات تعريف ارتباط.
 - لا تظهر البطاقات **أبدًا** على LinkedIn أو Indeed أو أي موقع آخر.
-- لكل بطاقة: `id` و`title` و`text` و`url` (أو `"#premium"` لفتح نافذة Premium) و`cta` (نص الزر)، و`image` اختياري (ملف في `icons/ads/`)، و`languages` اختياري (مثل `["ar"]`)، و`endDate` اختياري (مثل `"2027-12-31"`).
+- لكل بطاقة: `id` و`title` و`text` و`url` (رابط يبدأ بـ `https://`) و`cta` (نص الزر)، و`image` اختياري (ملف في `icons/ads/`)، و`languages` اختياري (مثل `["ar"]`)، و`endDate` اختياري (مثل `"2027-12-31"`).
 - بعد تعديل `ads.json` شغّل `node tools/check-ads.js`. تصل التغييرات إلى المستخدمين مع الإصدار التالي.
 
 ## خطط مستقبلية

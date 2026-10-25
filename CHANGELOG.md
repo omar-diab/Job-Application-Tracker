@@ -8,8 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Added
 
 - **Languages**: English and Arabic, with a language picker in the dashboard, right-to-left layout for Arabic, and dates and sorting in the chosen language.
-- **Premium** (optional): monthly or yearly plan with Dodo Payments and license keys. Removes the sponsored cards. All current features stay free.
-- **Sponsored cards** for free users: one small card in the dashboard and one line in the popup, clearly labeled "Sponsored". Built into the extension (`shared/ads.json`), no ad network, no tracking. Never shown on websites.
+- **Sponsored cards**: the extension stays free for everyone and shows one small card in the dashboard and one line in the popup, clearly labeled "Sponsored". Built into the extension (`shared/ads.json`), no ad network, no tracking. Never shown on websites.
 - Developer checks: `tools/check-locales.js` and `tools/check-ads.js`, also run by GitHub Actions.
 
 ## [1.0.0] - 2026-10-24

@@ -3,7 +3,7 @@
 //
 // For every ad it checks:
 // - id, title and cta are there, and every id is different,
-// - url is "#premium" or a normal http:// or https:// link,
+// - url is a normal http:// or https:// link,
 // - image (optional) is a file in icons/ads/ that really exists,
 // - endDate (optional) is a real date written as YYYY-MM-DD,
 // - languages (optional) are languages that exist in _locales.
@@ -84,8 +84,8 @@ ads.forEach(function (ad, index) {
   }
   ids.add(ad.id);
 
-  if (ad.url !== '#premium' && !isWebLink(ad.url)) {
-    problems.push(name + ': "url" must be "#premium" or start with http:// or https://');
+  if (!isWebLink(ad.url)) {
+    problems.push(name + ': "url" must start with http:// or https://');
   }
 
   if (ad.image !== undefined) {

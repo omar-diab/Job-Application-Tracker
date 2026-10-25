@@ -1,6 +1,6 @@
 // The popup: reads the job from the current tab, and saves or updates it.
 // Uses t() from ../shared/i18n.js, STATUSES, h(), Store, createJob(), ... from ../shared/core.js,
-// isPremium() and refreshLicense() from ../shared/premium.js, showAds() from ../shared/ads.js
+// showAds() from ../shared/ads.js
 // and extractJobInfo() from ../shared/extractor.js.
 
 'use strict';
@@ -20,8 +20,6 @@ const notice = document.getElementById('notice');
 const formError = document.getElementById('formError');
 const saveBtn = document.getElementById('saveBtn');
 const openDashboardBtn = document.getElementById('openDashboard');
-const premiumRow = document.getElementById('premiumRow');
-const premiumLink = document.getElementById('premiumLink');
 const adSlot = document.getElementById('adSlot');
 
 // The id of the saved job we are showing. null means "a new job".
@@ -154,8 +152,7 @@ async function readPage(tab) {
 // Loads the translations, reads the current tab, then shows the saved job or the page data.
 async function init() {
   await I18n.init();
-  showPremiumLink();
-  showAds(adSlot, { compact: true, onRemoveAds: openPremiumInDashboard });
+  showAds(adSlot, { compact: true });
   buildStatusPicker();
   setStatus('saved');
   titleInput.focus();
@@ -256,24 +253,5 @@ openDashboardBtn.addEventListener('click', async function () {
   await chrome.tabs.create({ url: chrome.runtime.getURL('dashboard/dashboard.html') });
   window.close();
 });
-
-// Shows the small "⭐ Premium" link for free users. It reads only the saved status,
-// so the popup opens fast. The online check runs in the background (max every 12 hours).
-async function showPremiumLink() {
-  premiumRow.hidden = await isPremium();
-  refreshLicense();
-}
-
-onPremiumChange(function (premium) {
-  premiumRow.hidden = premium;
-});
-
-// Opens the dashboard with the Premium window already open.
-async function openPremiumInDashboard() {
-  await chrome.tabs.create({ url: chrome.runtime.getURL('dashboard/dashboard.html#premium') });
-  window.close();
-}
-
-premiumLink.addEventListener('click', openPremiumInDashboard);
 
 init();

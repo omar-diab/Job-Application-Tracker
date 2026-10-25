@@ -1,4 +1,4 @@
-// "Sponsored" cards for FREE users, shown only inside our own popup and dashboard.
+// "Sponsored" cards, shown only inside our own popup and dashboard.
 //
 // Rules (Chrome Web Store policy):
 // - Never on LinkedIn, Indeed or any other website. Only in our own pages.
@@ -7,8 +7,9 @@
 // - Always labeled "Sponsored". No tracking, no cookies, nothing is sent anywhere.
 // - A card never covers content and never pops up.
 //
-// Load this file after i18n.js, core.js and premium.js. Then:
-//   showAds(container, { compact: false, onRemoveAds: openPremiumDialog });
+// Load this file after i18n.js and core.js. Then:
+//   showAds(container);                     // a card (dashboard)
+//   showAds(container, { compact: true });  // one small line (popup)
 
 'use strict';
 
@@ -16,9 +17,6 @@ const ADS_FILE = 'shared/ads.json';
 
 // The id of the last ad shown, so the next one is different. Saved only on this computer.
 const ADS_LAST_KEY = 'ads.lastShown';
-
-// An ad with this url opens the Premium window instead of a website.
-const PREMIUM_AD_URL = '#premium';
 
 // Ad images must be local files in icons/ads/.
 const AD_IMAGE_PATTERN = /^icons\/ads\/[a-z0-9_-]+\.(png|jpg|jpeg|webp|svg)$/i;
@@ -32,7 +30,7 @@ function isValidAd(ad) {
     typeof ad.title === 'string' && ad.title.trim() !== '' &&
     typeof ad.cta === 'string' && ad.cta.trim() !== '' &&
     (ad.text === undefined || typeof ad.text === 'string') &&
-    (ad.url === PREMIUM_AD_URL || safeHref(ad.url) !== null) &&
+    safeHref(ad.url) !== null &&
     (ad.image === undefined || AD_IMAGE_PATTERN.test(ad.image)) &&
     (ad.endDate === undefined || isDateStr(ad.endDate)) &&
     (ad.languages === undefined || Array.isArray(ad.languages));
@@ -104,42 +102,21 @@ async function pickAd(lang) {
 }
 
 // Builds one card with h() only (never innerHTML).
-// compact: one line for the popup. onRemoveAds: opens the Premium window.
+// compact: one line for the popup.
 function buildAdCard(ad, options) {
-  const isPremiumAd = ad.url === PREMIUM_AD_URL;
-
-  const cta = isPremiumAd
-    ? h('button', { type: 'button', class: 'ad-cta', onclick: options.onRemoveAds }, ad.cta)
-    : h('a', {
-        class: 'ad-cta',
-        href: safeHref(ad.url),
-        target: '_blank',
-        rel: 'noopener noreferrer sponsored'
-      }, ad.cta);
-
-  // The Premium ad already says "Go Premium", so it does not need a second link.
-  const remove = isPremiumAd
-    ? null
-    : h('button', { type: 'button', class: 'ad-remove', onclick: options.onRemoveAds }, t('adRemoveAds'));
-
   const label = h('span', { class: 'ad-label', text: t('adSponsored') });
+  const cta = h('a', {
+    class: 'ad-cta',
+    href: safeHref(ad.url),
+    target: '_blank',
+    rel: 'noopener noreferrer sponsored'
+  }, ad.cta);
 
   if (options.compact) {
-    // One line is short, so "Remove ads" is only the ⭐ icon here (the full text is the tooltip).
-    const removeIcon = isPremiumAd
-      ? null
-      : h('button', {
-          type: 'button',
-          class: 'ad-remove',
-          title: t('adRemoveAds'),
-          'aria-label': t('adRemoveAds'),
-          onclick: options.onRemoveAds
-        }, '⭐');
     return h('aside', { class: 'ad-card ad-compact', 'aria-label': t('adSponsored') },
       label,
       h('span', { class: 'ad-title', dir: 'auto', title: ad.title, text: ad.title }),
-      cta,
-      removeIcon
+      cta
     );
   }
 
@@ -150,7 +127,7 @@ function buildAdCard(ad, options) {
       h('p', { class: 'ad-title', dir: 'auto', text: ad.title }),
       ad.text ? h('p', { class: 'ad-text', dir: 'auto', text: ad.text }) : null
     ),
-    h('div', { class: 'ad-actions' }, cta, remove)
+    h('div', { class: 'ad-actions' }, cta)
   );
 }
 
@@ -163,14 +140,13 @@ function clearAd(container) {
 // the older one does nothing, so two ads never fight for the same container.
 let adRequestCount = 0;
 
-// Shows one ad in the container, or nothing for Premium users.
+// Shows one ad in the container (or hides it when there is no ad).
 async function renderAd(container, options) {
   const opts = options || {};
   const request = String(++adRequestCount);
   container.dataset.adRequest = request;
 
-  const premium = await isPremium();
-  const ad = premium ? null : await pickAd(I18n.lang);
+  const ad = await pickAd(I18n.lang);
   if (container.dataset.adRequest !== request) {
     return null;
   }
@@ -183,16 +159,7 @@ async function renderAd(container, options) {
   return ad;
 }
 
-// Shows an ad now, and keeps it right when Premium changes:
-// the ad disappears at once when the user gets Premium (no reload needed).
+// Shows an ad in the container.
 function showAds(container, options) {
   renderAd(container, options);
-  onPremiumChange(function (premium) {
-    if (premium) {
-      container.dataset.adRequest = '';
-      clearAd(container);
-    } else {
-      renderAd(container, options);
-    }
-  });
 }
