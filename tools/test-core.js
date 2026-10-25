@@ -277,6 +277,9 @@ test('h(): attributes, true/false values, dataset and events', function () {
   assertEqual(button.className, 'btn');
   assertEqual(button.dataset.id, '42');
   assertEqual(clicks, 1);
+
+  const unsafe = h('a', { onclick: 'alert(1)', onmouseover: 'alert(2)' });
+  assertEqual(unsafe.hasAttribute('onclick') || unsafe.hasAttribute('onmouseover'), false, 'text event handlers are never added');
 });
 
 // ---------------------------------------------------------------------------

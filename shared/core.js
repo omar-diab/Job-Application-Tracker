@@ -71,9 +71,12 @@ function h(tag, props, ...children) {
             el.dataset[name] = value[name];
           }
         });
-      } else if (key.startsWith('on') && typeof value === 'function') {
-        // "onclick" → addEventListener('click', ...)
-        el.addEventListener(key.slice(2).toLowerCase(), value);
+      } else if (key.startsWith('on')) {
+        // "onclick" → addEventListener('click', ...). Only real functions:
+        // a text "onclick" is never added as an HTML attribute.
+        if (typeof value === 'function') {
+          el.addEventListener(key.slice(2).toLowerCase(), value);
+        }
       } else if (value === true) {
         // true means an empty attribute, like <option selected>.
         el.setAttribute(key, '');
