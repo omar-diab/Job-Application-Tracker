@@ -19,7 +19,7 @@
 </p>
 
 <p align="center">
-  <img src="docs/screenshots/demo.gif" width="760" alt="Demo: saving a LinkedIn job with the popup, then opening the dashboard">
+  <img src="docs/screenshots/dashboard.png" width="760" alt="The Job Application Tracker dashboard">
 </p>
 
 ## Why this exists
@@ -37,7 +37,7 @@ This extension does the boring part for you. Open a job post, click the icon, an
 - ⏰ **Follow-up hint** when an application has been "Applied" for 7+ days.
 - 📤 **CSV export** that opens correctly in Excel, including Arabic text.
 - 🌙 **Light and dark mode**, following your system.
-- 🌍 **Arabic and right-to-left text** work in every field.
+- 🌍 **13 languages**, and Arabic and right-to-left text work in every field.
 - 🔒 **100% local**: no account, no server, no tracking. Your job data never leaves your computer.
 - 🆓 **Free for everyone.** The project is supported by small sponsored cards inside the extension.
 
@@ -130,7 +130,8 @@ job-application-tracker/
 │   ├── test-extractor.html/.js  Tests for shared/extractor.js
 │   ├── check-locales.js     Checks all translations (node tools/check-locales.js)
 │   └── check-ads.js         Checks shared/ads.json (node tools/check-ads.js)
-└── docs/screenshots/        Images for this README
+├── docs/screenshots/        Images for this README
+└── docs/store/              Chrome Web Store screenshots (1280×800)
 ```
 
 ## How it works

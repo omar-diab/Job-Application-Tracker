@@ -3,15 +3,7 @@
 All notable changes to this project are listed in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project uses [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
-
-### Added
-
-- **Languages**: English and Arabic, with a language picker in the dashboard, right-to-left layout for Arabic, and dates and sorting in the chosen language.
-- **Sponsored cards**: the extension stays free for everyone and shows one small card in the dashboard and one line in the popup, clearly labeled "Sponsored". Built into the extension (`shared/ads.json`), no ad network, no tracking. Never shown on websites.
-- Developer checks: `tools/check-locales.js` and `tools/check-ads.js`, also run by GitHub Actions.
-
-## [1.0.0] - 2026-10-24
+## [1.0.0] - 2026-10-25
 
 First public release.
 
@@ -31,8 +23,11 @@ First public release.
   - Card view on small screens.
 - **CSV export** that opens correctly in Excel (UTF-8 BOM, Arabic text, protection against formula injection).
 - **Light and dark mode**, following the system setting.
+- **13 languages** (English, English UK, Arabic, German, Spanish, French, Indonesian, Portuguese (Brazil), Russian, Turkish, Hindi, Chinese (Simplified), Japanese), with a language picker in the dashboard, right-to-left layout for Arabic, and dates and sorting in the chosen language.
 - **Arabic and right-to-left text** in all fields.
+- **Styled dropdown menus** that open below the field, in the app's colors.
+- **Sponsored cards**: the extension is free for everyone and shows one small card in the dashboard and one line in the popup, clearly labeled "Sponsored". Built into the extension (`shared/ads.json`), no ad network, no tracking. Never shown on websites.
 - **Privacy**: data saved only in `chrome.storage.local`, only 3 permissions (`storage`, `activeTab`, `scripting`).
-- Developer tools: icon maker and test pages for `core.js` and `extractor.js`.
+- Developer tools: icon maker, test pages for `core.js` and `extractor.js`, and checks for translations and ads (`tools/check-locales.js`, `tools/check-ads.js`), also run by GitHub Actions.
 
 [1.0.0]: https://github.com/omar-diab/job-application-tracker/releases/tag/v1.0.0

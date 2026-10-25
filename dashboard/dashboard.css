@@ -328,6 +328,7 @@ a.job-title:hover {
   color: var(--st-fg);
   font-size: 12px;
   font-weight: 600;
+  white-space: nowrap;
   cursor: pointer;
   appearance: none;
 }

@@ -21,7 +21,7 @@
 </p>
 
 <p align="center">
-  <img src="docs/screenshots/demo.gif" width="760" alt="عرض: حفظ وظيفة من LinkedIn بالنافذة المنبثقة ثم فتح لوحة التحكم">
+  <img src="docs/screenshots/dashboard.png" width="760" alt="لوحة تحكم متتبع طلبات التوظيف">
 </p>
 
 ## لماذا هذه الإضافة؟
@@ -39,7 +39,7 @@
 - ⏰ **تذكير بالمتابعة** عندما يمرّ 7 أيام أو أكثر على طلب بحالة «تم التقديم».
 - 📤 **تصدير CSV** يُفتح بشكل صحيح في Excel، مع النص العربي.
 - 🌙 **وضع فاتح وداكن** حسب إعدادات جهازك.
-- 🌍 **دعم العربية والكتابة من اليمين لليسار** في كل الحقول.
+- 🌍 **13 لغة**، ودعم العربية والكتابة من اليمين لليسار في كل الحقول.
 - 🔒 **محلي 100%**: بدون حساب، بدون خادم، بدون تتبع. بيانات وظائفك لا تغادر جهازك.
 - 🆓 **مجانية للجميع.** يُدعَم المشروع ببطاقات إعلانية صغيرة داخل الإضافة.
 
@@ -140,7 +140,8 @@ job-application-tracker/
 │   ├── test-extractor.html/.js  Tests for shared/extractor.js
 │   ├── check-locales.js     Checks all translations (node tools/check-locales.js)
 │   └── check-ads.js         Checks shared/ads.json (node tools/check-ads.js)
-└── docs/screenshots/        Images for this README
+├── docs/screenshots/        Images for this README
+└── docs/store/              Chrome Web Store screenshots (1280×800)
 ```
 
 </div>
