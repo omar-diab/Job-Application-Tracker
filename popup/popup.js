@@ -1,6 +1,6 @@
 // The popup: reads the job from the current tab, and saves or updates it.
 // Uses t() from ../shared/i18n.js, STATUSES, h(), Store, createJob(), ... from ../shared/core.js,
-// isPremium() and refreshLicense() from ../shared/premium.js
+// isPremium() and refreshLicense() from ../shared/premium.js, showAds() from ../shared/ads.js
 // and extractJobInfo() from ../shared/extractor.js.
 
 'use strict';
@@ -22,6 +22,7 @@ const saveBtn = document.getElementById('saveBtn');
 const openDashboardBtn = document.getElementById('openDashboard');
 const premiumRow = document.getElementById('premiumRow');
 const premiumLink = document.getElementById('premiumLink');
+const adSlot = document.getElementById('adSlot');
 
 // The id of the saved job we are showing. null means "a new job".
 let currentJobId = null;
@@ -154,6 +155,7 @@ async function readPage(tab) {
 async function init() {
   await I18n.init();
   showPremiumLink();
+  showAds(adSlot, { compact: true, onRemoveAds: openPremiumInDashboard });
   buildStatusPicker();
   setStatus('saved');
   titleInput.focus();
@@ -267,9 +269,11 @@ onPremiumChange(function (premium) {
 });
 
 // Opens the dashboard with the Premium window already open.
-premiumLink.addEventListener('click', async function () {
+async function openPremiumInDashboard() {
   await chrome.tabs.create({ url: chrome.runtime.getURL('dashboard/dashboard.html#premium') });
   window.close();
-});
+}
+
+premiumLink.addEventListener('click', openPremiumInDashboard);
 
 init();

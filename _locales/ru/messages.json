@@ -1,0 +1,559 @@
+{
+  "extName": {
+    "message": "Трекер откликов на вакансии",
+    "description": "Extension name, shown in Chrome and the Chrome Web Store. Max 75 characters."
+  },
+  "extDescription": {
+    "message": "Сохраняйте вакансии с LinkedIn, Indeed и других сайтов в один клик и следите за всеми откликами в одном месте.",
+    "description": "Extension description for the Chrome Web Store. MUST be under 132 characters."
+  },
+  "popupBrand": {
+    "message": "Трекер вакансий",
+    "description": "Short app name in the popup header."
+  },
+  "openDashboard": {
+    "message": "Панель ↗",
+    "description": "Popup button that opens the dashboard in a new tab. The arrow means 'opens elsewhere'."
+  },
+  "fieldTitle": {
+    "message": "Должность",
+    "description": "Form label for the job title."
+  },
+  "fieldCompany": {
+    "message": "Компания",
+    "description": "Form label for the company name."
+  },
+  "fieldLocation": {
+    "message": "Местоположение",
+    "description": "Form label for the job location (city, country, or Remote)."
+  },
+  "fieldLink": {
+    "message": "Ссылка",
+    "description": "Form label for the job post web address."
+  },
+  "fieldStatus": {
+    "message": "Статус",
+    "description": "Form label for the application status."
+  },
+  "fieldDateApplied": {
+    "message": "Дата отклика",
+    "description": "Form label for the date the user applied."
+  },
+  "fieldNotes": {
+    "message": "Заметки",
+    "description": "Form label for free notes about the job."
+  },
+  "notesPlaceholder": {
+    "message": "Рекрутер, зарплата, следующий шаг...",
+    "description": "Example text inside the empty notes field."
+  },
+  "saveJob": {
+    "message": "Сохранить вакансию",
+    "description": "Popup button to save a new job."
+  },
+  "updateJob": {
+    "message": "Обновить вакансию",
+    "description": "Popup button to save changes to a job that is already saved."
+  },
+  "statusSaved": {
+    "message": "Сохранено",
+    "description": "Status: the job is saved, but the user has not applied yet."
+  },
+  "statusApplied": {
+    "message": "Отклик отправлен",
+    "description": "Status: the user sent an application."
+  },
+  "statusInterview": {
+    "message": "Собеседование",
+    "description": "Status: the user has an interview."
+  },
+  "statusOffer": {
+    "message": "Оффер",
+    "description": "Status: the user received a job offer."
+  },
+  "statusRejected": {
+    "message": "Отказ",
+    "description": "Status: the application was rejected."
+  },
+  "noticeCantRead": {
+    "message": "Эту страницу нельзя прочитать. Вы можете добавить вакансию вручную.",
+    "description": "Popup warning on pages like chrome:// or the new tab page."
+  },
+  "noticeAlreadySaved": {
+    "message": "Уже сохранено $DATE$",
+    "description": "Popup notice when the job is already saved. $DATE$ is a formatted date.",
+    "placeholders": {
+      "date": { "content": "$1", "example": "24 Oct 2026" }
+    }
+  },
+  "noticeUsedTitle": {
+    "message": "Мы взяли заголовок страницы. Проверьте данные.",
+    "description": "Popup warning when only the page title was found."
+  },
+  "noticeNoDetails": {
+    "message": "Не удалось найти данные вакансии. Заполните их сами.",
+    "description": "Popup warning when nothing was found on the page."
+  },
+  "noticeJobSaved": {
+    "message": "✓ Вакансия сохранена",
+    "description": "Success message after saving a new job."
+  },
+  "noticeJobUpdated": {
+    "message": "✓ Вакансия обновлена",
+    "description": "Success message after updating a saved job."
+  },
+  "errorTitleRequired": {
+    "message": "Введите название должности.",
+    "description": "Error when the job title is empty."
+  },
+  "errorBadLink": {
+    "message": "Ссылка должна начинаться с http:// или https://",
+    "description": "Error when the link is not a web address. Keep http:// and https:// as they are."
+  },
+  "errorSaveFailed": {
+    "message": "Не удалось сохранить вакансию. Попробуйте ещё раз.",
+    "description": "Error when saving fails."
+  },
+  "errorDuplicateLink": {
+    "message": "Эта ссылка уже сохранена: «$TITLE$»",
+    "description": "Error when another saved job has the same link. $TITLE$ is that job's title.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "errorJobGone": {
+    "message": "Этой вакансии больше нет. Возможно, её удалили в другой вкладке.",
+    "description": "Error when the job being edited was deleted meanwhile."
+  },
+  "jobCountOne": {
+    "message": "1 вакансия",
+    "description": "Total number of saved jobs, when there is exactly 1.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "1" }
+    }
+  },
+  "jobCountOther": {
+    "message": "Вакансий: $COUNT$",
+    "description": "Total number of saved jobs (0, 2, 3, ...).",
+    "placeholders": {
+      "count": { "content": "$1", "example": "12" }
+    }
+  },
+  "addJob": {
+    "message": "+ Добавить вакансию",
+    "description": "Dashboard button to add a job by hand."
+  },
+  "exportCsv": {
+    "message": "Экспорт в CSV",
+    "description": "Dashboard button to download all jobs as a CSV file. Keep 'CSV'."
+  },
+  "languageLabel": {
+    "message": "Язык",
+    "description": "Accessible label of the language picker."
+  },
+  "toolbarLabel": {
+    "message": "Фильтры и сортировка",
+    "description": "Accessible label of the toolbar with filters, search and sort."
+  },
+  "filtersLabel": {
+    "message": "Фильтр по статусу",
+    "description": "Accessible label of the group of filter buttons."
+  },
+  "filterAll": {
+    "message": "Все",
+    "description": "Filter button that shows all jobs."
+  },
+  "filterFollowUp": {
+    "message": "⏰ Напомнить о себе",
+    "description": "Filter button that shows jobs that may need a follow-up."
+  },
+  "searchPlaceholder": {
+    "message": "Поиск по должности, компании, месту, заметкам",
+    "description": "Example text inside the empty search box."
+  },
+  "searchLabel": {
+    "message": "Поиск вакансий",
+    "description": "Accessible label of the search box."
+  },
+  "sortLabel": {
+    "message": "Сортировка вакансий",
+    "description": "Accessible label of the sort menu."
+  },
+  "sortSavedDesc": {
+    "message": "Сначала новые",
+    "description": "Sort option: newest saved jobs first."
+  },
+  "sortSavedAsc": {
+    "message": "Сначала старые",
+    "description": "Sort option: oldest saved jobs first."
+  },
+  "sortAppliedDesc": {
+    "message": "Недавние отклики",
+    "description": "Sort option: most recent application date first."
+  },
+  "sortUpdatedDesc": {
+    "message": "Недавно изменённые",
+    "description": "Sort option: most recently changed jobs first."
+  },
+  "sortCompanyAsc": {
+    "message": "Компания А–Я",
+    "description": "Sort option: by company name, alphabetically."
+  },
+  "sortTitleAsc": {
+    "message": "Должность А–Я",
+    "description": "Sort option: by job title, alphabetically."
+  },
+  "sortStatus": {
+    "message": "Статус",
+    "description": "Sort option: by status (Saved, Applied, Interview, Offer, Rejected)."
+  },
+  "colTitle": {
+    "message": "Должность",
+    "description": "Table column header: job title."
+  },
+  "colCompany": {
+    "message": "Компания",
+    "description": "Table column header: company."
+  },
+  "colLocation": {
+    "message": "Место",
+    "description": "Table column header: location."
+  },
+  "colStatus": {
+    "message": "Статус",
+    "description": "Table column header: status."
+  },
+  "colSaved": {
+    "message": "Сохранено",
+    "description": "Table column header: the date the job was saved."
+  },
+  "colApplied": {
+    "message": "Отклик",
+    "description": "Table column header: the date the user applied."
+  },
+  "colActions": {
+    "message": "Действия",
+    "description": "Table column header for the Edit and Delete buttons (only read by screen readers)."
+  },
+  "bannerFollowUpOne": {
+    "message": "⏰ 1 отклик отправлен $DAYS$+ дн. назад, ответа нет.",
+    "description": "Banner when exactly 1 application needs a follow-up. $DAYS$ is a number, like 7.",
+    "placeholders": {
+      "days": { "content": "$2", "example": "7" }
+    }
+  },
+  "bannerFollowUpOther": {
+    "message": "⏰ Откликов без ответа за $DAYS$+ дн.: $COUNT$.",
+    "description": "Banner when 2 or more applications need a follow-up. $DAYS$ is a number, like 7.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "3" },
+      "days": { "content": "$2", "example": "7" }
+    }
+  },
+  "showThem": {
+    "message": "Показать",
+    "description": "Banner button that shows only the jobs that need a follow-up."
+  },
+  "followUpBadge": {
+    "message": "⏰ Стоит напомнить о себе",
+    "description": "Small label on a job applied 7+ days ago."
+  },
+  "followUpTooltip": {
+    "message": "Отклик отправлен $DAYS$ дн. назад, ответа нет",
+    "description": "Tooltip of the follow-up label. $DAYS$ is 7 or more.",
+    "placeholders": {
+      "days": { "content": "$1", "example": "8" }
+    }
+  },
+  "untitledJob": {
+    "message": "Вакансия без названия",
+    "description": "Shown when a job has no title."
+  },
+  "thisJob": {
+    "message": "эту вакансию",
+    "description": "Used inside other sentences when a job has no title, like 'Delete this job'."
+  },
+  "statusFor": {
+    "message": "Статус: $TITLE$",
+    "description": "Accessible label of a row's status menu.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "editJobLabel": {
+    "message": "Изменить: $TITLE$",
+    "description": "Accessible label of a row's Edit button.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "deleteJobLabel": {
+    "message": "Удалить: $TITLE$",
+    "description": "Accessible label of a row's Delete button.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "edit": {
+    "message": "Изменить",
+    "description": "Button to edit a job."
+  },
+  "delete": {
+    "message": "Удалить",
+    "description": "Button to delete a job."
+  },
+  "confirmDelete": {
+    "message": "Удалить «$TITLE$»?",
+    "description": "Confirmation question before deleting a job.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "emptyNoJobsTitle": {
+    "message": "Сохранённых вакансий пока нет",
+    "description": "Title of the empty dashboard."
+  },
+  "emptyNoJobsText": {
+    "message": "Откройте вакансию на LinkedIn, Indeed или любом сайте с вакансиями и нажмите на значок расширения, чтобы сохранить её.",
+    "description": "Help text of the empty dashboard. Keep LinkedIn and Indeed."
+  },
+  "emptyNoMatchTitle": {
+    "message": "Нет вакансий по вашим фильтрам",
+    "description": "Title when the filters or search hide all jobs."
+  },
+  "emptyNoMatchText": {
+    "message": "Выберите другой статус или очистите поиск.",
+    "description": "Help text when the filters or search hide all jobs."
+  },
+  "dialogAddTitle": {
+    "message": "Добавить вакансию",
+    "description": "Title of the dialog for a new job."
+  },
+  "dialogEditTitle": {
+    "message": "Изменить вакансию",
+    "description": "Title of the dialog for editing a job."
+  },
+  "cancel": {
+    "message": "Отмена",
+    "description": "Button that closes the dialog without saving."
+  },
+  "save": {
+    "message": "Сохранить",
+    "description": "Button that saves the dialog."
+  },
+  "alertNoJobsToExport": {
+    "message": "Пока нет вакансий для экспорта.",
+    "description": "Message when the user clicks Export CSV with no saved jobs."
+  },
+  "csvTitle": {
+    "message": "Должность",
+    "description": "CSV file column header: job title."
+  },
+  "csvCompany": {
+    "message": "Компания",
+    "description": "CSV file column header: company."
+  },
+  "csvLocation": {
+    "message": "Местоположение",
+    "description": "CSV file column header: location."
+  },
+  "csvStatus": {
+    "message": "Статус",
+    "description": "CSV file column header: status."
+  },
+  "csvDateSaved": {
+    "message": "Дата сохранения",
+    "description": "CSV file column header: the date the job was saved."
+  },
+  "csvDateApplied": {
+    "message": "Дата отклика",
+    "description": "CSV file column header: the date the user applied."
+  },
+  "csvLink": {
+    "message": "Ссылка",
+    "description": "CSV file column header: the job post web address."
+  },
+  "csvNotes": {
+    "message": "Заметки",
+    "description": "CSV file column header: notes."
+  },
+  "goPremium": {
+    "message": "⭐ Получить Premium",
+    "description": "Top bar button for free users. Opens the Premium window."
+  },
+  "premiumBadge": {
+    "message": "⭐ Premium",
+    "description": "Top bar badge for Premium users. Opens the Premium window."
+  },
+  "premiumTitle": {
+    "message": "⭐ Premium",
+    "description": "Title of the Premium window."
+  },
+  "premiumIntro": {
+    "message": "Поддержите проект и откройте дополнительные функции. Все текущие функции остаются бесплатными.",
+    "description": "Intro text in the Premium window for free users."
+  },
+  "premiumActive": {
+    "message": "✓ У вас Premium. Спасибо за поддержку!",
+    "description": "Message in the Premium window for Premium users."
+  },
+  "premiumIncluded": {
+    "message": "Что входит",
+    "description": "Heading above the list of Premium benefits."
+  },
+  "premiumNoAds": {
+    "message": "Без рекламы",
+    "description": "Premium benefit."
+  },
+  "premiumSupport": {
+    "message": "Поддержка проекта",
+    "description": "Premium benefit: the money helps the developer."
+  },
+  "premiumAiSoon": {
+    "message": "Функции ИИ (скоро)",
+    "description": "Premium benefit that is not ready yet."
+  },
+  "premiumChoosePlan": {
+    "message": "Выберите план",
+    "description": "Heading above the list of plans."
+  },
+  "planMonthly": {
+    "message": "Ежемесячно",
+    "description": "Name of a plan paid every month."
+  },
+  "planYearly": {
+    "message": "Ежегодно",
+    "description": "Name of a plan paid every year."
+  },
+  "planOnce": {
+    "message": "Разовый платёж",
+    "description": "Name of a plan paid only once (lifetime)."
+  },
+  "pricePerMonth": {
+    "message": "$PRICE$ / месяц",
+    "description": "Price of a monthly plan. $PRICE$ is a formatted price like $4.99.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "pricePerYear": {
+    "message": "$PRICE$ / год",
+    "description": "Price of a yearly plan.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "pricePerMonths": {
+    "message": "$PRICE$ раз в $COUNT$ мес.",
+    "description": "Price of a plan paid every few months.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" },
+      "count": { "content": "$2", "example": "3" }
+    }
+  },
+  "pricePerYears": {
+    "message": "$PRICE$ раз в $COUNT$ г.",
+    "description": "Price of a plan paid every few years.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" },
+      "count": { "content": "$2", "example": "2" }
+    }
+  },
+  "priceOnce": {
+    "message": "$PRICE$ один раз",
+    "description": "Price of a one-time plan.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "choosePlan": {
+    "message": "Выбрать",
+    "description": "Button to buy a plan."
+  },
+  "choosePlanLabel": {
+    "message": "Выбрать план: $PLAN$",
+    "description": "Accessible label of the Choose button. $PLAN$ is a plan name like Monthly.",
+    "placeholders": {
+      "plan": { "content": "$1", "example": "Monthly" }
+    }
+  },
+  "premiumSecureNote": {
+    "message": "Платежи безопасно обрабатывает Dodo Payments. Мы никогда не видим данные вашей карты.",
+    "description": "Small note under the plans. Keep the name Dodo Payments."
+  },
+  "close": {
+    "message": "Закрыть",
+    "description": "Button that closes a window."
+  },
+  "popupPremiumLink": {
+    "message": "⭐ Premium",
+    "description": "Small link at the bottom of the popup for free users."
+  },
+  "licenseHaveKey": {
+    "message": "Уже купили Premium? Введите лицензионный ключ",
+    "description": "Label above the license key field."
+  },
+  "licensePlaceholder": {
+    "message": "Вставьте лицензионный ключ",
+    "description": "Example text inside the empty license key field."
+  },
+  "licenseActivate": {
+    "message": "Активировать",
+    "description": "Button that checks and activates the license key."
+  },
+  "licenseActivating": {
+    "message": "Проверка…",
+    "description": "Button text while the license key is being checked."
+  },
+  "licenseEmailHint": {
+    "message": "После оплаты Dodo Payments пришлёт лицензионный ключ на вашу почту.",
+    "description": "Help text under the license key field. Keep the name Dodo Payments."
+  },
+  "licenseRequired": {
+    "message": "Вставьте лицензионный ключ.",
+    "description": "Error when the license key field is empty."
+  },
+  "licenseInvalid": {
+    "message": "Такой лицензионный ключ не найден. Проверьте его и попробуйте ещё раз.",
+    "description": "Error when the license key does not exist."
+  },
+  "licenseInactive": {
+    "message": "Этот лицензионный ключ не активен. Возможно, подписка закончилась.",
+    "description": "Error when the license key exists but is disabled."
+  },
+  "licenseLimit": {
+    "message": "Этот ключ уже используется на максимальном числе компьютеров. Сначала удалите его с другого компьютера.",
+    "description": "Error when the key has no free activations left."
+  },
+  "licenseNetworkError": {
+    "message": "Не удалось проверить ключ. Проверьте подключение к интернету и попробуйте ещё раз.",
+    "description": "Error when the license server cannot be reached."
+  },
+  "licenseOnThisComputer": {
+    "message": "Лицензионный ключ на этом компьютере: $KEY$",
+    "description": "Shows the end of the saved license key. $KEY$ is like •••• 5678.",
+    "placeholders": {
+      "key": { "content": "$1", "example": "•••• 5678" }
+    }
+  },
+  "manageHint": {
+    "message": "Чтобы изменить или отменить подписку, используйте ссылку из письма Dodo Payments.",
+    "description": "Help text for Premium users. Keep the name Dodo Payments."
+  },
+  "licenseRemove": {
+    "message": "Удалить лицензию с этого компьютера",
+    "description": "Button that frees the license so it can be used on another computer."
+  },
+  "licenseRemoveConfirm": {
+    "message": "Удалить лицензию с этого компьютера? Позже её можно снова активировать тем же ключом.",
+    "description": "Confirmation question before removing the license."
+  },
+  "adSponsored": {
+    "message": "Реклама",
+    "description": "Small label on every ad card. It must be clear that the card is an ad."
+  },
+  "adRemoveAds": {
+    "message": "Убрать рекламу ⭐",
+    "description": "Small link on an ad card. Opens the Premium window."
+  }
+}

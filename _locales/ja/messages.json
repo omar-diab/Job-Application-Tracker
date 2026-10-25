@@ -1,0 +1,559 @@
+{
+  "extName": {
+    "message": "応募管理トラッカー",
+    "description": "Extension name, shown in Chrome and the Chrome Web Store. Max 75 characters."
+  },
+  "extDescription": {
+    "message": "LinkedIn、Indeed などの求人をワンクリックで保存し、すべての応募状況を一か所で管理できます。",
+    "description": "Extension description for the Chrome Web Store. MUST be under 132 characters."
+  },
+  "popupBrand": {
+    "message": "応募トラッカー",
+    "description": "Short app name in the popup header."
+  },
+  "openDashboard": {
+    "message": "ダッシュボード ↗",
+    "description": "Popup button that opens the dashboard in a new tab. The arrow means 'opens elsewhere'."
+  },
+  "fieldTitle": {
+    "message": "職種名",
+    "description": "Form label for the job title."
+  },
+  "fieldCompany": {
+    "message": "会社",
+    "description": "Form label for the company name."
+  },
+  "fieldLocation": {
+    "message": "勤務地",
+    "description": "Form label for the job location (city, country, or Remote)."
+  },
+  "fieldLink": {
+    "message": "リンク",
+    "description": "Form label for the job post web address."
+  },
+  "fieldStatus": {
+    "message": "ステータス",
+    "description": "Form label for the application status."
+  },
+  "fieldDateApplied": {
+    "message": "応募日",
+    "description": "Form label for the date the user applied."
+  },
+  "fieldNotes": {
+    "message": "メモ",
+    "description": "Form label for free notes about the job."
+  },
+  "notesPlaceholder": {
+    "message": "採用担当、給与、次のステップ…",
+    "description": "Example text inside the empty notes field."
+  },
+  "saveJob": {
+    "message": "求人を保存",
+    "description": "Popup button to save a new job."
+  },
+  "updateJob": {
+    "message": "求人を更新",
+    "description": "Popup button to save changes to a job that is already saved."
+  },
+  "statusSaved": {
+    "message": "保存済み",
+    "description": "Status: the job is saved, but the user has not applied yet."
+  },
+  "statusApplied": {
+    "message": "応募済み",
+    "description": "Status: the user sent an application."
+  },
+  "statusInterview": {
+    "message": "面接",
+    "description": "Status: the user has an interview."
+  },
+  "statusOffer": {
+    "message": "内定",
+    "description": "Status: the user received a job offer."
+  },
+  "statusRejected": {
+    "message": "不採用",
+    "description": "Status: the application was rejected."
+  },
+  "noticeCantRead": {
+    "message": "このページは読み取れません。求人を手動で追加することはできます。",
+    "description": "Popup warning on pages like chrome:// or the new tab page."
+  },
+  "noticeAlreadySaved": {
+    "message": "$DATE$ に保存済み",
+    "description": "Popup notice when the job is already saved. $DATE$ is a formatted date.",
+    "placeholders": {
+      "date": { "content": "$1", "example": "24 Oct 2026" }
+    }
+  },
+  "noticeUsedTitle": {
+    "message": "ページのタイトルを使いました。内容を確認してください。",
+    "description": "Popup warning when only the page title was found."
+  },
+  "noticeNoDetails": {
+    "message": "求人の詳細が見つかりませんでした。手動で入力してください。",
+    "description": "Popup warning when nothing was found on the page."
+  },
+  "noticeJobSaved": {
+    "message": "✓ 求人を保存しました",
+    "description": "Success message after saving a new job."
+  },
+  "noticeJobUpdated": {
+    "message": "✓ 求人を更新しました",
+    "description": "Success message after updating a saved job."
+  },
+  "errorTitleRequired": {
+    "message": "職種名を入力してください。",
+    "description": "Error when the job title is empty."
+  },
+  "errorBadLink": {
+    "message": "リンクは http:// または https:// で始まる必要があります",
+    "description": "Error when the link is not a web address. Keep http:// and https:// as they are."
+  },
+  "errorSaveFailed": {
+    "message": "求人を保存できませんでした。もう一度お試しください。",
+    "description": "Error when saving fails."
+  },
+  "errorDuplicateLink": {
+    "message": "このリンクはすでに保存されています：「$TITLE$」",
+    "description": "Error when another saved job has the same link. $TITLE$ is that job's title.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "errorJobGone": {
+    "message": "この求人はもう存在しません。別のタブで削除された可能性があります。",
+    "description": "Error when the job being edited was deleted meanwhile."
+  },
+  "jobCountOne": {
+    "message": "1 件",
+    "description": "Total number of saved jobs, when there is exactly 1.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "1" }
+    }
+  },
+  "jobCountOther": {
+    "message": "$COUNT$ 件",
+    "description": "Total number of saved jobs (0, 2, 3, ...).",
+    "placeholders": {
+      "count": { "content": "$1", "example": "12" }
+    }
+  },
+  "addJob": {
+    "message": "+ 求人を追加",
+    "description": "Dashboard button to add a job by hand."
+  },
+  "exportCsv": {
+    "message": "CSV をエクスポート",
+    "description": "Dashboard button to download all jobs as a CSV file. Keep 'CSV'."
+  },
+  "languageLabel": {
+    "message": "言語",
+    "description": "Accessible label of the language picker."
+  },
+  "toolbarLabel": {
+    "message": "絞り込みと並べ替え",
+    "description": "Accessible label of the toolbar with filters, search and sort."
+  },
+  "filtersLabel": {
+    "message": "ステータスで絞り込み",
+    "description": "Accessible label of the group of filter buttons."
+  },
+  "filterAll": {
+    "message": "すべて",
+    "description": "Filter button that shows all jobs."
+  },
+  "filterFollowUp": {
+    "message": "⏰ フォローアップ",
+    "description": "Filter button that shows jobs that may need a follow-up."
+  },
+  "searchPlaceholder": {
+    "message": "職種名・会社・勤務地・メモを検索",
+    "description": "Example text inside the empty search box."
+  },
+  "searchLabel": {
+    "message": "求人を検索",
+    "description": "Accessible label of the search box."
+  },
+  "sortLabel": {
+    "message": "求人を並べ替え",
+    "description": "Accessible label of the sort menu."
+  },
+  "sortSavedDesc": {
+    "message": "保存日が新しい順",
+    "description": "Sort option: newest saved jobs first."
+  },
+  "sortSavedAsc": {
+    "message": "保存日が古い順",
+    "description": "Sort option: oldest saved jobs first."
+  },
+  "sortAppliedDesc": {
+    "message": "応募日が新しい順",
+    "description": "Sort option: most recent application date first."
+  },
+  "sortUpdatedDesc": {
+    "message": "更新日が新しい順",
+    "description": "Sort option: most recently changed jobs first."
+  },
+  "sortCompanyAsc": {
+    "message": "会社名順",
+    "description": "Sort option: by company name, alphabetically."
+  },
+  "sortTitleAsc": {
+    "message": "職種名順",
+    "description": "Sort option: by job title, alphabetically."
+  },
+  "sortStatus": {
+    "message": "ステータス",
+    "description": "Sort option: by status (Saved, Applied, Interview, Offer, Rejected)."
+  },
+  "colTitle": {
+    "message": "職種",
+    "description": "Table column header: job title."
+  },
+  "colCompany": {
+    "message": "会社",
+    "description": "Table column header: company."
+  },
+  "colLocation": {
+    "message": "勤務地",
+    "description": "Table column header: location."
+  },
+  "colStatus": {
+    "message": "ステータス",
+    "description": "Table column header: status."
+  },
+  "colSaved": {
+    "message": "保存日",
+    "description": "Table column header: the date the job was saved."
+  },
+  "colApplied": {
+    "message": "応募日",
+    "description": "Table column header: the date the user applied."
+  },
+  "colActions": {
+    "message": "操作",
+    "description": "Table column header for the Edit and Delete buttons (only read by screen readers)."
+  },
+  "bannerFollowUpOne": {
+    "message": "⏰ $DAYS$ 日以上前に送った応募 1 件に返事がありません。",
+    "description": "Banner when exactly 1 application needs a follow-up. $DAYS$ is a number, like 7.",
+    "placeholders": {
+      "days": { "content": "$2", "example": "7" }
+    }
+  },
+  "bannerFollowUpOther": {
+    "message": "⏰ $DAYS$ 日以上前に送った応募 $COUNT$ 件に返事がありません。",
+    "description": "Banner when 2 or more applications need a follow-up. $DAYS$ is a number, like 7.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "3" },
+      "days": { "content": "$2", "example": "7" }
+    }
+  },
+  "showThem": {
+    "message": "表示",
+    "description": "Banner button that shows only the jobs that need a follow-up."
+  },
+  "followUpBadge": {
+    "message": "⏰ フォローアップしましょう",
+    "description": "Small label on a job applied 7+ days ago."
+  },
+  "followUpTooltip": {
+    "message": "$DAYS$ 日前に応募、返事なし",
+    "description": "Tooltip of the follow-up label. $DAYS$ is 7 or more.",
+    "placeholders": {
+      "days": { "content": "$1", "example": "8" }
+    }
+  },
+  "untitledJob": {
+    "message": "無題の求人",
+    "description": "Shown when a job has no title."
+  },
+  "thisJob": {
+    "message": "この求人",
+    "description": "Used inside other sentences when a job has no title, like 'Delete this job'."
+  },
+  "statusFor": {
+    "message": "$TITLE$ のステータス",
+    "description": "Accessible label of a row's status menu.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "editJobLabel": {
+    "message": "$TITLE$ を編集",
+    "description": "Accessible label of a row's Edit button.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "deleteJobLabel": {
+    "message": "$TITLE$ を削除",
+    "description": "Accessible label of a row's Delete button.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "edit": {
+    "message": "編集",
+    "description": "Button to edit a job."
+  },
+  "delete": {
+    "message": "削除",
+    "description": "Button to delete a job."
+  },
+  "confirmDelete": {
+    "message": "「$TITLE$」を削除しますか？",
+    "description": "Confirmation question before deleting a job.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "emptyNoJobsTitle": {
+    "message": "保存された求人はまだありません",
+    "description": "Title of the empty dashboard."
+  },
+  "emptyNoJobsText": {
+    "message": "LinkedIn、Indeed などの求人ページを開き、拡張機能のアイコンをクリックして保存してください。",
+    "description": "Help text of the empty dashboard. Keep LinkedIn and Indeed."
+  },
+  "emptyNoMatchTitle": {
+    "message": "条件に合う求人がありません",
+    "description": "Title when the filters or search hide all jobs."
+  },
+  "emptyNoMatchText": {
+    "message": "別のステータスを選ぶか、検索をクリアしてください。",
+    "description": "Help text when the filters or search hide all jobs."
+  },
+  "dialogAddTitle": {
+    "message": "求人を追加",
+    "description": "Title of the dialog for a new job."
+  },
+  "dialogEditTitle": {
+    "message": "求人を編集",
+    "description": "Title of the dialog for editing a job."
+  },
+  "cancel": {
+    "message": "キャンセル",
+    "description": "Button that closes the dialog without saving."
+  },
+  "save": {
+    "message": "保存",
+    "description": "Button that saves the dialog."
+  },
+  "alertNoJobsToExport": {
+    "message": "エクスポートする求人がまだありません。",
+    "description": "Message when the user clicks Export CSV with no saved jobs."
+  },
+  "csvTitle": {
+    "message": "職種",
+    "description": "CSV file column header: job title."
+  },
+  "csvCompany": {
+    "message": "会社",
+    "description": "CSV file column header: company."
+  },
+  "csvLocation": {
+    "message": "勤務地",
+    "description": "CSV file column header: location."
+  },
+  "csvStatus": {
+    "message": "ステータス",
+    "description": "CSV file column header: status."
+  },
+  "csvDateSaved": {
+    "message": "保存日",
+    "description": "CSV file column header: the date the job was saved."
+  },
+  "csvDateApplied": {
+    "message": "応募日",
+    "description": "CSV file column header: the date the user applied."
+  },
+  "csvLink": {
+    "message": "リンク",
+    "description": "CSV file column header: the job post web address."
+  },
+  "csvNotes": {
+    "message": "メモ",
+    "description": "CSV file column header: notes."
+  },
+  "goPremium": {
+    "message": "⭐ Premium にする",
+    "description": "Top bar button for free users. Opens the Premium window."
+  },
+  "premiumBadge": {
+    "message": "⭐ Premium",
+    "description": "Top bar badge for Premium users. Opens the Premium window."
+  },
+  "premiumTitle": {
+    "message": "⭐ Premium",
+    "description": "Title of the Premium window."
+  },
+  "premiumIntro": {
+    "message": "プロジェクトを応援して、追加機能を使えるようにしましょう。今ある機能はすべて無料のままです。",
+    "description": "Intro text in the Premium window for free users."
+  },
+  "premiumActive": {
+    "message": "✓ Premium をご利用中です。ご支援ありがとうございます！",
+    "description": "Message in the Premium window for Premium users."
+  },
+  "premiumIncluded": {
+    "message": "含まれるもの",
+    "description": "Heading above the list of Premium benefits."
+  },
+  "premiumNoAds": {
+    "message": "広告なし",
+    "description": "Premium benefit."
+  },
+  "premiumSupport": {
+    "message": "プロジェクトの応援",
+    "description": "Premium benefit: the money helps the developer."
+  },
+  "premiumAiSoon": {
+    "message": "AI 機能（近日公開）",
+    "description": "Premium benefit that is not ready yet."
+  },
+  "premiumChoosePlan": {
+    "message": "プランを選択",
+    "description": "Heading above the list of plans."
+  },
+  "planMonthly": {
+    "message": "月額",
+    "description": "Name of a plan paid every month."
+  },
+  "planYearly": {
+    "message": "年額",
+    "description": "Name of a plan paid every year."
+  },
+  "planOnce": {
+    "message": "一回払い",
+    "description": "Name of a plan paid only once (lifetime)."
+  },
+  "pricePerMonth": {
+    "message": "$PRICE$ / 月",
+    "description": "Price of a monthly plan. $PRICE$ is a formatted price like $4.99.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "pricePerYear": {
+    "message": "$PRICE$ / 年",
+    "description": "Price of a yearly plan.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "pricePerMonths": {
+    "message": "$COUNT$ か月ごとに $PRICE$",
+    "description": "Price of a plan paid every few months.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" },
+      "count": { "content": "$2", "example": "3" }
+    }
+  },
+  "pricePerYears": {
+    "message": "$COUNT$ 年ごとに $PRICE$",
+    "description": "Price of a plan paid every few years.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" },
+      "count": { "content": "$2", "example": "2" }
+    }
+  },
+  "priceOnce": {
+    "message": "一回 $PRICE$",
+    "description": "Price of a one-time plan.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "choosePlan": {
+    "message": "選択",
+    "description": "Button to buy a plan."
+  },
+  "choosePlanLabel": {
+    "message": "$PLAN$ プランを選択",
+    "description": "Accessible label of the Choose button. $PLAN$ is a plan name like Monthly.",
+    "placeholders": {
+      "plan": { "content": "$1", "example": "Monthly" }
+    }
+  },
+  "premiumSecureNote": {
+    "message": "お支払いは Dodo Payments が安全に処理します。カード情報を私たちが見ることはありません。",
+    "description": "Small note under the plans. Keep the name Dodo Payments."
+  },
+  "close": {
+    "message": "閉じる",
+    "description": "Button that closes a window."
+  },
+  "popupPremiumLink": {
+    "message": "⭐ Premium",
+    "description": "Small link at the bottom of the popup for free users."
+  },
+  "licenseHaveKey": {
+    "message": "Premium を購入済みですか？ライセンスキーを入力してください",
+    "description": "Label above the license key field."
+  },
+  "licensePlaceholder": {
+    "message": "ライセンスキーを貼り付け",
+    "description": "Example text inside the empty license key field."
+  },
+  "licenseActivate": {
+    "message": "有効にする",
+    "description": "Button that checks and activates the license key."
+  },
+  "licenseActivating": {
+    "message": "確認中…",
+    "description": "Button text while the license key is being checked."
+  },
+  "licenseEmailHint": {
+    "message": "お支払い後、Dodo Payments からライセンスキーがメールで届きます。",
+    "description": "Help text under the license key field. Keep the name Dodo Payments."
+  },
+  "licenseRequired": {
+    "message": "ライセンスキーを貼り付けてください。",
+    "description": "Error when the license key field is empty."
+  },
+  "licenseInvalid": {
+    "message": "このライセンスキーは見つかりません。確認してもう一度お試しください。",
+    "description": "Error when the license key does not exist."
+  },
+  "licenseInactive": {
+    "message": "このライセンスキーは有効ではありません。サブスクリプションが終了した可能性があります。",
+    "description": "Error when the license key exists but is disabled."
+  },
+  "licenseLimit": {
+    "message": "このキーは使用できるパソコンの上限に達しています。先に別のパソコンから削除してください。",
+    "description": "Error when the key has no free activations left."
+  },
+  "licenseNetworkError": {
+    "message": "キーを確認できませんでした。インターネット接続を確認して、もう一度お試しください。",
+    "description": "Error when the license server cannot be reached."
+  },
+  "licenseOnThisComputer": {
+    "message": "このパソコンのライセンスキー：$KEY$",
+    "description": "Shows the end of the saved license key. $KEY$ is like •••• 5678.",
+    "placeholders": {
+      "key": { "content": "$1", "example": "•••• 5678" }
+    }
+  },
+  "manageHint": {
+    "message": "サブスクリプションの変更や解約は、Dodo Payments からのメールにあるリンクから行ってください。",
+    "description": "Help text for Premium users. Keep the name Dodo Payments."
+  },
+  "licenseRemove": {
+    "message": "このパソコンからライセンスを削除",
+    "description": "Button that frees the license so it can be used on another computer."
+  },
+  "licenseRemoveConfirm": {
+    "message": "このパソコンからライセンスを削除しますか？あとで同じキーで再び有効にできます。",
+    "description": "Confirmation question before removing the license."
+  },
+  "adSponsored": {
+    "message": "スポンサー",
+    "description": "Small label on every ad card. It must be clear that the card is an ad."
+  },
+  "adRemoveAds": {
+    "message": "広告を非表示 ⭐",
+    "description": "Small link on an ad card. Opens the Premium window."
+  }
+}

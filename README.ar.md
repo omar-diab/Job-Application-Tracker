@@ -41,7 +41,7 @@
 - 🌙 **وضع فاتح وداكن** حسب إعدادات جهازك.
 - 🌍 **دعم العربية والكتابة من اليمين لليسار** في كل الحقول.
 - 🔒 **محلي 100%**: بدون حساب، بدون خادم، بدون تتبع. بيانات وظائفك لا تغادر جهازك.
-- ⭐ **اشتراك Premium اختياري** لدعم المشروع (مزايا الذكاء الاصطناعي قريبًا). كل المزايا السابقة تبقى مجانية.
+- ⭐ **اشتراك Premium اختياري** لدعم المشروع وإزالة البطاقات الإعلانية الصغيرة (مزايا الذكاء الاصطناعي قريبًا). كل المزايا السابقة تبقى مجانية.
 
 ## صور الشاشة
 
@@ -65,7 +65,8 @@
 بيانات وظائفك لا تغادر جهازك أبدًا.
 
 - تُحفظ الوظائف فقط في `chrome.storage.local` داخل متصفحك، ولا تُرسل إلى أي مكان.
-- لا حساب، لا إحصاءات، لا تتبع، لا إعلانات.
+- لا حساب، لا إحصاءات، لا تتبع، لا شبكات إعلانية.
+- تعرض النسخة المجانية **بطاقات إعلانية صغيرة** داخل الإضافة فقط (وليس على أي موقع). هذه البطاقات موجودة داخل الإضافة نفسها ولا تتتبّع أي شيء، ويزيلها اشتراك Premium.
 - تُقرأ الصفحة **فقط عندما تضغط على الأيقونة**.
 
 تطلب الإضافة 3 صلاحيات فقط:
@@ -123,13 +124,15 @@ git clone https://github.com/omar-diab/job-application-tracker.git
 job-application-tracker/
 ├── manifest.json            Extension settings and the 3 permissions
 ├── _locales/                Translations (one messages.json per language)
-├── icons/                   Extension icons (16, 48, 128 px)
+├── icons/                   Extension icons (16, 48, 128 px), and icons/ads/ for ad images
 ├── shared/
 │   ├── base.css             Shared design: colors, dark mode, status colors, fields, buttons
 │   ├── i18n.js              Translations: t(), language picker, right-to-left
 │   ├── core.js              Statuses, safe h() element helper, dates, links, jobs, storage
 │   ├── extractor.js         Reads the job from a page (LinkedIn, Indeed, JSON-LD, title)
-│   └── premium.js           Premium: plans, Dodo checkout, license key activation and checks
+│   ├── premium.js           Premium: plans, Dodo checkout, license key activation and checks
+│   ├── ads.js               Sponsored cards for free users (no tracking, no ad network)
+│   └── ads.json             The list of sponsored cards (edit this file to change the ads)
 ├── popup/
 │   ├── popup.html           The popup window
 │   ├── popup.css            Popup styles
@@ -140,8 +143,10 @@ job-application-tracker/
 │   └── dashboard.js         List, filters, search, sort, add/edit dialog, CSV export
 ├── tools/                   Helpers for developers (NOT part of the extension)
 │   ├── make-icons.html/.js  Draws the icons and downloads them as PNG
-│   ├── test-core.html/.js   Tests for shared/core.js
-│   └── test-extractor.html/.js  Tests for shared/extractor.js
+│   ├── test-core.html/.js   Tests for shared/core.js, premium.js and ads.js
+│   ├── test-extractor.html/.js  Tests for shared/extractor.js
+│   ├── check-locales.js     Checks all translations (node tools/check-locales.js)
+│   └── check-ads.js         Checks shared/ads.json (node tools/check-ads.js)
 └── docs/screenshots/        Images for this README
 ```
 
@@ -178,7 +183,18 @@ Click icon → popup.js → chrome.scripting.executeScript(extractJobInfo) → r
 
 يجب أن تكون كل الأسطر خضراء، مع مجموع في الأعلى مثل **17 / 17 tests passed**.
 
-ومع كل `push`، يفحص GitHub Actions أيضًا ملف `manifest.json` وصحة كود JavaScript والصلاحيات.
+شغّل `node tools/check-locales.js` و`node tools/check-ads.js` للتحقق من الترجمات والإعلانات.
+
+ومع كل `push`، يفحص GitHub Actions أيضًا ملف `manifest.json` وصحة كود JavaScript والصلاحيات والترجمات والإعلانات.
+
+## البطاقات الإعلانية (النسخة المجانية)
+
+يرى مستخدمو النسخة المجانية بطاقة **واحدة** صغيرة مكتوب عليها **«إعلان مموَّل»**: في لوحة التحكم (فوق القائمة أو في الصفحة الفارغة)، وسطرًا واحدًا أسفل النافذة المنبثقة. مستخدمو Premium لا يرونها أبدًا.
+
+- البطاقات موجودة في الملف [`shared/ads.json`](shared/ads.json) داخل الإضافة. **لا توجد شبكة إعلانية**، ولا كود من الإنترنت، ولا تتبّع، ولا ملفات تعريف ارتباط.
+- لا تظهر البطاقات **أبدًا** على LinkedIn أو Indeed أو أي موقع آخر.
+- لكل بطاقة: `id` و`title` و`text` و`url` (أو `"#premium"` لفتح نافذة Premium) و`cta` (نص الزر)، و`image` اختياري (ملف في `icons/ads/`)، و`languages` اختياري (مثل `["ar"]`)، و`endDate` اختياري (مثل `"2027-12-31"`).
+- بعد تعديل `ads.json` شغّل `node tools/check-ads.js`. تصل التغييرات إلى المستخدمين مع الإصدار التالي.
 
 ## خطط مستقبلية
 

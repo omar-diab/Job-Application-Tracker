@@ -151,6 +151,12 @@ body {
   outline-offset: 2px;
 }
 
+/* --- Sponsored line (free users only) ----------------------------------------- */
+
+.ad-slot {
+  margin-top: 12px;
+}
+
 /* --- Premium link (free users only) ----------------------------------------- */
 
 .premium-row {

@@ -547,5 +547,13 @@
   "licenseRemoveConfirm": {
     "message": "Remove the license from this computer? You can activate it again later with the same key.",
     "description": "Confirmation question before removing the license."
+  },
+  "adSponsored": {
+    "message": "Sponsored",
+    "description": "Small label on every ad card. It must be clear that the card is an ad."
+  },
+  "adRemoveAds": {
+    "message": "Remove ads ⭐",
+    "description": "Small link on an ad card. Opens the Premium window."
   }
 }

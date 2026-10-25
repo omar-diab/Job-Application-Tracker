@@ -1,0 +1,559 @@
+{
+  "extName": {
+    "message": "Seguimiento de Candidaturas",
+    "description": "Extension name, shown in Chrome and the Chrome Web Store. Max 75 characters."
+  },
+  "extDescription": {
+    "message": "Guarda ofertas de LinkedIn, Indeed y otros sitios con un clic y sigue el estado de cada candidatura en un solo lugar.",
+    "description": "Extension description for the Chrome Web Store. MUST be under 132 characters."
+  },
+  "popupBrand": {
+    "message": "Mis Candidaturas",
+    "description": "Short app name in the popup header."
+  },
+  "openDashboard": {
+    "message": "Panel ↗",
+    "description": "Popup button that opens the dashboard in a new tab. The arrow means 'opens elsewhere'."
+  },
+  "fieldTitle": {
+    "message": "Puesto",
+    "description": "Form label for the job title."
+  },
+  "fieldCompany": {
+    "message": "Empresa",
+    "description": "Form label for the company name."
+  },
+  "fieldLocation": {
+    "message": "Ubicación",
+    "description": "Form label for the job location (city, country, or Remote)."
+  },
+  "fieldLink": {
+    "message": "Enlace",
+    "description": "Form label for the job post web address."
+  },
+  "fieldStatus": {
+    "message": "Estado",
+    "description": "Form label for the application status."
+  },
+  "fieldDateApplied": {
+    "message": "Fecha de candidatura",
+    "description": "Form label for the date the user applied."
+  },
+  "fieldNotes": {
+    "message": "Notas",
+    "description": "Form label for free notes about the job."
+  },
+  "notesPlaceholder": {
+    "message": "Reclutador, salario, próximo paso...",
+    "description": "Example text inside the empty notes field."
+  },
+  "saveJob": {
+    "message": "Guardar oferta",
+    "description": "Popup button to save a new job."
+  },
+  "updateJob": {
+    "message": "Actualizar oferta",
+    "description": "Popup button to save changes to a job that is already saved."
+  },
+  "statusSaved": {
+    "message": "Guardada",
+    "description": "Status: the job is saved, but the user has not applied yet."
+  },
+  "statusApplied": {
+    "message": "Enviada",
+    "description": "Status: the user sent an application."
+  },
+  "statusInterview": {
+    "message": "Entrevista",
+    "description": "Status: the user has an interview."
+  },
+  "statusOffer": {
+    "message": "Oferta",
+    "description": "Status: the user received a job offer."
+  },
+  "statusRejected": {
+    "message": "Rechazada",
+    "description": "Status: the application was rejected."
+  },
+  "noticeCantRead": {
+    "message": "No se puede leer esta página. Puedes añadir la oferta a mano.",
+    "description": "Popup warning on pages like chrome:// or the new tab page."
+  },
+  "noticeAlreadySaved": {
+    "message": "Guardada el $DATE$",
+    "description": "Popup notice when the job is already saved. $DATE$ is a formatted date.",
+    "placeholders": {
+      "date": { "content": "$1", "example": "24 Oct 2026" }
+    }
+  },
+  "noticeUsedTitle": {
+    "message": "Usamos el título de la página. Revisa los datos.",
+    "description": "Popup warning when only the page title was found."
+  },
+  "noticeNoDetails": {
+    "message": "No encontramos los datos de la oferta. Complétalos tú.",
+    "description": "Popup warning when nothing was found on the page."
+  },
+  "noticeJobSaved": {
+    "message": "✓ Oferta guardada",
+    "description": "Success message after saving a new job."
+  },
+  "noticeJobUpdated": {
+    "message": "✓ Oferta actualizada",
+    "description": "Success message after updating a saved job."
+  },
+  "errorTitleRequired": {
+    "message": "Escribe el nombre del puesto.",
+    "description": "Error when the job title is empty."
+  },
+  "errorBadLink": {
+    "message": "El enlace debe empezar por http:// o https://",
+    "description": "Error when the link is not a web address. Keep http:// and https:// as they are."
+  },
+  "errorSaveFailed": {
+    "message": "No se pudo guardar la oferta. Inténtalo de nuevo.",
+    "description": "Error when saving fails."
+  },
+  "errorDuplicateLink": {
+    "message": "Este enlace ya está guardado: «$TITLE$»",
+    "description": "Error when another saved job has the same link. $TITLE$ is that job's title.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "errorJobGone": {
+    "message": "Esta oferta ya no existe. Puede que se haya borrado en otra pestaña.",
+    "description": "Error when the job being edited was deleted meanwhile."
+  },
+  "jobCountOne": {
+    "message": "1 oferta",
+    "description": "Total number of saved jobs, when there is exactly 1.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "1" }
+    }
+  },
+  "jobCountOther": {
+    "message": "$COUNT$ ofertas",
+    "description": "Total number of saved jobs (0, 2, 3, ...).",
+    "placeholders": {
+      "count": { "content": "$1", "example": "12" }
+    }
+  },
+  "addJob": {
+    "message": "+ Añadir oferta",
+    "description": "Dashboard button to add a job by hand."
+  },
+  "exportCsv": {
+    "message": "Exportar CSV",
+    "description": "Dashboard button to download all jobs as a CSV file. Keep 'CSV'."
+  },
+  "languageLabel": {
+    "message": "Idioma",
+    "description": "Accessible label of the language picker."
+  },
+  "toolbarLabel": {
+    "message": "Filtrar y ordenar",
+    "description": "Accessible label of the toolbar with filters, search and sort."
+  },
+  "filtersLabel": {
+    "message": "Filtrar por estado",
+    "description": "Accessible label of the group of filter buttons."
+  },
+  "filterAll": {
+    "message": "Todas",
+    "description": "Filter button that shows all jobs."
+  },
+  "filterFollowUp": {
+    "message": "⏰ Seguimiento",
+    "description": "Filter button that shows jobs that may need a follow-up."
+  },
+  "searchPlaceholder": {
+    "message": "Buscar puesto, empresa, ubicación, notas",
+    "description": "Example text inside the empty search box."
+  },
+  "searchLabel": {
+    "message": "Buscar ofertas",
+    "description": "Accessible label of the search box."
+  },
+  "sortLabel": {
+    "message": "Ordenar ofertas",
+    "description": "Accessible label of the sort menu."
+  },
+  "sortSavedDesc": {
+    "message": "Guardadas recientemente",
+    "description": "Sort option: newest saved jobs first."
+  },
+  "sortSavedAsc": {
+    "message": "Guardadas hace más tiempo",
+    "description": "Sort option: oldest saved jobs first."
+  },
+  "sortAppliedDesc": {
+    "message": "Candidatura más reciente",
+    "description": "Sort option: most recent application date first."
+  },
+  "sortUpdatedDesc": {
+    "message": "Actualizadas recientemente",
+    "description": "Sort option: most recently changed jobs first."
+  },
+  "sortCompanyAsc": {
+    "message": "Empresa A–Z",
+    "description": "Sort option: by company name, alphabetically."
+  },
+  "sortTitleAsc": {
+    "message": "Puesto A–Z",
+    "description": "Sort option: by job title, alphabetically."
+  },
+  "sortStatus": {
+    "message": "Estado",
+    "description": "Sort option: by status (Saved, Applied, Interview, Offer, Rejected)."
+  },
+  "colTitle": {
+    "message": "Puesto",
+    "description": "Table column header: job title."
+  },
+  "colCompany": {
+    "message": "Empresa",
+    "description": "Table column header: company."
+  },
+  "colLocation": {
+    "message": "Ubicación",
+    "description": "Table column header: location."
+  },
+  "colStatus": {
+    "message": "Estado",
+    "description": "Table column header: status."
+  },
+  "colSaved": {
+    "message": "Guardada",
+    "description": "Table column header: the date the job was saved."
+  },
+  "colApplied": {
+    "message": "Enviada",
+    "description": "Table column header: the date the user applied."
+  },
+  "colActions": {
+    "message": "Acciones",
+    "description": "Table column header for the Edit and Delete buttons (only read by screen readers)."
+  },
+  "bannerFollowUpOne": {
+    "message": "⏰ 1 candidatura se envió hace $DAYS$+ días sin respuesta.",
+    "description": "Banner when exactly 1 application needs a follow-up. $DAYS$ is a number, like 7.",
+    "placeholders": {
+      "days": { "content": "$2", "example": "7" }
+    }
+  },
+  "bannerFollowUpOther": {
+    "message": "⏰ $COUNT$ candidaturas se enviaron hace $DAYS$+ días sin respuesta.",
+    "description": "Banner when 2 or more applications need a follow-up. $DAYS$ is a number, like 7.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "3" },
+      "days": { "content": "$2", "example": "7" }
+    }
+  },
+  "showThem": {
+    "message": "Ver",
+    "description": "Banner button that shows only the jobs that need a follow-up."
+  },
+  "followUpBadge": {
+    "message": "⏰ Quizás hacer seguimiento",
+    "description": "Small label on a job applied 7+ days ago."
+  },
+  "followUpTooltip": {
+    "message": "Enviada hace $DAYS$ días, sin respuesta",
+    "description": "Tooltip of the follow-up label. $DAYS$ is 7 or more.",
+    "placeholders": {
+      "days": { "content": "$1", "example": "8" }
+    }
+  },
+  "untitledJob": {
+    "message": "Oferta sin título",
+    "description": "Shown when a job has no title."
+  },
+  "thisJob": {
+    "message": "esta oferta",
+    "description": "Used inside other sentences when a job has no title, like 'Delete this job'."
+  },
+  "statusFor": {
+    "message": "Estado de $TITLE$",
+    "description": "Accessible label of a row's status menu.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "editJobLabel": {
+    "message": "Editar $TITLE$",
+    "description": "Accessible label of a row's Edit button.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "deleteJobLabel": {
+    "message": "Eliminar $TITLE$",
+    "description": "Accessible label of a row's Delete button.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "edit": {
+    "message": "Editar",
+    "description": "Button to edit a job."
+  },
+  "delete": {
+    "message": "Eliminar",
+    "description": "Button to delete a job."
+  },
+  "confirmDelete": {
+    "message": "¿Eliminar «$TITLE$»?",
+    "description": "Confirmation question before deleting a job.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "emptyNoJobsTitle": {
+    "message": "Aún no hay ofertas guardadas",
+    "description": "Title of the empty dashboard."
+  },
+  "emptyNoJobsText": {
+    "message": "Abre una oferta en LinkedIn, Indeed o cualquier web de empleo y haz clic en el icono de la extensión para guardarla.",
+    "description": "Help text of the empty dashboard. Keep LinkedIn and Indeed."
+  },
+  "emptyNoMatchTitle": {
+    "message": "Ninguna oferta coincide con tus filtros",
+    "description": "Title when the filters or search hide all jobs."
+  },
+  "emptyNoMatchText": {
+    "message": "Prueba otro estado o borra la búsqueda.",
+    "description": "Help text when the filters or search hide all jobs."
+  },
+  "dialogAddTitle": {
+    "message": "Añadir una oferta",
+    "description": "Title of the dialog for a new job."
+  },
+  "dialogEditTitle": {
+    "message": "Editar oferta",
+    "description": "Title of the dialog for editing a job."
+  },
+  "cancel": {
+    "message": "Cancelar",
+    "description": "Button that closes the dialog without saving."
+  },
+  "save": {
+    "message": "Guardar",
+    "description": "Button that saves the dialog."
+  },
+  "alertNoJobsToExport": {
+    "message": "Todavía no hay ofertas para exportar.",
+    "description": "Message when the user clicks Export CSV with no saved jobs."
+  },
+  "csvTitle": {
+    "message": "Puesto",
+    "description": "CSV file column header: job title."
+  },
+  "csvCompany": {
+    "message": "Empresa",
+    "description": "CSV file column header: company."
+  },
+  "csvLocation": {
+    "message": "Ubicación",
+    "description": "CSV file column header: location."
+  },
+  "csvStatus": {
+    "message": "Estado",
+    "description": "CSV file column header: status."
+  },
+  "csvDateSaved": {
+    "message": "Fecha guardada",
+    "description": "CSV file column header: the date the job was saved."
+  },
+  "csvDateApplied": {
+    "message": "Fecha de candidatura",
+    "description": "CSV file column header: the date the user applied."
+  },
+  "csvLink": {
+    "message": "Enlace",
+    "description": "CSV file column header: the job post web address."
+  },
+  "csvNotes": {
+    "message": "Notas",
+    "description": "CSV file column header: notes."
+  },
+  "goPremium": {
+    "message": "⭐ Hazte Premium",
+    "description": "Top bar button for free users. Opens the Premium window."
+  },
+  "premiumBadge": {
+    "message": "⭐ Premium",
+    "description": "Top bar badge for Premium users. Opens the Premium window."
+  },
+  "premiumTitle": {
+    "message": "⭐ Premium",
+    "description": "Title of the Premium window."
+  },
+  "premiumIntro": {
+    "message": "Apoya el proyecto y desbloquea funciones extra. Todas las funciones actuales siguen siendo gratis.",
+    "description": "Intro text in the Premium window for free users."
+  },
+  "premiumActive": {
+    "message": "✓ Tienes Premium. ¡Gracias por tu apoyo!",
+    "description": "Message in the Premium window for Premium users."
+  },
+  "premiumIncluded": {
+    "message": "Qué incluye",
+    "description": "Heading above the list of Premium benefits."
+  },
+  "premiumNoAds": {
+    "message": "Sin anuncios",
+    "description": "Premium benefit."
+  },
+  "premiumSupport": {
+    "message": "Apoyas el proyecto",
+    "description": "Premium benefit: the money helps the developer."
+  },
+  "premiumAiSoon": {
+    "message": "Funciones de IA (próximamente)",
+    "description": "Premium benefit that is not ready yet."
+  },
+  "premiumChoosePlan": {
+    "message": "Elige un plan",
+    "description": "Heading above the list of plans."
+  },
+  "planMonthly": {
+    "message": "Mensual",
+    "description": "Name of a plan paid every month."
+  },
+  "planYearly": {
+    "message": "Anual",
+    "description": "Name of a plan paid every year."
+  },
+  "planOnce": {
+    "message": "Pago único",
+    "description": "Name of a plan paid only once (lifetime)."
+  },
+  "pricePerMonth": {
+    "message": "$PRICE$ / mes",
+    "description": "Price of a monthly plan. $PRICE$ is a formatted price like $4.99.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "pricePerYear": {
+    "message": "$PRICE$ / año",
+    "description": "Price of a yearly plan.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "pricePerMonths": {
+    "message": "$PRICE$ cada $COUNT$ meses",
+    "description": "Price of a plan paid every few months.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" },
+      "count": { "content": "$2", "example": "3" }
+    }
+  },
+  "pricePerYears": {
+    "message": "$PRICE$ cada $COUNT$ años",
+    "description": "Price of a plan paid every few years.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" },
+      "count": { "content": "$2", "example": "2" }
+    }
+  },
+  "priceOnce": {
+    "message": "$PRICE$ una vez",
+    "description": "Price of a one-time plan.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "choosePlan": {
+    "message": "Elegir",
+    "description": "Button to buy a plan."
+  },
+  "choosePlanLabel": {
+    "message": "Elegir el plan $PLAN$",
+    "description": "Accessible label of the Choose button. $PLAN$ is a plan name like Monthly.",
+    "placeholders": {
+      "plan": { "content": "$1", "example": "Monthly" }
+    }
+  },
+  "premiumSecureNote": {
+    "message": "Los pagos se procesan de forma segura con Dodo Payments. Nunca vemos los datos de tu tarjeta.",
+    "description": "Small note under the plans. Keep the name Dodo Payments."
+  },
+  "close": {
+    "message": "Cerrar",
+    "description": "Button that closes a window."
+  },
+  "popupPremiumLink": {
+    "message": "⭐ Premium",
+    "description": "Small link at the bottom of the popup for free users."
+  },
+  "licenseHaveKey": {
+    "message": "¿Ya compraste Premium? Introduce tu clave de licencia",
+    "description": "Label above the license key field."
+  },
+  "licensePlaceholder": {
+    "message": "Pega tu clave de licencia",
+    "description": "Example text inside the empty license key field."
+  },
+  "licenseActivate": {
+    "message": "Activar",
+    "description": "Button that checks and activates the license key."
+  },
+  "licenseActivating": {
+    "message": "Comprobando…",
+    "description": "Button text while the license key is being checked."
+  },
+  "licenseEmailHint": {
+    "message": "Después de pagar, Dodo Payments te envía la clave de licencia por correo.",
+    "description": "Help text under the license key field. Keep the name Dodo Payments."
+  },
+  "licenseRequired": {
+    "message": "Pega tu clave de licencia.",
+    "description": "Error when the license key field is empty."
+  },
+  "licenseInvalid": {
+    "message": "No se encontró esta clave de licencia. Revísala e inténtalo de nuevo.",
+    "description": "Error when the license key does not exist."
+  },
+  "licenseInactive": {
+    "message": "Esta clave de licencia no está activa. Puede que la suscripción haya terminado.",
+    "description": "Error when the license key exists but is disabled."
+  },
+  "licenseLimit": {
+    "message": "Esta clave ya se usa en el número máximo de ordenadores. Quítala primero de otro ordenador.",
+    "description": "Error when the key has no free activations left."
+  },
+  "licenseNetworkError": {
+    "message": "No se pudo comprobar la clave. Revisa tu conexión a internet e inténtalo de nuevo.",
+    "description": "Error when the license server cannot be reached."
+  },
+  "licenseOnThisComputer": {
+    "message": "Clave de licencia en este ordenador: $KEY$",
+    "description": "Shows the end of the saved license key. $KEY$ is like •••• 5678.",
+    "placeholders": {
+      "key": { "content": "$1", "example": "•••• 5678" }
+    }
+  },
+  "manageHint": {
+    "message": "Para cambiar o cancelar tu suscripción, usa el enlace del correo de Dodo Payments.",
+    "description": "Help text for Premium users. Keep the name Dodo Payments."
+  },
+  "licenseRemove": {
+    "message": "Quitar la licencia de este ordenador",
+    "description": "Button that frees the license so it can be used on another computer."
+  },
+  "licenseRemoveConfirm": {
+    "message": "¿Quitar la licencia de este ordenador? Puedes volver a activarla más tarde con la misma clave.",
+    "description": "Confirmation question before removing the license."
+  },
+  "adSponsored": {
+    "message": "Patrocinado",
+    "description": "Small label on every ad card. It must be clear that the card is an ad."
+  },
+  "adRemoveAds": {
+    "message": "Quitar anuncios ⭐",
+    "description": "Small link on an ad card. Opens the Premium window."
+  }
+}

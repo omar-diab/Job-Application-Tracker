@@ -19,13 +19,22 @@ The extension saves the jobs you choose to save: job title, company, location, l
 
 ## What the extension does NOT do
 
-- No analytics, no tracking, no ads, no cookies.
+- No analytics, no tracking, no ad networks, no cookies.
 - Your job data is never sold, shared or sent over the internet.
 - No remote code is loaded. All code is inside the extension.
 
 ## When a web page is read
 
 The extension reads a page **only when you click its icon**, and only the tab you are looking at. It looks for the job title, company and location on that page, and shows them to you in the popup. Nothing is saved until you click **Save job**.
+
+## Sponsored links (free version)
+
+The free version shows small cards marked **"Sponsored"**, only inside the extension's popup and dashboard (never on websites you visit). Premium removes them.
+
+- The sponsored cards are **built into the extension**. No ad network is used, and no ad code is loaded from the internet.
+- **We track nothing:** we don't count views or clicks, and nothing about you or your jobs is sent to us or to the sponsor.
+- To show a different card each time, the extension remembers **only the id of the last card shown**, on your computer.
+- If you click a sponsored card, the sponsor's website opens in a new tab. **That website has its own privacy policy**, and we don't control it.
 
 ## Premium and payments
 

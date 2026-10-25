@@ -1,0 +1,559 @@
+{
+  "extName": {
+    "message": "जॉब एप्लीकेशन ट्रैकर",
+    "description": "Extension name, shown in Chrome and the Chrome Web Store. Max 75 characters."
+  },
+  "extDescription": {
+    "message": "LinkedIn, Indeed और दूसरी साइटों से नौकरियाँ एक क्लिक में सेव करें और हर आवेदन की स्थिति एक ही जगह देखें।",
+    "description": "Extension description for the Chrome Web Store. MUST be under 132 characters."
+  },
+  "popupBrand": {
+    "message": "जॉब ट्रैकर",
+    "description": "Short app name in the popup header."
+  },
+  "openDashboard": {
+    "message": "डैशबोर्ड ↗",
+    "description": "Popup button that opens the dashboard in a new tab. The arrow means 'opens elsewhere'."
+  },
+  "fieldTitle": {
+    "message": "पद का नाम",
+    "description": "Form label for the job title."
+  },
+  "fieldCompany": {
+    "message": "कंपनी",
+    "description": "Form label for the company name."
+  },
+  "fieldLocation": {
+    "message": "जगह",
+    "description": "Form label for the job location (city, country, or Remote)."
+  },
+  "fieldLink": {
+    "message": "लिंक",
+    "description": "Form label for the job post web address."
+  },
+  "fieldStatus": {
+    "message": "स्थिति",
+    "description": "Form label for the application status."
+  },
+  "fieldDateApplied": {
+    "message": "आवेदन की तारीख",
+    "description": "Form label for the date the user applied."
+  },
+  "fieldNotes": {
+    "message": "नोट्स",
+    "description": "Form label for free notes about the job."
+  },
+  "notesPlaceholder": {
+    "message": "रिक्रूटर, वेतन, अगला कदम...",
+    "description": "Example text inside the empty notes field."
+  },
+  "saveJob": {
+    "message": "नौकरी सेव करें",
+    "description": "Popup button to save a new job."
+  },
+  "updateJob": {
+    "message": "नौकरी अपडेट करें",
+    "description": "Popup button to save changes to a job that is already saved."
+  },
+  "statusSaved": {
+    "message": "सेव की गई",
+    "description": "Status: the job is saved, but the user has not applied yet."
+  },
+  "statusApplied": {
+    "message": "आवेदन किया",
+    "description": "Status: the user sent an application."
+  },
+  "statusInterview": {
+    "message": "इंटरव्यू",
+    "description": "Status: the user has an interview."
+  },
+  "statusOffer": {
+    "message": "ऑफ़र",
+    "description": "Status: the user received a job offer."
+  },
+  "statusRejected": {
+    "message": "अस्वीकृत",
+    "description": "Status: the application was rejected."
+  },
+  "noticeCantRead": {
+    "message": "यह पेज पढ़ा नहीं जा सकता। आप नौकरी को खुद भी जोड़ सकते हैं।",
+    "description": "Popup warning on pages like chrome:// or the new tab page."
+  },
+  "noticeAlreadySaved": {
+    "message": "$DATE$ को पहले से सेव है",
+    "description": "Popup notice when the job is already saved. $DATE$ is a formatted date.",
+    "placeholders": {
+      "date": { "content": "$1", "example": "24 Oct 2026" }
+    }
+  },
+  "noticeUsedTitle": {
+    "message": "हमने पेज का शीर्षक इस्तेमाल किया है। कृपया जानकारी जाँच लें।",
+    "description": "Popup warning when only the page title was found."
+  },
+  "noticeNoDetails": {
+    "message": "नौकरी की जानकारी नहीं मिली। कृपया खुद भरें।",
+    "description": "Popup warning when nothing was found on the page."
+  },
+  "noticeJobSaved": {
+    "message": "✓ नौकरी सेव हो गई",
+    "description": "Success message after saving a new job."
+  },
+  "noticeJobUpdated": {
+    "message": "✓ नौकरी अपडेट हो गई",
+    "description": "Success message after updating a saved job."
+  },
+  "errorTitleRequired": {
+    "message": "कृपया पद का नाम लिखें।",
+    "description": "Error when the job title is empty."
+  },
+  "errorBadLink": {
+    "message": "लिंक http:// या https:// से शुरू होना चाहिए",
+    "description": "Error when the link is not a web address. Keep http:// and https:// as they are."
+  },
+  "errorSaveFailed": {
+    "message": "नौकरी सेव नहीं हो सकी। कृपया फिर से कोशिश करें।",
+    "description": "Error when saving fails."
+  },
+  "errorDuplicateLink": {
+    "message": "यह लिंक पहले से सेव है: \"$TITLE$\"",
+    "description": "Error when another saved job has the same link. $TITLE$ is that job's title.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "errorJobGone": {
+    "message": "यह नौकरी अब मौजूद नहीं है। शायद इसे किसी दूसरे टैब में हटा दिया गया है।",
+    "description": "Error when the job being edited was deleted meanwhile."
+  },
+  "jobCountOne": {
+    "message": "1 नौकरी",
+    "description": "Total number of saved jobs, when there is exactly 1.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "1" }
+    }
+  },
+  "jobCountOther": {
+    "message": "$COUNT$ नौकरियाँ",
+    "description": "Total number of saved jobs (0, 2, 3, ...).",
+    "placeholders": {
+      "count": { "content": "$1", "example": "12" }
+    }
+  },
+  "addJob": {
+    "message": "+ नौकरी जोड़ें",
+    "description": "Dashboard button to add a job by hand."
+  },
+  "exportCsv": {
+    "message": "CSV एक्सपोर्ट करें",
+    "description": "Dashboard button to download all jobs as a CSV file. Keep 'CSV'."
+  },
+  "languageLabel": {
+    "message": "भाषा",
+    "description": "Accessible label of the language picker."
+  },
+  "toolbarLabel": {
+    "message": "फ़िल्टर और क्रम",
+    "description": "Accessible label of the toolbar with filters, search and sort."
+  },
+  "filtersLabel": {
+    "message": "स्थिति के अनुसार फ़िल्टर",
+    "description": "Accessible label of the group of filter buttons."
+  },
+  "filterAll": {
+    "message": "सभी",
+    "description": "Filter button that shows all jobs."
+  },
+  "filterFollowUp": {
+    "message": "⏰ फ़ॉलो-अप",
+    "description": "Filter button that shows jobs that may need a follow-up."
+  },
+  "searchPlaceholder": {
+    "message": "पद, कंपनी, जगह, नोट्स खोजें",
+    "description": "Example text inside the empty search box."
+  },
+  "searchLabel": {
+    "message": "नौकरियाँ खोजें",
+    "description": "Accessible label of the search box."
+  },
+  "sortLabel": {
+    "message": "नौकरियों का क्रम",
+    "description": "Accessible label of the sort menu."
+  },
+  "sortSavedDesc": {
+    "message": "नई सेव की गई पहले",
+    "description": "Sort option: newest saved jobs first."
+  },
+  "sortSavedAsc": {
+    "message": "पुरानी सेव की गई पहले",
+    "description": "Sort option: oldest saved jobs first."
+  },
+  "sortAppliedDesc": {
+    "message": "हाल में आवेदन किया",
+    "description": "Sort option: most recent application date first."
+  },
+  "sortUpdatedDesc": {
+    "message": "हाल में बदली गई",
+    "description": "Sort option: most recently changed jobs first."
+  },
+  "sortCompanyAsc": {
+    "message": "कंपनी A–Z",
+    "description": "Sort option: by company name, alphabetically."
+  },
+  "sortTitleAsc": {
+    "message": "पद A–Z",
+    "description": "Sort option: by job title, alphabetically."
+  },
+  "sortStatus": {
+    "message": "स्थिति",
+    "description": "Sort option: by status (Saved, Applied, Interview, Offer, Rejected)."
+  },
+  "colTitle": {
+    "message": "पद",
+    "description": "Table column header: job title."
+  },
+  "colCompany": {
+    "message": "कंपनी",
+    "description": "Table column header: company."
+  },
+  "colLocation": {
+    "message": "जगह",
+    "description": "Table column header: location."
+  },
+  "colStatus": {
+    "message": "स्थिति",
+    "description": "Table column header: status."
+  },
+  "colSaved": {
+    "message": "सेव की तारीख",
+    "description": "Table column header: the date the job was saved."
+  },
+  "colApplied": {
+    "message": "आवेदन की तारीख",
+    "description": "Table column header: the date the user applied."
+  },
+  "colActions": {
+    "message": "कार्य",
+    "description": "Table column header for the Edit and Delete buttons (only read by screen readers)."
+  },
+  "bannerFollowUpOne": {
+    "message": "⏰ 1 आवेदन $DAYS$+ दिन पहले भेजा गया और कोई जवाब नहीं आया।",
+    "description": "Banner when exactly 1 application needs a follow-up. $DAYS$ is a number, like 7.",
+    "placeholders": {
+      "days": { "content": "$2", "example": "7" }
+    }
+  },
+  "bannerFollowUpOther": {
+    "message": "⏰ $COUNT$ आवेदन $DAYS$+ दिन पहले भेजे गए और कोई जवाब नहीं आया।",
+    "description": "Banner when 2 or more applications need a follow-up. $DAYS$ is a number, like 7.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "3" },
+      "days": { "content": "$2", "example": "7" }
+    }
+  },
+  "showThem": {
+    "message": "दिखाएँ",
+    "description": "Banner button that shows only the jobs that need a follow-up."
+  },
+  "followUpBadge": {
+    "message": "⏰ फ़ॉलो-अप करें",
+    "description": "Small label on a job applied 7+ days ago."
+  },
+  "followUpTooltip": {
+    "message": "$DAYS$ दिन पहले आवेदन किया, कोई जवाब नहीं",
+    "description": "Tooltip of the follow-up label. $DAYS$ is 7 or more.",
+    "placeholders": {
+      "days": { "content": "$1", "example": "8" }
+    }
+  },
+  "untitledJob": {
+    "message": "बिना नाम की नौकरी",
+    "description": "Shown when a job has no title."
+  },
+  "thisJob": {
+    "message": "यह नौकरी",
+    "description": "Used inside other sentences when a job has no title, like 'Delete this job'."
+  },
+  "statusFor": {
+    "message": "$TITLE$ की स्थिति",
+    "description": "Accessible label of a row's status menu.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "editJobLabel": {
+    "message": "$TITLE$ बदलें",
+    "description": "Accessible label of a row's Edit button.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "deleteJobLabel": {
+    "message": "$TITLE$ हटाएँ",
+    "description": "Accessible label of a row's Delete button.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "edit": {
+    "message": "बदलें",
+    "description": "Button to edit a job."
+  },
+  "delete": {
+    "message": "हटाएँ",
+    "description": "Button to delete a job."
+  },
+  "confirmDelete": {
+    "message": "\"$TITLE$\" हटाएँ?",
+    "description": "Confirmation question before deleting a job.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "emptyNoJobsTitle": {
+    "message": "अभी तक कोई नौकरी सेव नहीं है",
+    "description": "Title of the empty dashboard."
+  },
+  "emptyNoJobsText": {
+    "message": "LinkedIn, Indeed या किसी भी करियर साइट पर नौकरी खोलें, फिर उसे सेव करने के लिए एक्सटेंशन आइकन पर क्लिक करें।",
+    "description": "Help text of the empty dashboard. Keep LinkedIn and Indeed."
+  },
+  "emptyNoMatchTitle": {
+    "message": "आपके फ़िल्टर से कोई नौकरी नहीं मिली",
+    "description": "Title when the filters or search hide all jobs."
+  },
+  "emptyNoMatchText": {
+    "message": "कोई दूसरी स्थिति चुनें या खोज साफ़ करें।",
+    "description": "Help text when the filters or search hide all jobs."
+  },
+  "dialogAddTitle": {
+    "message": "नौकरी जोड़ें",
+    "description": "Title of the dialog for a new job."
+  },
+  "dialogEditTitle": {
+    "message": "नौकरी बदलें",
+    "description": "Title of the dialog for editing a job."
+  },
+  "cancel": {
+    "message": "रद्द करें",
+    "description": "Button that closes the dialog without saving."
+  },
+  "save": {
+    "message": "सेव करें",
+    "description": "Button that saves the dialog."
+  },
+  "alertNoJobsToExport": {
+    "message": "अभी एक्सपोर्ट करने के लिए कोई नौकरी नहीं है।",
+    "description": "Message when the user clicks Export CSV with no saved jobs."
+  },
+  "csvTitle": {
+    "message": "पद",
+    "description": "CSV file column header: job title."
+  },
+  "csvCompany": {
+    "message": "कंपनी",
+    "description": "CSV file column header: company."
+  },
+  "csvLocation": {
+    "message": "जगह",
+    "description": "CSV file column header: location."
+  },
+  "csvStatus": {
+    "message": "स्थिति",
+    "description": "CSV file column header: status."
+  },
+  "csvDateSaved": {
+    "message": "सेव की तारीख",
+    "description": "CSV file column header: the date the job was saved."
+  },
+  "csvDateApplied": {
+    "message": "आवेदन की तारीख",
+    "description": "CSV file column header: the date the user applied."
+  },
+  "csvLink": {
+    "message": "लिंक",
+    "description": "CSV file column header: the job post web address."
+  },
+  "csvNotes": {
+    "message": "नोट्स",
+    "description": "CSV file column header: notes."
+  },
+  "goPremium": {
+    "message": "⭐ Premium लें",
+    "description": "Top bar button for free users. Opens the Premium window."
+  },
+  "premiumBadge": {
+    "message": "⭐ Premium",
+    "description": "Top bar badge for Premium users. Opens the Premium window."
+  },
+  "premiumTitle": {
+    "message": "⭐ Premium",
+    "description": "Title of the Premium window."
+  },
+  "premiumIntro": {
+    "message": "प्रोजेक्ट का साथ दें और अतिरिक्त सुविधाएँ पाएँ। अभी की सभी सुविधाएँ मुफ़्त रहेंगी।",
+    "description": "Intro text in the Premium window for free users."
+  },
+  "premiumActive": {
+    "message": "✓ आपके पास Premium है। आपके सहयोग के लिए धन्यवाद!",
+    "description": "Message in the Premium window for Premium users."
+  },
+  "premiumIncluded": {
+    "message": "इसमें क्या है",
+    "description": "Heading above the list of Premium benefits."
+  },
+  "premiumNoAds": {
+    "message": "कोई विज्ञापन नहीं",
+    "description": "Premium benefit."
+  },
+  "premiumSupport": {
+    "message": "प्रोजेक्ट को सहयोग",
+    "description": "Premium benefit: the money helps the developer."
+  },
+  "premiumAiSoon": {
+    "message": "AI सुविधाएँ (जल्द आ रही हैं)",
+    "description": "Premium benefit that is not ready yet."
+  },
+  "premiumChoosePlan": {
+    "message": "प्लान चुनें",
+    "description": "Heading above the list of plans."
+  },
+  "planMonthly": {
+    "message": "मासिक",
+    "description": "Name of a plan paid every month."
+  },
+  "planYearly": {
+    "message": "वार्षिक",
+    "description": "Name of a plan paid every year."
+  },
+  "planOnce": {
+    "message": "एक बार भुगतान",
+    "description": "Name of a plan paid only once (lifetime)."
+  },
+  "pricePerMonth": {
+    "message": "$PRICE$ / महीना",
+    "description": "Price of a monthly plan. $PRICE$ is a formatted price like $4.99.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "pricePerYear": {
+    "message": "$PRICE$ / साल",
+    "description": "Price of a yearly plan.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "pricePerMonths": {
+    "message": "हर $COUNT$ महीने में $PRICE$",
+    "description": "Price of a plan paid every few months.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" },
+      "count": { "content": "$2", "example": "3" }
+    }
+  },
+  "pricePerYears": {
+    "message": "हर $COUNT$ साल में $PRICE$",
+    "description": "Price of a plan paid every few years.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" },
+      "count": { "content": "$2", "example": "2" }
+    }
+  },
+  "priceOnce": {
+    "message": "एक बार $PRICE$",
+    "description": "Price of a one-time plan.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "choosePlan": {
+    "message": "चुनें",
+    "description": "Button to buy a plan."
+  },
+  "choosePlanLabel": {
+    "message": "$PLAN$ प्लान चुनें",
+    "description": "Accessible label of the Choose button. $PLAN$ is a plan name like Monthly.",
+    "placeholders": {
+      "plan": { "content": "$1", "example": "Monthly" }
+    }
+  },
+  "premiumSecureNote": {
+    "message": "भुगतान Dodo Payments द्वारा सुरक्षित रूप से होते हैं। हम आपके कार्ड की जानकारी कभी नहीं देखते।",
+    "description": "Small note under the plans. Keep the name Dodo Payments."
+  },
+  "close": {
+    "message": "बंद करें",
+    "description": "Button that closes a window."
+  },
+  "popupPremiumLink": {
+    "message": "⭐ Premium",
+    "description": "Small link at the bottom of the popup for free users."
+  },
+  "licenseHaveKey": {
+    "message": "Premium पहले ही खरीद लिया? अपनी लाइसेंस की डालें",
+    "description": "Label above the license key field."
+  },
+  "licensePlaceholder": {
+    "message": "अपनी लाइसेंस की पेस्ट करें",
+    "description": "Example text inside the empty license key field."
+  },
+  "licenseActivate": {
+    "message": "चालू करें",
+    "description": "Button that checks and activates the license key."
+  },
+  "licenseActivating": {
+    "message": "जाँच हो रही है…",
+    "description": "Button text while the license key is being checked."
+  },
+  "licenseEmailHint": {
+    "message": "भुगतान के बाद Dodo Payments आपकी लाइसेंस की ईमेल पर भेजता है।",
+    "description": "Help text under the license key field. Keep the name Dodo Payments."
+  },
+  "licenseRequired": {
+    "message": "कृपया अपनी लाइसेंस की पेस्ट करें।",
+    "description": "Error when the license key field is empty."
+  },
+  "licenseInvalid": {
+    "message": "यह लाइसेंस की नहीं मिली। कृपया जाँचें और फिर से कोशिश करें।",
+    "description": "Error when the license key does not exist."
+  },
+  "licenseInactive": {
+    "message": "यह लाइसेंस की सक्रिय नहीं है। शायद सदस्यता खत्म हो गई है।",
+    "description": "Error when the license key exists but is disabled."
+  },
+  "licenseLimit": {
+    "message": "यह की पहले से अधिकतम कंप्यूटरों पर इस्तेमाल हो रही है। पहले इसे किसी दूसरे कंप्यूटर से हटाएँ।",
+    "description": "Error when the key has no free activations left."
+  },
+  "licenseNetworkError": {
+    "message": "की की जाँच नहीं हो सकी। कृपया अपना इंटरनेट कनेक्शन जाँचें और फिर से कोशिश करें।",
+    "description": "Error when the license server cannot be reached."
+  },
+  "licenseOnThisComputer": {
+    "message": "इस कंप्यूटर पर लाइसेंस की: $KEY$",
+    "description": "Shows the end of the saved license key. $KEY$ is like •••• 5678.",
+    "placeholders": {
+      "key": { "content": "$1", "example": "•••• 5678" }
+    }
+  },
+  "manageHint": {
+    "message": "अपनी सदस्यता बदलने या रद्द करने के लिए Dodo Payments के ईमेल में दिया लिंक इस्तेमाल करें।",
+    "description": "Help text for Premium users. Keep the name Dodo Payments."
+  },
+  "licenseRemove": {
+    "message": "इस कंप्यूटर से लाइसेंस हटाएँ",
+    "description": "Button that frees the license so it can be used on another computer."
+  },
+  "licenseRemoveConfirm": {
+    "message": "इस कंप्यूटर से लाइसेंस हटाएँ? आप बाद में उसी की से इसे फिर से चालू कर सकते हैं।",
+    "description": "Confirmation question before removing the license."
+  },
+  "adSponsored": {
+    "message": "प्रायोजित",
+    "description": "Small label on every ad card. It must be clear that the card is an ad."
+  },
+  "adRemoveAds": {
+    "message": "विज्ञापन हटाएँ ⭐",
+    "description": "Small link on an ad card. Opens the Premium window."
+  }
+}

@@ -160,6 +160,12 @@ test('i18n: placeholders, plurals and English fallback', function () {
     assertEqual(I18n.match('en-US'), 'en');
     assertEqual(I18n.match('ar-AE'), 'ar');
     assertEqual(I18n.match('xx'), null);
+    assertEqual(I18n.match('tr-TR'), 'tr', 'Turkish browser');
+    assertEqual(I18n.match('pt-BR'), 'pt_BR');
+    assertEqual(I18n.match('pt-PT'), 'pt_BR', 'same language from another country');
+    assertEqual(I18n.match('zh-TW'), 'zh_CN');
+    assertEqual(I18n.match('en-GB'), 'en_GB');
+    assertEqual(I18n.match('es-MX'), 'es');
   } finally {
     I18n.lang = saved.lang;
     I18n.messages = saved.messages;
@@ -386,6 +392,50 @@ test('Premium: an ended subscription removes Premium, removing the key frees it'
   assertEqual(await isPremium(), false);
   assertEqual((await chrome.storage.local.get('license')).license, undefined, 'license removed');
   await resetLicense();
+});
+
+// ---------------------------------------------------------------------------
+// Sponsored cards
+// ---------------------------------------------------------------------------
+
+test('Ads: unsafe or broken ads are rejected', function () {
+  const good = { id: 'a', title: 'Title', cta: 'Go', url: 'https://example.com' };
+  assertEqual(isValidAd(good), true);
+  assertEqual(isValidAd(Object.assign({}, good, { url: '#premium' })), true, 'house ad');
+  assertEqual(isValidAd(Object.assign({}, good, { url: 'javascript:alert(1)' })), false, 'javascript: link');
+  assertEqual(isValidAd(Object.assign({}, good, { image: 'https://evil.com/ad.png' })), false, 'image from the internet');
+  assertEqual(isValidAd(Object.assign({}, good, { image: 'icons/ads/../../x.png' })), false, 'image outside icons/ads');
+  assertEqual(isValidAd(Object.assign({}, good, { image: 'icons/ads/star.svg' })), true, 'local image');
+  assertEqual(isValidAd(Object.assign({}, good, { title: '  ' })), false, 'empty title');
+  assertEqual(isValidAd(Object.assign({}, good, { endDate: '2026-02-31' })), false, 'wrong date');
+});
+
+test('Ads: language and end date filters', function () {
+  const ads = [
+    { id: 'all', title: 't', cta: 'c', url: 'https://example.com' },
+    { id: 'ar', title: 't', cta: 'c', url: 'https://example.com', languages: ['ar'] },
+    { id: 'en', title: 't', cta: 'c', url: 'https://example.com', languages: ['en'] },
+    { id: 'old', title: 't', cta: 'c', url: 'https://example.com', endDate: '2026-01-01' },
+    { id: 'today', title: 't', cta: 'c', url: 'https://example.com', endDate: '2026-10-25' }
+  ];
+  const ids = function (list) {
+    return list.map(function (ad) {
+      return ad.id;
+    }).join(',');
+  };
+  assertEqual(ids(filterAds(ads, 'ar', '2026-10-25')), 'all,ar,today', 'Arabic, and the last day still counts');
+  assertEqual(ids(filterAds(ads, 'en_GB', '2026-10-25')), 'all,en,today', '"en" also matches en_GB');
+  assertEqual(ids(filterAds(ads, 'en', '2026-10-26')), 'all,en', 'ended ads are removed');
+});
+
+test('Ads: never the same ad twice in a row', function () {
+  const ads = [{ id: 'a' }, { id: 'b' }, { id: 'c' }];
+  for (let i = 0; i < 10; i++) {
+    const value = i / 10;
+    assertEqual(chooseAd(ads, 'b', function () { return value; }).id !== 'b', true, 'random value ' + value);
+  }
+  assertEqual(chooseAd([{ id: 'only' }], 'only').id, 'only', 'a single ad can repeat');
+  assertEqual(chooseAd([], null), null, 'no ads');
 });
 
 // ---------------------------------------------------------------------------

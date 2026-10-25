@@ -63,6 +63,9 @@ jobs:
       - name: Translations are complete
         run: node tools/check-locales.js
 
+      - name: Ads are valid
+        run: node tools/check-ads.js
+
       - name: No innerHTML in the code
         run: |
           # Lines that only contain a comment are allowed.

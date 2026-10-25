@@ -1,0 +1,559 @@
+{
+  "extName": {
+    "message": "求职申请追踪器",
+    "description": "Extension name, shown in Chrome and the Chrome Web Store. Max 75 characters."
+  },
+  "extDescription": {
+    "message": "一键保存 LinkedIn、Indeed 和其他网站上的职位，在一个地方跟踪每份申请的状态。",
+    "description": "Extension description for the Chrome Web Store. MUST be under 132 characters."
+  },
+  "popupBrand": {
+    "message": "求职追踪",
+    "description": "Short app name in the popup header."
+  },
+  "openDashboard": {
+    "message": "控制面板 ↗",
+    "description": "Popup button that opens the dashboard in a new tab. The arrow means 'opens elsewhere'."
+  },
+  "fieldTitle": {
+    "message": "职位名称",
+    "description": "Form label for the job title."
+  },
+  "fieldCompany": {
+    "message": "公司",
+    "description": "Form label for the company name."
+  },
+  "fieldLocation": {
+    "message": "地点",
+    "description": "Form label for the job location (city, country, or Remote)."
+  },
+  "fieldLink": {
+    "message": "链接",
+    "description": "Form label for the job post web address."
+  },
+  "fieldStatus": {
+    "message": "状态",
+    "description": "Form label for the application status."
+  },
+  "fieldDateApplied": {
+    "message": "申请日期",
+    "description": "Form label for the date the user applied."
+  },
+  "fieldNotes": {
+    "message": "备注",
+    "description": "Form label for free notes about the job."
+  },
+  "notesPlaceholder": {
+    "message": "招聘人员、薪资、下一步…",
+    "description": "Example text inside the empty notes field."
+  },
+  "saveJob": {
+    "message": "保存职位",
+    "description": "Popup button to save a new job."
+  },
+  "updateJob": {
+    "message": "更新职位",
+    "description": "Popup button to save changes to a job that is already saved."
+  },
+  "statusSaved": {
+    "message": "已保存",
+    "description": "Status: the job is saved, but the user has not applied yet."
+  },
+  "statusApplied": {
+    "message": "已申请",
+    "description": "Status: the user sent an application."
+  },
+  "statusInterview": {
+    "message": "面试",
+    "description": "Status: the user has an interview."
+  },
+  "statusOffer": {
+    "message": "Offer",
+    "description": "Status: the user received a job offer."
+  },
+  "statusRejected": {
+    "message": "已拒绝",
+    "description": "Status: the application was rejected."
+  },
+  "noticeCantRead": {
+    "message": "无法读取此页面。你仍然可以手动添加职位。",
+    "description": "Popup warning on pages like chrome:// or the new tab page."
+  },
+  "noticeAlreadySaved": {
+    "message": "已于 $DATE$ 保存",
+    "description": "Popup notice when the job is already saved. $DATE$ is a formatted date.",
+    "placeholders": {
+      "date": { "content": "$1", "example": "24 Oct 2026" }
+    }
+  },
+  "noticeUsedTitle": {
+    "message": "我们使用了页面标题，请检查信息。",
+    "description": "Popup warning when only the page title was found."
+  },
+  "noticeNoDetails": {
+    "message": "没有找到职位信息，请手动填写。",
+    "description": "Popup warning when nothing was found on the page."
+  },
+  "noticeJobSaved": {
+    "message": "✓ 职位已保存",
+    "description": "Success message after saving a new job."
+  },
+  "noticeJobUpdated": {
+    "message": "✓ 职位已更新",
+    "description": "Success message after updating a saved job."
+  },
+  "errorTitleRequired": {
+    "message": "请输入职位名称。",
+    "description": "Error when the job title is empty."
+  },
+  "errorBadLink": {
+    "message": "链接必须以 http:// 或 https:// 开头",
+    "description": "Error when the link is not a web address. Keep http:// and https:// as they are."
+  },
+  "errorSaveFailed": {
+    "message": "无法保存职位，请重试。",
+    "description": "Error when saving fails."
+  },
+  "errorDuplicateLink": {
+    "message": "此链接已保存：“$TITLE$”",
+    "description": "Error when another saved job has the same link. $TITLE$ is that job's title.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "errorJobGone": {
+    "message": "此职位已不存在，可能已在其他标签页中删除。",
+    "description": "Error when the job being edited was deleted meanwhile."
+  },
+  "jobCountOne": {
+    "message": "1 个职位",
+    "description": "Total number of saved jobs, when there is exactly 1.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "1" }
+    }
+  },
+  "jobCountOther": {
+    "message": "$COUNT$ 个职位",
+    "description": "Total number of saved jobs (0, 2, 3, ...).",
+    "placeholders": {
+      "count": { "content": "$1", "example": "12" }
+    }
+  },
+  "addJob": {
+    "message": "+ 添加职位",
+    "description": "Dashboard button to add a job by hand."
+  },
+  "exportCsv": {
+    "message": "导出 CSV",
+    "description": "Dashboard button to download all jobs as a CSV file. Keep 'CSV'."
+  },
+  "languageLabel": {
+    "message": "语言",
+    "description": "Accessible label of the language picker."
+  },
+  "toolbarLabel": {
+    "message": "筛选和排序",
+    "description": "Accessible label of the toolbar with filters, search and sort."
+  },
+  "filtersLabel": {
+    "message": "按状态筛选",
+    "description": "Accessible label of the group of filter buttons."
+  },
+  "filterAll": {
+    "message": "全部",
+    "description": "Filter button that shows all jobs."
+  },
+  "filterFollowUp": {
+    "message": "⏰ 待跟进",
+    "description": "Filter button that shows jobs that may need a follow-up."
+  },
+  "searchPlaceholder": {
+    "message": "搜索职位、公司、地点、备注",
+    "description": "Example text inside the empty search box."
+  },
+  "searchLabel": {
+    "message": "搜索职位",
+    "description": "Accessible label of the search box."
+  },
+  "sortLabel": {
+    "message": "职位排序",
+    "description": "Accessible label of the sort menu."
+  },
+  "sortSavedDesc": {
+    "message": "最新保存",
+    "description": "Sort option: newest saved jobs first."
+  },
+  "sortSavedAsc": {
+    "message": "最早保存",
+    "description": "Sort option: oldest saved jobs first."
+  },
+  "sortAppliedDesc": {
+    "message": "最近申请",
+    "description": "Sort option: most recent application date first."
+  },
+  "sortUpdatedDesc": {
+    "message": "最近更新",
+    "description": "Sort option: most recently changed jobs first."
+  },
+  "sortCompanyAsc": {
+    "message": "公司 A–Z",
+    "description": "Sort option: by company name, alphabetically."
+  },
+  "sortTitleAsc": {
+    "message": "职位 A–Z",
+    "description": "Sort option: by job title, alphabetically."
+  },
+  "sortStatus": {
+    "message": "状态",
+    "description": "Sort option: by status (Saved, Applied, Interview, Offer, Rejected)."
+  },
+  "colTitle": {
+    "message": "职位",
+    "description": "Table column header: job title."
+  },
+  "colCompany": {
+    "message": "公司",
+    "description": "Table column header: company."
+  },
+  "colLocation": {
+    "message": "地点",
+    "description": "Table column header: location."
+  },
+  "colStatus": {
+    "message": "状态",
+    "description": "Table column header: status."
+  },
+  "colSaved": {
+    "message": "保存日期",
+    "description": "Table column header: the date the job was saved."
+  },
+  "colApplied": {
+    "message": "申请日期",
+    "description": "Table column header: the date the user applied."
+  },
+  "colActions": {
+    "message": "操作",
+    "description": "Table column header for the Edit and Delete buttons (only read by screen readers)."
+  },
+  "bannerFollowUpOne": {
+    "message": "⏰ 有 1 份申请已发出 $DAYS$ 天以上，仍无回复。",
+    "description": "Banner when exactly 1 application needs a follow-up. $DAYS$ is a number, like 7.",
+    "placeholders": {
+      "days": { "content": "$2", "example": "7" }
+    }
+  },
+  "bannerFollowUpOther": {
+    "message": "⏰ 有 $COUNT$ 份申请已发出 $DAYS$ 天以上，仍无回复。",
+    "description": "Banner when 2 or more applications need a follow-up. $DAYS$ is a number, like 7.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "3" },
+      "days": { "content": "$2", "example": "7" }
+    }
+  },
+  "showThem": {
+    "message": "查看",
+    "description": "Banner button that shows only the jobs that need a follow-up."
+  },
+  "followUpBadge": {
+    "message": "⏰ 可以跟进了",
+    "description": "Small label on a job applied 7+ days ago."
+  },
+  "followUpTooltip": {
+    "message": "已申请 $DAYS$ 天，没有回复",
+    "description": "Tooltip of the follow-up label. $DAYS$ is 7 or more.",
+    "placeholders": {
+      "days": { "content": "$1", "example": "8" }
+    }
+  },
+  "untitledJob": {
+    "message": "未命名职位",
+    "description": "Shown when a job has no title."
+  },
+  "thisJob": {
+    "message": "此职位",
+    "description": "Used inside other sentences when a job has no title, like 'Delete this job'."
+  },
+  "statusFor": {
+    "message": "$TITLE$ 的状态",
+    "description": "Accessible label of a row's status menu.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "editJobLabel": {
+    "message": "编辑 $TITLE$",
+    "description": "Accessible label of a row's Edit button.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "deleteJobLabel": {
+    "message": "删除 $TITLE$",
+    "description": "Accessible label of a row's Delete button.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "edit": {
+    "message": "编辑",
+    "description": "Button to edit a job."
+  },
+  "delete": {
+    "message": "删除",
+    "description": "Button to delete a job."
+  },
+  "confirmDelete": {
+    "message": "删除“$TITLE$”？",
+    "description": "Confirmation question before deleting a job.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "emptyNoJobsTitle": {
+    "message": "还没有保存任何职位",
+    "description": "Title of the empty dashboard."
+  },
+  "emptyNoJobsText": {
+    "message": "在 LinkedIn、Indeed 或任何招聘网站上打开一个职位，然后点击扩展图标即可保存。",
+    "description": "Help text of the empty dashboard. Keep LinkedIn and Indeed."
+  },
+  "emptyNoMatchTitle": {
+    "message": "没有符合筛选条件的职位",
+    "description": "Title when the filters or search hide all jobs."
+  },
+  "emptyNoMatchText": {
+    "message": "试试其他状态，或清除搜索。",
+    "description": "Help text when the filters or search hide all jobs."
+  },
+  "dialogAddTitle": {
+    "message": "添加职位",
+    "description": "Title of the dialog for a new job."
+  },
+  "dialogEditTitle": {
+    "message": "编辑职位",
+    "description": "Title of the dialog for editing a job."
+  },
+  "cancel": {
+    "message": "取消",
+    "description": "Button that closes the dialog without saving."
+  },
+  "save": {
+    "message": "保存",
+    "description": "Button that saves the dialog."
+  },
+  "alertNoJobsToExport": {
+    "message": "还没有可导出的职位。",
+    "description": "Message when the user clicks Export CSV with no saved jobs."
+  },
+  "csvTitle": {
+    "message": "职位",
+    "description": "CSV file column header: job title."
+  },
+  "csvCompany": {
+    "message": "公司",
+    "description": "CSV file column header: company."
+  },
+  "csvLocation": {
+    "message": "地点",
+    "description": "CSV file column header: location."
+  },
+  "csvStatus": {
+    "message": "状态",
+    "description": "CSV file column header: status."
+  },
+  "csvDateSaved": {
+    "message": "保存日期",
+    "description": "CSV file column header: the date the job was saved."
+  },
+  "csvDateApplied": {
+    "message": "申请日期",
+    "description": "CSV file column header: the date the user applied."
+  },
+  "csvLink": {
+    "message": "链接",
+    "description": "CSV file column header: the job post web address."
+  },
+  "csvNotes": {
+    "message": "备注",
+    "description": "CSV file column header: notes."
+  },
+  "goPremium": {
+    "message": "⭐ 升级 Premium",
+    "description": "Top bar button for free users. Opens the Premium window."
+  },
+  "premiumBadge": {
+    "message": "⭐ Premium",
+    "description": "Top bar badge for Premium users. Opens the Premium window."
+  },
+  "premiumTitle": {
+    "message": "⭐ Premium",
+    "description": "Title of the Premium window."
+  },
+  "premiumIntro": {
+    "message": "支持本项目并解锁更多功能。现有的所有功能仍然免费。",
+    "description": "Intro text in the Premium window for free users."
+  },
+  "premiumActive": {
+    "message": "✓ 你已拥有 Premium。感谢你的支持！",
+    "description": "Message in the Premium window for Premium users."
+  },
+  "premiumIncluded": {
+    "message": "包含内容",
+    "description": "Heading above the list of Premium benefits."
+  },
+  "premiumNoAds": {
+    "message": "无广告",
+    "description": "Premium benefit."
+  },
+  "premiumSupport": {
+    "message": "支持本项目",
+    "description": "Premium benefit: the money helps the developer."
+  },
+  "premiumAiSoon": {
+    "message": "AI 功能（即将推出）",
+    "description": "Premium benefit that is not ready yet."
+  },
+  "premiumChoosePlan": {
+    "message": "选择方案",
+    "description": "Heading above the list of plans."
+  },
+  "planMonthly": {
+    "message": "按月",
+    "description": "Name of a plan paid every month."
+  },
+  "planYearly": {
+    "message": "按年",
+    "description": "Name of a plan paid every year."
+  },
+  "planOnce": {
+    "message": "一次性付款",
+    "description": "Name of a plan paid only once (lifetime)."
+  },
+  "pricePerMonth": {
+    "message": "$PRICE$ / 月",
+    "description": "Price of a monthly plan. $PRICE$ is a formatted price like $4.99.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "pricePerYear": {
+    "message": "$PRICE$ / 年",
+    "description": "Price of a yearly plan.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "pricePerMonths": {
+    "message": "每 $COUNT$ 个月 $PRICE$",
+    "description": "Price of a plan paid every few months.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" },
+      "count": { "content": "$2", "example": "3" }
+    }
+  },
+  "pricePerYears": {
+    "message": "每 $COUNT$ 年 $PRICE$",
+    "description": "Price of a plan paid every few years.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" },
+      "count": { "content": "$2", "example": "2" }
+    }
+  },
+  "priceOnce": {
+    "message": "一次性 $PRICE$",
+    "description": "Price of a one-time plan.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "choosePlan": {
+    "message": "选择",
+    "description": "Button to buy a plan."
+  },
+  "choosePlanLabel": {
+    "message": "选择 $PLAN$ 方案",
+    "description": "Accessible label of the Choose button. $PLAN$ is a plan name like Monthly.",
+    "placeholders": {
+      "plan": { "content": "$1", "example": "Monthly" }
+    }
+  },
+  "premiumSecureNote": {
+    "message": "付款由 Dodo Payments 安全处理。我们永远看不到你的银行卡信息。",
+    "description": "Small note under the plans. Keep the name Dodo Payments."
+  },
+  "close": {
+    "message": "关闭",
+    "description": "Button that closes a window."
+  },
+  "popupPremiumLink": {
+    "message": "⭐ Premium",
+    "description": "Small link at the bottom of the popup for free users."
+  },
+  "licenseHaveKey": {
+    "message": "已购买 Premium？请输入你的许可证密钥",
+    "description": "Label above the license key field."
+  },
+  "licensePlaceholder": {
+    "message": "粘贴你的许可证密钥",
+    "description": "Example text inside the empty license key field."
+  },
+  "licenseActivate": {
+    "message": "激活",
+    "description": "Button that checks and activates the license key."
+  },
+  "licenseActivating": {
+    "message": "正在检查…",
+    "description": "Button text while the license key is being checked."
+  },
+  "licenseEmailHint": {
+    "message": "付款后，Dodo Payments 会通过电子邮件发送你的许可证密钥。",
+    "description": "Help text under the license key field. Keep the name Dodo Payments."
+  },
+  "licenseRequired": {
+    "message": "请粘贴你的许可证密钥。",
+    "description": "Error when the license key field is empty."
+  },
+  "licenseInvalid": {
+    "message": "找不到此许可证密钥，请检查后重试。",
+    "description": "Error when the license key does not exist."
+  },
+  "licenseInactive": {
+    "message": "此许可证密钥未激活，订阅可能已结束。",
+    "description": "Error when the license key exists but is disabled."
+  },
+  "licenseLimit": {
+    "message": "此密钥已在最大数量的电脑上使用，请先从另一台电脑上移除。",
+    "description": "Error when the key has no free activations left."
+  },
+  "licenseNetworkError": {
+    "message": "无法检查密钥，请检查网络连接后重试。",
+    "description": "Error when the license server cannot be reached."
+  },
+  "licenseOnThisComputer": {
+    "message": "本机的许可证密钥：$KEY$",
+    "description": "Shows the end of the saved license key. $KEY$ is like •••• 5678.",
+    "placeholders": {
+      "key": { "content": "$1", "example": "•••• 5678" }
+    }
+  },
+  "manageHint": {
+    "message": "如需更改或取消订阅，请使用 Dodo Payments 邮件中的链接。",
+    "description": "Help text for Premium users. Keep the name Dodo Payments."
+  },
+  "licenseRemove": {
+    "message": "从本机移除许可证",
+    "description": "Button that frees the license so it can be used on another computer."
+  },
+  "licenseRemoveConfirm": {
+    "message": "要从本机移除许可证吗？以后可以用同一个密钥重新激活。",
+    "description": "Confirmation question before removing the license."
+  },
+  "adSponsored": {
+    "message": "赞助",
+    "description": "Small label on every ad card. It must be clear that the card is an ad."
+  },
+  "adRemoveAds": {
+    "message": "去除广告 ⭐",
+    "description": "Small link on an ad card. Opens the Premium window."
+  }
+}

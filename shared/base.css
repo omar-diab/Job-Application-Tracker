@@ -177,6 +177,13 @@ textarea {
   text-align: start;
 }
 
+/* While a dir="auto" field is empty, its hint (placeholder) follows the page direction,
+   so an Arabic hint starts on the right, and a long hint ends with "…". */
+input[dir="auto"]:placeholder-shown {
+  direction: inherit;
+  text-overflow: ellipsis;
+}
+
 /* In notes, each paragraph finds its own direction (Arabic and English lines can mix). */
 textarea[dir="auto"] {
   unicode-bidi: plaintext;
@@ -250,4 +257,249 @@ textarea[dir="auto"] {
   border-color: var(--danger);
   background: var(--danger);
   color: #ffffff;
+}
+
+/* ---------------------------------------------------------------------------
+   Sponsored cards (free users only, see shared/ads.js)
+   Calm, like part of the app, but the "Sponsored" label is always easy to see.
+   --------------------------------------------------------------------------- */
+.ad-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  text-align: start;
+}
+
+.ad-image {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.ad-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.ad-label {
+  display: inline-block;
+  margin-bottom: 2px;
+  padding: 0 6px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 1.6;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.ad-title {
+  margin: 0;
+  font-weight: 600;
+  unicode-bidi: plaintext;
+}
+
+.ad-text {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  unicode-bidi: plaintext;
+}
+
+.ad-actions {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.ad-cta {
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 2px);
+  background: var(--surface-2);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.ad-cta:hover {
+  border-color: var(--muted);
+}
+
+.ad-remove {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.ad-remove:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+/* Popup: one small line. */
+.ad-compact {
+  gap: 8px;
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.ad-compact .ad-label {
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.ad-compact .ad-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ad-compact .ad-cta {
+  padding: 2px 8px;
+  font-size: 12px;
+}
+
+.ad-compact .ad-remove {
+  font-size: 11px;
+}
+
+/* Small screens: the buttons go under the text. */
+@media (max-width: 560px) {
+  .ad-card:not(.ad-compact) {
+    flex-wrap: wrap;
+  }
+
+  .ad-card:not(.ad-compact) .ad-actions {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Dropdown menus (<select>)
+   Chrome 135+ lets us style the open menu with appearance: base-select.
+   It opens BELOW the field like a normal app menu, in our colors, and it is still
+   a real <select> (keyboard and screen readers work). Older browsers keep the
+   normal menu, so nothing breaks.
+   --------------------------------------------------------------------------- */
+@supports (appearance: base-select) {
+  select,
+  ::picker(select) {
+    appearance: base-select;
+  }
+
+  select {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+
+  /* The small arrow at the end of the field. It turns up when the menu is open. */
+  select::picker-icon {
+    content: "";
+    width: 7px;
+    height: 7px;
+    margin-inline-start: auto;
+    border-right: 2px solid var(--muted);
+    border-bottom: 2px solid var(--muted);
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform 0.15s;
+  }
+
+  select:open::picker-icon {
+    transform: translateY(2px) rotate(225deg);
+  }
+
+  /* The open menu. */
+  ::picker(select) {
+    margin-block: 4px;
+    padding: 4px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.18);
+    max-height: min(360px, 70vh);
+    overflow-y: auto;
+    opacity: 0;
+    transition: opacity 0.12s, display 0.12s allow-discrete, overlay 0.12s allow-discrete;
+  }
+
+  select:open::picker(select) {
+    opacity: 1;
+  }
+
+  @starting-style {
+    select:open::picker(select) {
+      opacity: 0;
+    }
+  }
+
+  /* One line in the menu. */
+  option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  option:hover,
+  option:focus-visible {
+    outline: none;
+    background: var(--surface-2);
+  }
+
+  option:checked {
+    font-weight: 600;
+  }
+
+  /* The ✓ of the chosen line, at the end. */
+  option::checkmark {
+    order: 1;
+    margin-inline-start: auto;
+    padding-inline-start: 12px;
+    color: var(--primary);
+  }
+}
+
+/* Status lines in menus get a small colored dot, like the filter chips. */
+.status-option::before {
+  content: "";
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--st-fg);
 }

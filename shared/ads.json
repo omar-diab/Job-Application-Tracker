@@ -1,0 +1,44 @@
+[
+  {
+    "id": "cv-review-en",
+    "title": "Get your CV reviewed by a recruiter",
+    "text": "Clear feedback in 48 hours, so your CV gets more interviews.",
+    "url": "https://example.com/cv-review",
+    "cta": "Learn more",
+    "languages": ["en"],
+    "endDate": "2027-12-31"
+  },
+  {
+    "id": "cv-review-ar",
+    "title": "راجِع سيرتك الذاتية مع خبير توظيف",
+    "text": "ملاحظات واضحة خلال 48 ساعة لتحصل على مقابلات أكثر.",
+    "url": "https://example.com/ar/cv-review",
+    "cta": "اعرف المزيد",
+    "languages": ["ar"],
+    "endDate": "2027-12-31"
+  },
+  {
+    "id": "premium-en",
+    "title": "Go Premium to remove ads",
+    "text": "Support the project and get the AI features when they arrive.",
+    "url": "#premium",
+    "cta": "⭐ Go Premium",
+    "languages": ["en"]
+  },
+  {
+    "id": "premium-ar",
+    "title": "اشترك في Premium لإزالة الإعلانات",
+    "text": "ادعم المشروع واحصل على مزايا الذكاء الاصطناعي عند توفرها.",
+    "url": "#premium",
+    "cta": "⭐ اشترك في Premium",
+    "languages": ["ar"]
+  },
+  {
+    "id": "github-star",
+    "title": "Like this extension? Star it on GitHub",
+    "text": "A star helps other job seekers find it. It's free.",
+    "url": "https://example.com/github",
+    "cta": "★ Star",
+    "image": "icons/ads/star.svg"
+  }
+]

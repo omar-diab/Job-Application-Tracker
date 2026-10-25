@@ -1,0 +1,559 @@
+{
+  "extName": {
+    "message": "İş Başvurusu Takipçisi",
+    "description": "Extension name, shown in Chrome and the Chrome Web Store. Max 75 characters."
+  },
+  "extDescription": {
+    "message": "LinkedIn, Indeed ve diğer sitelerdeki ilanları tek tıkla kaydedin ve tüm başvurularınızı tek yerden takip edin.",
+    "description": "Extension description for the Chrome Web Store. MUST be under 132 characters."
+  },
+  "popupBrand": {
+    "message": "İş Takipçisi",
+    "description": "Short app name in the popup header."
+  },
+  "openDashboard": {
+    "message": "Panel ↗",
+    "description": "Popup button that opens the dashboard in a new tab. The arrow means 'opens elsewhere'."
+  },
+  "fieldTitle": {
+    "message": "Pozisyon",
+    "description": "Form label for the job title."
+  },
+  "fieldCompany": {
+    "message": "Şirket",
+    "description": "Form label for the company name."
+  },
+  "fieldLocation": {
+    "message": "Konum",
+    "description": "Form label for the job location (city, country, or Remote)."
+  },
+  "fieldLink": {
+    "message": "Bağlantı",
+    "description": "Form label for the job post web address."
+  },
+  "fieldStatus": {
+    "message": "Durum",
+    "description": "Form label for the application status."
+  },
+  "fieldDateApplied": {
+    "message": "Başvuru tarihi",
+    "description": "Form label for the date the user applied."
+  },
+  "fieldNotes": {
+    "message": "Notlar",
+    "description": "Form label for free notes about the job."
+  },
+  "notesPlaceholder": {
+    "message": "İşe alım uzmanı, maaş, sonraki adım...",
+    "description": "Example text inside the empty notes field."
+  },
+  "saveJob": {
+    "message": "İlanı kaydet",
+    "description": "Popup button to save a new job."
+  },
+  "updateJob": {
+    "message": "İlanı güncelle",
+    "description": "Popup button to save changes to a job that is already saved."
+  },
+  "statusSaved": {
+    "message": "Kaydedildi",
+    "description": "Status: the job is saved, but the user has not applied yet."
+  },
+  "statusApplied": {
+    "message": "Başvuruldu",
+    "description": "Status: the user sent an application."
+  },
+  "statusInterview": {
+    "message": "Mülakat",
+    "description": "Status: the user has an interview."
+  },
+  "statusOffer": {
+    "message": "Teklif",
+    "description": "Status: the user received a job offer."
+  },
+  "statusRejected": {
+    "message": "Reddedildi",
+    "description": "Status: the application was rejected."
+  },
+  "noticeCantRead": {
+    "message": "Bu sayfa okunamıyor. İlanı yine de elle ekleyebilirsiniz.",
+    "description": "Popup warning on pages like chrome:// or the new tab page."
+  },
+  "noticeAlreadySaved": {
+    "message": "$DATE$ tarihinde kaydedildi",
+    "description": "Popup notice when the job is already saved. $DATE$ is a formatted date.",
+    "placeholders": {
+      "date": { "content": "$1", "example": "24 Oct 2026" }
+    }
+  },
+  "noticeUsedTitle": {
+    "message": "Sayfa başlığını kullandık. Lütfen bilgileri kontrol edin.",
+    "description": "Popup warning when only the page title was found."
+  },
+  "noticeNoDetails": {
+    "message": "İlan bilgileri bulunamadı. Lütfen kendiniz doldurun.",
+    "description": "Popup warning when nothing was found on the page."
+  },
+  "noticeJobSaved": {
+    "message": "✓ İlan kaydedildi",
+    "description": "Success message after saving a new job."
+  },
+  "noticeJobUpdated": {
+    "message": "✓ İlan güncellendi",
+    "description": "Success message after updating a saved job."
+  },
+  "errorTitleRequired": {
+    "message": "Lütfen bir pozisyon adı girin.",
+    "description": "Error when the job title is empty."
+  },
+  "errorBadLink": {
+    "message": "Bağlantı http:// veya https:// ile başlamalıdır",
+    "description": "Error when the link is not a web address. Keep http:// and https:// as they are."
+  },
+  "errorSaveFailed": {
+    "message": "İlan kaydedilemedi. Lütfen tekrar deneyin.",
+    "description": "Error when saving fails."
+  },
+  "errorDuplicateLink": {
+    "message": "Bu bağlantı zaten kayıtlı: \"$TITLE$\"",
+    "description": "Error when another saved job has the same link. $TITLE$ is that job's title.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "errorJobGone": {
+    "message": "Bu ilan artık yok. Başka bir sekmede silinmiş olabilir.",
+    "description": "Error when the job being edited was deleted meanwhile."
+  },
+  "jobCountOne": {
+    "message": "1 ilan",
+    "description": "Total number of saved jobs, when there is exactly 1.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "1" }
+    }
+  },
+  "jobCountOther": {
+    "message": "$COUNT$ ilan",
+    "description": "Total number of saved jobs (0, 2, 3, ...).",
+    "placeholders": {
+      "count": { "content": "$1", "example": "12" }
+    }
+  },
+  "addJob": {
+    "message": "+ İlan ekle",
+    "description": "Dashboard button to add a job by hand."
+  },
+  "exportCsv": {
+    "message": "CSV dışa aktar",
+    "description": "Dashboard button to download all jobs as a CSV file. Keep 'CSV'."
+  },
+  "languageLabel": {
+    "message": "Dil",
+    "description": "Accessible label of the language picker."
+  },
+  "toolbarLabel": {
+    "message": "Filtrele ve sırala",
+    "description": "Accessible label of the toolbar with filters, search and sort."
+  },
+  "filtersLabel": {
+    "message": "Duruma göre filtrele",
+    "description": "Accessible label of the group of filter buttons."
+  },
+  "filterAll": {
+    "message": "Tümü",
+    "description": "Filter button that shows all jobs."
+  },
+  "filterFollowUp": {
+    "message": "⏰ Takip et",
+    "description": "Filter button that shows jobs that may need a follow-up."
+  },
+  "searchPlaceholder": {
+    "message": "Pozisyon, şirket, konum, not ara",
+    "description": "Example text inside the empty search box."
+  },
+  "searchLabel": {
+    "message": "İlan ara",
+    "description": "Accessible label of the search box."
+  },
+  "sortLabel": {
+    "message": "İlanları sırala",
+    "description": "Accessible label of the sort menu."
+  },
+  "sortSavedDesc": {
+    "message": "En son kaydedilen",
+    "description": "Sort option: newest saved jobs first."
+  },
+  "sortSavedAsc": {
+    "message": "İlk kaydedilen",
+    "description": "Sort option: oldest saved jobs first."
+  },
+  "sortAppliedDesc": {
+    "message": "En son başvurulan",
+    "description": "Sort option: most recent application date first."
+  },
+  "sortUpdatedDesc": {
+    "message": "En son güncellenen",
+    "description": "Sort option: most recently changed jobs first."
+  },
+  "sortCompanyAsc": {
+    "message": "Şirket A–Z",
+    "description": "Sort option: by company name, alphabetically."
+  },
+  "sortTitleAsc": {
+    "message": "Pozisyon A–Z",
+    "description": "Sort option: by job title, alphabetically."
+  },
+  "sortStatus": {
+    "message": "Durum",
+    "description": "Sort option: by status (Saved, Applied, Interview, Offer, Rejected)."
+  },
+  "colTitle": {
+    "message": "Pozisyon",
+    "description": "Table column header: job title."
+  },
+  "colCompany": {
+    "message": "Şirket",
+    "description": "Table column header: company."
+  },
+  "colLocation": {
+    "message": "Konum",
+    "description": "Table column header: location."
+  },
+  "colStatus": {
+    "message": "Durum",
+    "description": "Table column header: status."
+  },
+  "colSaved": {
+    "message": "Kaydedilme",
+    "description": "Table column header: the date the job was saved."
+  },
+  "colApplied": {
+    "message": "Başvuru",
+    "description": "Table column header: the date the user applied."
+  },
+  "colActions": {
+    "message": "İşlemler",
+    "description": "Table column header for the Edit and Delete buttons (only read by screen readers)."
+  },
+  "bannerFollowUpOne": {
+    "message": "⏰ 1 başvuru $DAYS$+ gün önce gönderildi ve yanıt gelmedi.",
+    "description": "Banner when exactly 1 application needs a follow-up. $DAYS$ is a number, like 7.",
+    "placeholders": {
+      "days": { "content": "$2", "example": "7" }
+    }
+  },
+  "bannerFollowUpOther": {
+    "message": "⏰ $COUNT$ başvuru $DAYS$+ gün önce gönderildi ve yanıt gelmedi.",
+    "description": "Banner when 2 or more applications need a follow-up. $DAYS$ is a number, like 7.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "3" },
+      "days": { "content": "$2", "example": "7" }
+    }
+  },
+  "showThem": {
+    "message": "Göster",
+    "description": "Banner button that shows only the jobs that need a follow-up."
+  },
+  "followUpBadge": {
+    "message": "⏰ Takip etmeyi düşünün",
+    "description": "Small label on a job applied 7+ days ago."
+  },
+  "followUpTooltip": {
+    "message": "$DAYS$ gün önce başvuruldu, yanıt yok",
+    "description": "Tooltip of the follow-up label. $DAYS$ is 7 or more.",
+    "placeholders": {
+      "days": { "content": "$1", "example": "8" }
+    }
+  },
+  "untitledJob": {
+    "message": "Başlıksız ilan",
+    "description": "Shown when a job has no title."
+  },
+  "thisJob": {
+    "message": "bu ilan",
+    "description": "Used inside other sentences when a job has no title, like 'Delete this job'."
+  },
+  "statusFor": {
+    "message": "$TITLE$ durumu",
+    "description": "Accessible label of a row's status menu.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "editJobLabel": {
+    "message": "$TITLE$ düzenle",
+    "description": "Accessible label of a row's Edit button.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "deleteJobLabel": {
+    "message": "$TITLE$ sil",
+    "description": "Accessible label of a row's Delete button.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "edit": {
+    "message": "Düzenle",
+    "description": "Button to edit a job."
+  },
+  "delete": {
+    "message": "Sil",
+    "description": "Button to delete a job."
+  },
+  "confirmDelete": {
+    "message": "\"$TITLE$\" silinsin mi?",
+    "description": "Confirmation question before deleting a job.",
+    "placeholders": {
+      "title": { "content": "$1", "example": "Frontend Developer" }
+    }
+  },
+  "emptyNoJobsTitle": {
+    "message": "Henüz kayıtlı ilan yok",
+    "description": "Title of the empty dashboard."
+  },
+  "emptyNoJobsText": {
+    "message": "LinkedIn, Indeed veya herhangi bir kariyer sitesinde bir ilan açın, ardından kaydetmek için eklenti simgesine tıklayın.",
+    "description": "Help text of the empty dashboard. Keep LinkedIn and Indeed."
+  },
+  "emptyNoMatchTitle": {
+    "message": "Filtrelerinize uyan ilan yok",
+    "description": "Title when the filters or search hide all jobs."
+  },
+  "emptyNoMatchText": {
+    "message": "Başka bir durum seçin veya aramayı temizleyin.",
+    "description": "Help text when the filters or search hide all jobs."
+  },
+  "dialogAddTitle": {
+    "message": "İlan ekle",
+    "description": "Title of the dialog for a new job."
+  },
+  "dialogEditTitle": {
+    "message": "İlanı düzenle",
+    "description": "Title of the dialog for editing a job."
+  },
+  "cancel": {
+    "message": "İptal",
+    "description": "Button that closes the dialog without saving."
+  },
+  "save": {
+    "message": "Kaydet",
+    "description": "Button that saves the dialog."
+  },
+  "alertNoJobsToExport": {
+    "message": "Henüz dışa aktarılacak ilan yok.",
+    "description": "Message when the user clicks Export CSV with no saved jobs."
+  },
+  "csvTitle": {
+    "message": "Pozisyon",
+    "description": "CSV file column header: job title."
+  },
+  "csvCompany": {
+    "message": "Şirket",
+    "description": "CSV file column header: company."
+  },
+  "csvLocation": {
+    "message": "Konum",
+    "description": "CSV file column header: location."
+  },
+  "csvStatus": {
+    "message": "Durum",
+    "description": "CSV file column header: status."
+  },
+  "csvDateSaved": {
+    "message": "Kaydedilme tarihi",
+    "description": "CSV file column header: the date the job was saved."
+  },
+  "csvDateApplied": {
+    "message": "Başvuru tarihi",
+    "description": "CSV file column header: the date the user applied."
+  },
+  "csvLink": {
+    "message": "Bağlantı",
+    "description": "CSV file column header: the job post web address."
+  },
+  "csvNotes": {
+    "message": "Notlar",
+    "description": "CSV file column header: notes."
+  },
+  "goPremium": {
+    "message": "⭐ Premium'a geç",
+    "description": "Top bar button for free users. Opens the Premium window."
+  },
+  "premiumBadge": {
+    "message": "⭐ Premium",
+    "description": "Top bar badge for Premium users. Opens the Premium window."
+  },
+  "premiumTitle": {
+    "message": "⭐ Premium",
+    "description": "Title of the Premium window."
+  },
+  "premiumIntro": {
+    "message": "Projeyi destekleyin ve ek özelliklerin kilidini açın. Mevcut tüm özellikler ücretsiz kalır.",
+    "description": "Intro text in the Premium window for free users."
+  },
+  "premiumActive": {
+    "message": "✓ Premium üyesiniz. Desteğiniz için teşekkürler!",
+    "description": "Message in the Premium window for Premium users."
+  },
+  "premiumIncluded": {
+    "message": "Neler dahil",
+    "description": "Heading above the list of Premium benefits."
+  },
+  "premiumNoAds": {
+    "message": "Reklamsız",
+    "description": "Premium benefit."
+  },
+  "premiumSupport": {
+    "message": "Projeye destek",
+    "description": "Premium benefit: the money helps the developer."
+  },
+  "premiumAiSoon": {
+    "message": "Yapay zekâ özellikleri (yakında)",
+    "description": "Premium benefit that is not ready yet."
+  },
+  "premiumChoosePlan": {
+    "message": "Bir plan seçin",
+    "description": "Heading above the list of plans."
+  },
+  "planMonthly": {
+    "message": "Aylık",
+    "description": "Name of a plan paid every month."
+  },
+  "planYearly": {
+    "message": "Yıllık",
+    "description": "Name of a plan paid every year."
+  },
+  "planOnce": {
+    "message": "Tek seferlik ödeme",
+    "description": "Name of a plan paid only once (lifetime)."
+  },
+  "pricePerMonth": {
+    "message": "$PRICE$ / ay",
+    "description": "Price of a monthly plan. $PRICE$ is a formatted price like $4.99.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "pricePerYear": {
+    "message": "$PRICE$ / yıl",
+    "description": "Price of a yearly plan.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "pricePerMonths": {
+    "message": "Her $COUNT$ ayda $PRICE$",
+    "description": "Price of a plan paid every few months.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" },
+      "count": { "content": "$2", "example": "3" }
+    }
+  },
+  "pricePerYears": {
+    "message": "Her $COUNT$ yılda $PRICE$",
+    "description": "Price of a plan paid every few years.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" },
+      "count": { "content": "$2", "example": "2" }
+    }
+  },
+  "priceOnce": {
+    "message": "Tek seferlik $PRICE$",
+    "description": "Price of a one-time plan.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "choosePlan": {
+    "message": "Seç",
+    "description": "Button to buy a plan."
+  },
+  "choosePlanLabel": {
+    "message": "$PLAN$ planını seç",
+    "description": "Accessible label of the Choose button. $PLAN$ is a plan name like Monthly.",
+    "placeholders": {
+      "plan": { "content": "$1", "example": "Monthly" }
+    }
+  },
+  "premiumSecureNote": {
+    "message": "Ödemeler Dodo Payments tarafından güvenle işlenir. Kart bilgilerinizi asla görmeyiz.",
+    "description": "Small note under the plans. Keep the name Dodo Payments."
+  },
+  "close": {
+    "message": "Kapat",
+    "description": "Button that closes a window."
+  },
+  "popupPremiumLink": {
+    "message": "⭐ Premium",
+    "description": "Small link at the bottom of the popup for free users."
+  },
+  "licenseHaveKey": {
+    "message": "Premium'u zaten aldınız mı? Lisans anahtarınızı girin",
+    "description": "Label above the license key field."
+  },
+  "licensePlaceholder": {
+    "message": "Lisans anahtarınızı yapıştırın",
+    "description": "Example text inside the empty license key field."
+  },
+  "licenseActivate": {
+    "message": "Etkinleştir",
+    "description": "Button that checks and activates the license key."
+  },
+  "licenseActivating": {
+    "message": "Kontrol ediliyor…",
+    "description": "Button text while the license key is being checked."
+  },
+  "licenseEmailHint": {
+    "message": "Ödemeden sonra Dodo Payments lisans anahtarınızı e-postayla gönderir.",
+    "description": "Help text under the license key field. Keep the name Dodo Payments."
+  },
+  "licenseRequired": {
+    "message": "Lütfen lisans anahtarınızı yapıştırın.",
+    "description": "Error when the license key field is empty."
+  },
+  "licenseInvalid": {
+    "message": "Bu lisans anahtarı bulunamadı. Lütfen kontrol edip tekrar deneyin.",
+    "description": "Error when the license key does not exist."
+  },
+  "licenseInactive": {
+    "message": "Bu lisans anahtarı etkin değil. Abonelik sona ermiş olabilir.",
+    "description": "Error when the license key exists but is disabled."
+  },
+  "licenseLimit": {
+    "message": "Bu anahtar zaten en fazla sayıda bilgisayarda kullanılıyor. Önce başka bir bilgisayardan kaldırın.",
+    "description": "Error when the key has no free activations left."
+  },
+  "licenseNetworkError": {
+    "message": "Anahtar kontrol edilemedi. Lütfen internet bağlantınızı kontrol edip tekrar deneyin.",
+    "description": "Error when the license server cannot be reached."
+  },
+  "licenseOnThisComputer": {
+    "message": "Bu bilgisayardaki lisans anahtarı: $KEY$",
+    "description": "Shows the end of the saved license key. $KEY$ is like •••• 5678.",
+    "placeholders": {
+      "key": { "content": "$1", "example": "•••• 5678" }
+    }
+  },
+  "manageHint": {
+    "message": "Aboneliğinizi değiştirmek veya iptal etmek için Dodo Payments e-postasındaki bağlantıyı kullanın.",
+    "description": "Help text for Premium users. Keep the name Dodo Payments."
+  },
+  "licenseRemove": {
+    "message": "Lisansı bu bilgisayardan kaldır",
+    "description": "Button that frees the license so it can be used on another computer."
+  },
+  "licenseRemoveConfirm": {
+    "message": "Lisans bu bilgisayardan kaldırılsın mı? Daha sonra aynı anahtarla tekrar etkinleştirebilirsiniz.",
+    "description": "Confirmation question before removing the license."
+  },
+  "adSponsored": {
+    "message": "Sponsorlu",
+    "description": "Small label on every ad card. It must be clear that the card is an ad."
+  },
+  "adRemoveAds": {
+    "message": "Reklamları kaldır ⭐",
+    "description": "Small link on an ad card. Opens the Premium window."
+  }
+}

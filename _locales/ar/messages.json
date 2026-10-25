@@ -547,5 +547,13 @@
   "licenseRemoveConfirm": {
     "message": "هل تريد إزالة الترخيص من هذا الجهاز؟ يمكنك تفعيله لاحقًا بالمفتاح نفسه.",
     "description": "Confirmation question before removing the license."
+  },
+  "adSponsored": {
+    "message": "إعلان مموَّل",
+    "description": "Small label on every ad card. It must be clear that the card is an ad."
+  },
+  "adRemoveAds": {
+    "message": "إزالة الإعلانات ⭐",
+    "description": "Small link on an ad card. Opens the Premium window."
   }
 }

@@ -332,6 +332,28 @@ a.job-title:hover {
   appearance: none;
 }
 
+/* With styled menus, the pill keeps its own arrow (.status-wrap::after),
+   and the menu lines use the normal text color. */
+@supports (appearance: base-select) {
+  .jobs-table .status-select {
+    appearance: base-select;
+  }
+
+  .jobs-table .status-select::picker-icon {
+    display: none;
+  }
+
+  .jobs-table .status-select option {
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .jobs-table .status-select option:checked {
+    font-weight: 600;
+  }
+}
+
 .status-select option {
   background: var(--surface);
   color: var(--text);
@@ -340,6 +362,18 @@ a.job-title:hover {
 .row-actions {
   display: inline-flex;
   gap: 4px;
+}
+
+/* --- Sponsored card ---------------------------------------------------------------- */
+
+.ad-slot {
+  margin-bottom: 16px;
+}
+
+/* Inside the empty state, the card sits under the text. */
+.empty-state .ad-slot {
+  max-width: 560px;
+  margin: 24px auto 0;
 }
 
 /* --- Empty state ----------------------------------------------------------------- */

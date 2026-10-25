@@ -1,6 +1,7 @@
 // The dashboard: shows all saved jobs, with filters, search and sort.
 // Uses t(), tCount(), I18n from ../shared/i18n.js,
 // readLicense(), refreshLicense(), activateLicense(), openUpgrade(), ... from ../shared/premium.js
+// and showAds(), renderAd() from ../shared/ads.js.
 // and STATUSES, h(), Store, updateJob(), followUpDue(), ... from ../shared/core.js.
 
 'use strict';
@@ -40,6 +41,7 @@ const addBtn = document.getElementById('addBtn');
 const exportBtn = document.getElementById('exportBtn');
 const languageSelect = document.getElementById('languageSelect');
 const premiumBtn = document.getElementById('premiumBtn');
+const adSlot = document.getElementById('adSlot');
 
 // The Premium dialog
 const premiumDialog = document.getElementById('premiumDialog');
@@ -326,7 +328,7 @@ function statusCell(job) {
     }
   },
     STATUSES.map(function (status) {
-      return h('option', { value: status.id, selected: status.id === job.status }, statusLabel(status.id));
+      return h('option', { value: status.id, class: 'status-option st-' + status.id, selected: status.id === job.status }, statusLabel(status.id));
     })
   );
 
@@ -389,6 +391,18 @@ function renderEmptyState(visibleCount) {
   tableWrap.hidden = isEmpty;
 }
 
+// The sponsored card sits between the toolbar and the list, or inside the empty
+// state when the list is empty (never between rows, and never two cards at once).
+function placeAd() {
+  if (!emptyState.hidden) {
+    if (adSlot.parentElement !== emptyState) {
+      emptyState.appendChild(adSlot);
+    }
+  } else if (adSlot.nextElementSibling !== tableWrap) {
+    tableWrap.before(adSlot);
+  }
+}
+
 // ---------------------------------------------------------------------------
 // render(): draws the whole page again from the state.
 // Call it after ANY change: new jobs, a filter click, typing in search, ...
@@ -407,6 +421,7 @@ function render() {
   renderFollowUpBanner(followUpCount);
   jobsBody.replaceChildren(...jobs.map(jobRow));
   renderEmptyState(jobs.length);
+  placeAd();
 
   if (focusKey) {
     const again = document.querySelector('[data-focus-key="' + CSS.escape(focusKey) + '"]');
@@ -425,7 +440,7 @@ function buildStatusOptions() {
   const chosen = fStatus.value;
   fStatus.replaceChildren(
     ...STATUSES.map(function (status) {
-      return h('option', { value: status.id }, statusLabel(status.id));
+      return h('option', { value: status.id, class: 'status-option st-' + status.id }, statusLabel(status.id));
     })
   );
   if (chosen) {
@@ -832,6 +847,13 @@ onPremiumChange(function (premium, license) {
 });
 
 // ---------------------------------------------------------------------------
+// Sponsored card (free users only)
+// ---------------------------------------------------------------------------
+
+// "Remove ads" and the Premium ad open the Premium window.
+const AD_OPTIONS = Object.freeze({ compact: false, onRemoveAds: openPremiumDialog });
+
+// ---------------------------------------------------------------------------
 // Start
 // ---------------------------------------------------------------------------
 
@@ -920,6 +942,7 @@ function refreshLanguage() {
   if (premiumDialog.open) {
     renderPremiumDialog();
   }
+  renderAd(adSlot, AD_OPTIONS);
   render();
 }
 
@@ -942,6 +965,7 @@ async function init() {
   state.premium = Boolean(state.license && state.license.premium);
   renderPremiumButton();
   refreshLicense();
+  showAds(adSlot, AD_OPTIONS);
 
   buildLanguageOptions();
   buildStatusOptions();

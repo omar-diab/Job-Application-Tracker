@@ -16,7 +16,18 @@
 // Languages the user can choose, each in its own name.
 const LANGUAGES = Object.freeze([
   Object.freeze({ code: 'en', name: 'English' }),
-  Object.freeze({ code: 'ar', name: 'العربية' })
+  Object.freeze({ code: 'en_GB', name: 'English (UK)' }),
+  Object.freeze({ code: 'ar', name: 'العربية' }),
+  Object.freeze({ code: 'de', name: 'Deutsch' }),
+  Object.freeze({ code: 'es', name: 'Español' }),
+  Object.freeze({ code: 'fr', name: 'Français' }),
+  Object.freeze({ code: 'id', name: 'Bahasa Indonesia' }),
+  Object.freeze({ code: 'pt_BR', name: 'Português (Brasil)' }),
+  Object.freeze({ code: 'ru', name: 'Русский' }),
+  Object.freeze({ code: 'tr', name: 'Türkçe' }),
+  Object.freeze({ code: 'hi', name: 'हिन्दी' }),
+  Object.freeze({ code: 'zh_CN', name: '简体中文' }),
+  Object.freeze({ code: 'ja', name: '日本語' })
 ]);
 
 // Languages written from right to left.
@@ -69,7 +80,11 @@ const I18n = {
         return candidate;
       }
     }
-    return null;
+    // The same language from another country (for example pt-PT → pt_BR).
+    const sameLanguage = LANGUAGES.find(function (language) {
+      return language.code.split('_')[0].toLowerCase() === base;
+    });
+    return sameLanguage ? sameLanguage.code : null;
   },
 
   // The browser language, if we support it.
