@@ -1,5 +1,5 @@
 // The popup: reads the job from the current tab, and saves or updates it.
-// Uses STATUSES, h(), Store, createJob(), ... from ../shared/core.js
+// Uses t() from ../shared/i18n.js, STATUSES, h(), Store, createJob(), ... from ../shared/core.js
 // and extractJobInfo() from ../shared/extractor.js.
 
 'use strict';
@@ -33,7 +33,7 @@ function buildStatusPicker() {
     statusPicker.appendChild(
       h('label', { class: 'chip st-' + status.id },
         h('input', { type: 'radio', name: 'status', value: status.id }),
-        h('span', { text: status.label })
+        h('span', { text: statusLabel(status.id) })
       )
     );
   });
@@ -96,10 +96,10 @@ function showSavedJob(job) {
   fillForm(job);
   showNotice(
     'info',
-    'Already saved on ' + formatDate(job.dateSaved),
+    t('noticeAlreadySaved', formatDate(job.dateSaved)),
     h('span', { class: 'pill st-' + job.status, text: statusLabel(job.status) })
   );
-  saveBtn.textContent = 'Update job';
+  saveBtn.textContent = t('updateJob');
 }
 
 // ---------------------------------------------------------------------------
@@ -147,8 +147,9 @@ async function readPage(tab) {
 // Start
 // ---------------------------------------------------------------------------
 
-// Reads the current tab, then shows the saved job or the page data.
+// Loads the translations, reads the current tab, then shows the saved job or the page data.
 async function init() {
+  await I18n.init();
   buildStatusPicker();
   setStatus('saved');
   titleInput.focus();
@@ -161,7 +162,7 @@ async function init() {
   }
 
   if (!tab || !isWebPage(tab.url)) {
-    showNotice('warning', "This page can't be read. You can still add a job by hand.");
+    showNotice('warning', t('noticeCantRead'));
     return;
   }
 
@@ -187,9 +188,9 @@ async function init() {
     });
 
     if (page.method === 'none' || !page.title) {
-      showNotice('warning', "Couldn't find job details. Please fill them in.");
+      showNotice('warning', t('noticeNoDetails'));
     } else if (page.method === 'title') {
-      showNotice('warning', 'We used the page title. Please check the details.');
+      showNotice('warning', t('noticeUsedTitle'));
     }
   }
 
@@ -207,12 +208,12 @@ form.addEventListener('submit', async function (event) {
   const values = readForm();
 
   if (!values.title.trim()) {
-    showError('Please enter a job title.');
+    showError(t('errorTitleRequired'));
     titleInput.focus();
     return;
   }
   if (values.url.trim() && !safeHref(values.url)) {
-    showError('The link must start with http:// or https://');
+    showError(t('errorBadLink'));
     urlInput.focus();
     return;
   }
@@ -232,11 +233,11 @@ form.addEventListener('submit', async function (event) {
 
     currentJobId = job.id;
     fillForm(job);
-    showNotice('success', existing ? '✓ Job updated' : '✓ Job saved');
-    saveBtn.textContent = 'Update job';
+    showNotice('success', t(existing ? 'noticeJobUpdated' : 'noticeJobSaved'));
+    saveBtn.textContent = t('updateJob');
   } catch (error) {
     console.error('Could not save the job:', error);
-    showError('Could not save the job. Please try again.');
+    showError(t('errorSaveFailed'));
   } finally {
     saveBtn.disabled = false;
   }

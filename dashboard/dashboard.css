@@ -70,7 +70,13 @@
 
 .topbar-actions {
   display: flex;
+  align-items: center;
   gap: 8px;
+}
+
+.topbar-actions .language-select {
+  width: auto;
+  padding-block: 7px;
 }
 
 /* --- Toolbar: filters, search, sort ----------------------------------------- */
@@ -296,6 +302,7 @@ a.job-title:hover {
   justify-self: start; /* in the phone card view, do not stretch to the full width */
 }
 
+/* A small "v" arrow. It points down, so it looks the same in RTL. */
 .status-wrap::after {
   content: "";
   position: absolute;
@@ -309,10 +316,12 @@ a.job-title:hover {
   pointer-events: none;
 }
 
+/* padding-inline-end makes room for the arrow, on the right (LTR) or the left (RTL). */
 .jobs-table .status-select {
   display: inline-block;
   width: auto;
-  padding: 3px 28px 3px 11px;
+  padding-block: 3px;
+  padding-inline: 11px 28px;
   border: 1px solid transparent;
   border-radius: 999px;
   background: var(--st-bg);
@@ -466,7 +475,7 @@ a.job-title:hover {
     background: transparent;
   }
 
-  /* Each cell: the label on the left (from data-label), the value on the right. */
+  /* Each cell: the label first (from data-label), then the value. In RTL the grid mirrors by itself. */
   .jobs-table td {
     display: grid;
     grid-template-columns: 84px 1fr;
@@ -516,11 +525,16 @@ a.job-title:hover {
   }
 
   .topbar-actions {
+    flex-wrap: wrap;
     width: 100%;
   }
 
   .topbar-actions .btn {
     flex: 1;
+  }
+
+  .topbar-actions .language-select {
+    flex-basis: 100%;
   }
 
   .toolbar-controls {

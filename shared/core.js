@@ -1,5 +1,6 @@
 // Shared code for the popup and the dashboard.
-// Load it with a normal <script src="../shared/core.js"></script> tag, before the page's own script.
+// Load it with a normal <script src="../shared/core.js"></script> tag, after i18n.js
+// and before the page's own script.
 // Everything here becomes a global name (STATUSES, h, Store, ...) that the next scripts can use.
 
 'use strict';
@@ -9,12 +10,14 @@
 // ---------------------------------------------------------------------------
 
 // All possible statuses, in the order we show them.
+// The id is saved in storage and never changes. The label is translated with messageKey,
+// and the English label is only used if the translations are not loaded.
 const STATUSES = Object.freeze([
-  Object.freeze({ id: 'saved', label: 'Saved' }),
-  Object.freeze({ id: 'applied', label: 'Applied' }),
-  Object.freeze({ id: 'interview', label: 'Interview' }),
-  Object.freeze({ id: 'offer', label: 'Offer' }),
-  Object.freeze({ id: 'rejected', label: 'Rejected' })
+  Object.freeze({ id: 'saved', label: 'Saved', messageKey: 'statusSaved' }),
+  Object.freeze({ id: 'applied', label: 'Applied', messageKey: 'statusApplied' }),
+  Object.freeze({ id: 'interview', label: 'Interview', messageKey: 'statusInterview' }),
+  Object.freeze({ id: 'offer', label: 'Offer', messageKey: 'statusOffer' }),
+  Object.freeze({ id: 'rejected', label: 'Rejected', messageKey: 'statusRejected' })
 ]);
 
 // After this many days in "Applied", we show a "maybe follow up" hint.
@@ -27,12 +30,15 @@ function isValidStatus(id) {
   });
 }
 
-// Returns the label for a status id, for example "applied" → "Applied".
+// Returns the label for a status id in the chosen language, for example "applied" → "Applied".
 function statusLabel(id) {
   const status = STATUSES.find(function (s) {
     return s.id === id;
   });
-  return status ? status.label : id;
+  if (!status) {
+    return id;
+  }
+  return I18n.has(status.messageKey) ? t(status.messageKey) : status.label;
 }
 
 // ---------------------------------------------------------------------------
@@ -104,7 +110,6 @@ function appendChildren(el, children) {
 // We save dates as "YYYY-MM-DD" text in LOCAL time (the user's own day),
 // not UTC, so a job saved at 1 AM is not saved as "yesterday".
 
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const DATE_STR_PATTERN = /^(\d{4})-(\d{2})-(\d{2})$/;
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
@@ -153,13 +158,21 @@ function isDateStr(str) {
   return typeof str === 'string' && DATE_STR_PATTERN.test(str) && parseDateStr(str) !== null;
 }
 
-// Shows a date in a nice way: "2026-10-24" → "24 Oct 2026". Empty or wrong → "—".
+// One date formatter per language, made only when needed (making one is slow).
+const dateFormatters = {};
+
+// Shows a date in the chosen language: "2026-10-24" → "Oct 24, 2026" (English),
+// "٢٤ أكتوبر ٢٠٢٦" (Arabic), "24 oct. 2026" (French). Empty or wrong → "—".
 function formatDate(str) {
   const date = parseDateStr(str);
   if (!date) {
     return '—';
   }
-  return date.getDate() + ' ' + MONTHS[date.getMonth()] + ' ' + date.getFullYear();
+  const locale = I18n.locale();
+  if (!dateFormatters[locale]) {
+    dateFormatters[locale] = new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+  return dateFormatters[locale].format(date);
 }
 
 // How many calendar days from that date until today (0 = today, 1 = yesterday).

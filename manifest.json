@@ -1,12 +1,13 @@
 {
   "manifest_version": 3,
-  "name": "Job Application Tracker",
+  "name": "__MSG_extName__",
   "version": "1.0.0",
-  "description": "Save jobs from LinkedIn, Indeed and other sites in one click, and track every application's status in one place.",
+  "description": "__MSG_extDescription__",
+  "default_locale": "en",
   "permissions": ["storage", "activeTab", "scripting"],
   "action": {
     "default_popup": "popup/popup.html",
-    "default_title": "Job Application Tracker",
+    "default_title": "__MSG_extName__",
     "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",

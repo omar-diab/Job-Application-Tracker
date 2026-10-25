@@ -1,6 +1,6 @@
 # Runs on every push and pull request.
 # Checks that manifest.json is valid, that every .js file has no syntax error,
-# and that the extension asks only for the 3 allowed permissions.
+# that the extension asks only for the 3 allowed permissions, and that all translations are complete.
 
 name: Check
 
@@ -51,6 +51,9 @@ jobs:
           }
           console.log('Permissions OK: ' + actual.join(', '));
           EOF
+
+      - name: Translations are complete
+        run: node tools/check-locales.js
 
       - name: No innerHTML in the code
         run: |

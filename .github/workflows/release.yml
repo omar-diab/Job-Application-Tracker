@@ -32,7 +32,7 @@ jobs:
       - name: Make the zip (extension files only)
         run: |
           ZIP_NAME="job-application-tracker-$VERSION.zip"
-          zip -r "$ZIP_NAME" manifest.json icons shared popup dashboard -x '*.gitkeep' '*.DS_Store'
+          zip -r "$ZIP_NAME" manifest.json _locales icons shared popup dashboard -x '*.gitkeep' '*.DS_Store'
           echo "ZIP_NAME=$ZIP_NAME" >> "$GITHUB_ENV"
           unzip -l "$ZIP_NAME"
 

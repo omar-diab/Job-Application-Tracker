@@ -1,5 +1,6 @@
 // The dashboard: shows all saved jobs, with filters, search and sort.
-// Uses STATUSES, h(), Store, updateJob(), followUpDue(), ... from ../shared/core.js.
+// Uses t(), tCount(), I18n from ../shared/i18n.js
+// and STATUSES, h(), Store, updateJob(), followUpDue(), ... from ../shared/core.js.
 
 'use strict';
 
@@ -31,6 +32,7 @@ const emptyTitle = document.getElementById('emptyTitle');
 const emptyText = document.getElementById('emptyText');
 const addBtn = document.getElementById('addBtn');
 const exportBtn = document.getElementById('exportBtn');
+const languageSelect = document.getElementById('languageSelect');
 
 // The add / edit dialog
 const jobDialog = document.getElementById('jobDialog');
@@ -76,8 +78,17 @@ function matchesSearch(job, search) {
 // Sorting
 // ---------------------------------------------------------------------------
 
-// Compares text in a way that works for Arabic and English, and ignores upper/lower case.
-const collator = new Intl.Collator(undefined, { sensitivity: 'base', numeric: true });
+// Compares text in the order of the chosen language (works for Arabic too),
+// and ignores upper/lower case. One collator per language, made only when needed.
+const collators = {};
+
+function getCollator() {
+  const locale = I18n.locale();
+  if (!collators[locale]) {
+    collators[locale] = new Intl.Collator(locale, { sensitivity: 'base', numeric: true });
+  }
+  return collators[locale];
+}
 
 // Text A–Z. Empty values always go to the end.
 function compareText(a, b) {
@@ -90,7 +101,7 @@ function compareText(a, b) {
   if (!b) {
     return -1;
   }
-  return collator.compare(a, b);
+  return getCollator().compare(a, b);
 }
 
 // Dates ("YYYY-MM-DD" or ISO timestamps can be compared as text).
@@ -176,7 +187,7 @@ async function changeStatus(jobId, status) {
 
 // Asks first, then deletes the job. The list redraws through chrome.storage.onChanged.
 async function deleteJob(job) {
-  if (!confirm('Delete "' + (job.title || 'this job') + '"?')) {
+  if (!confirm(t('confirmDelete', job.title || t('thisJob')))) {
     return;
   }
   try {
@@ -189,11 +200,6 @@ async function deleteJob(job) {
 // ---------------------------------------------------------------------------
 // Building the parts of the page (only with h(), never innerHTML)
 // ---------------------------------------------------------------------------
-
-// "1 job", "2 jobs"
-function plural(count, word) {
-  return count + ' ' + word + (count === 1 ? '' : 's');
-}
 
 // Draws the "All" chip, one chip per status (with counts) and the follow-up chip.
 function renderFilters(followUpCount) {
@@ -216,17 +222,17 @@ function renderFilters(followUpCount) {
     );
   }
 
-  chips.push(chip('all', 'All', state.jobs.length, null));
+  chips.push(chip('all', t('filterAll'), state.jobs.length, null));
   STATUSES.forEach(function (status) {
     const count = state.jobs.filter(function (job) {
       return job.status === status.id;
     }).length;
-    chips.push(chip(status.id, status.label, count, 'st-' + status.id));
+    chips.push(chip(status.id, statusLabel(status.id), count, 'st-' + status.id));
   });
 
   // The follow-up chip only shows when it is useful.
   if (followUpCount > 0 || state.filter === 'followup') {
-    chips.push(chip('followup', '⏰ Follow up', followUpCount, null));
+    chips.push(chip('followup', t('filterFollowUp'), followUpCount, null));
   }
 
   filtersBox.replaceChildren(...chips);
@@ -240,9 +246,7 @@ function renderFollowUpBanner(followUpCount) {
     return;
   }
 
-  const message = followUpCount === 1
-    ? '⏰ 1 application was sent ' + FOLLOW_UP_DAYS + '+ days ago with no update.'
-    : '⏰ ' + followUpCount + ' applications were sent ' + FOLLOW_UP_DAYS + '+ days ago with no update.';
+  const message = tCount('bannerFollowUp', followUpCount, [FOLLOW_UP_DAYS]);
 
   followUpBanner.replaceChildren(
     h('span', { text: message }),
@@ -255,7 +259,7 @@ function renderFollowUpBanner(followUpCount) {
             state.filter = 'followup';
             render();
           }
-        }, 'Show them')
+        }, t('showThem'))
   );
   followUpBanner.hidden = false;
 }
@@ -271,7 +275,7 @@ function textCell(label, value) {
 
 // Title cell: a safe link (or plain text), the follow-up badge and a notes preview.
 function titleCell(job) {
-  const title = job.title || 'Untitled job';
+  const title = job.title || t('untitledJob');
   const href = safeHref(job.url);
 
   const titleEl = href
@@ -282,8 +286,8 @@ function titleCell(job) {
   if (followUpDue(job)) {
     badge = h('span', {
       class: 'followup-badge',
-      title: 'Applied ' + followUpDays(job) + ' days ago, no update'
-    }, '⏰ Maybe follow up');
+      title: t('followUpTooltip', followUpDays(job))
+    }, t('followUpBadge'));
   }
 
   let notes = null;
@@ -296,51 +300,51 @@ function titleCell(job) {
     });
   }
 
-  return h('td', { class: 'col-title', 'data-label': 'Title' }, titleEl, badge, notes);
+  return h('td', { class: 'col-title', 'data-label': t('colTitle') }, titleEl, badge, notes);
 }
 
 // Status cell: a select that looks like a colored pill. Changing it saves right away.
 function statusCell(job) {
   const select = h('select', {
     class: 'status-select',
-    'aria-label': 'Status for ' + (job.title || 'this job'),
+    'aria-label': t('statusFor', job.title || t('thisJob')),
     dataset: { focusKey: 'status-' + job.id },
     onchange: function (event) {
       changeStatus(job.id, event.target.value);
     }
   },
     STATUSES.map(function (status) {
-      return h('option', { value: status.id, selected: status.id === job.status }, status.label);
+      return h('option', { value: status.id, selected: status.id === job.status }, statusLabel(status.id));
     })
   );
 
-  return h('td', { 'data-label': 'Status' },
+  return h('td', { 'data-label': t('colStatus') },
     h('span', { class: 'status-wrap st-' + job.status }, select)
   );
 }
 
 // Actions cell: the Edit and Delete buttons.
 function actionsCell(job) {
-  const name = job.title || 'this job';
-  return h('td', { class: 'col-actions', 'data-label': 'Actions' },
+  const name = job.title || t('thisJob');
+  return h('td', { class: 'col-actions', 'data-label': t('colActions') },
     h('div', { class: 'row-actions' },
       h('button', {
         type: 'button',
         class: 'btn btn-ghost btn-sm',
-        'aria-label': 'Edit ' + name,
+        'aria-label': t('editJobLabel', name),
         dataset: { id: job.id, focusKey: 'edit-' + job.id },
         onclick: function () {
           openEditor(job);
         }
-      }, 'Edit'),
+      }, t('edit')),
       h('button', {
         type: 'button',
         class: 'btn btn-ghost btn-sm danger',
-        'aria-label': 'Delete ' + name,
+        'aria-label': t('deleteJobLabel', name),
         onclick: function () {
           deleteJob(job);
         }
-      }, 'Delete')
+      }, t('delete'))
     )
   );
 }
@@ -349,11 +353,11 @@ function actionsCell(job) {
 function jobRow(job) {
   return h('tr', { dataset: { id: job.id } },
     titleCell(job),
-    textCell('Company', job.company),
-    textCell('Location', job.location),
+    textCell(t('colCompany'), job.company),
+    textCell(t('colLocation'), job.location),
     statusCell(job),
-    h('td', { class: 'col-date', 'data-label': 'Saved', text: formatDate(job.dateSaved) }),
-    h('td', { class: 'col-date', 'data-label': 'Applied', text: formatDate(job.dateApplied) }),
+    h('td', { class: 'col-date', 'data-label': t('colSaved'), text: formatDate(job.dateSaved) }),
+    h('td', { class: 'col-date', 'data-label': t('colApplied'), text: formatDate(job.dateApplied) }),
     actionsCell(job)
   );
 }
@@ -361,12 +365,11 @@ function jobRow(job) {
 // Shows a friendly message instead of the table when there is nothing to show.
 function renderEmptyState(visibleCount) {
   if (state.jobs.length === 0) {
-    emptyTitle.textContent = 'No jobs saved yet';
-    emptyText.textContent =
-      'Open a job post on LinkedIn, Indeed or any career site, then click the extension icon to save it.';
+    emptyTitle.textContent = t('emptyNoJobsTitle');
+    emptyText.textContent = t('emptyNoJobsText');
   } else if (visibleCount === 0) {
-    emptyTitle.textContent = 'No jobs match your filters';
-    emptyText.textContent = 'Try another status or clear the search.';
+    emptyTitle.textContent = t('emptyNoMatchTitle');
+    emptyText.textContent = t('emptyNoMatchText');
   }
 
   const isEmpty = visibleCount === 0;
@@ -387,7 +390,7 @@ function render() {
   const followUpCount = state.jobs.filter(followUpDue).length;
   const jobs = visibleJobs();
 
-  totalCount.textContent = plural(state.jobs.length, 'job');
+  totalCount.textContent = tCount('jobCount', state.jobs.length);
   renderFilters(followUpCount);
   renderFollowUpBanner(followUpCount);
   jobsBody.replaceChildren(...jobs.map(jobRow));
@@ -405,13 +408,22 @@ function render() {
 // Add / edit dialog
 // ---------------------------------------------------------------------------
 
-// Fills the status select of the dialog once, from STATUSES.
+// Fills the status select of the dialog from STATUSES (again when the language changes).
 function buildStatusOptions() {
+  const chosen = fStatus.value;
   fStatus.replaceChildren(
     ...STATUSES.map(function (status) {
-      return h('option', { value: status.id }, status.label);
+      return h('option', { value: status.id }, statusLabel(status.id));
     })
   );
+  if (chosen) {
+    fStatus.value = chosen;
+  }
+}
+
+// The dialog title: "Add a job" or "Edit job".
+function updateDialogTitle() {
+  dialogTitle.textContent = t(state.editingId ? 'dialogEditTitle' : 'dialogAddTitle');
 }
 
 // Shows a red message in the dialog.
@@ -428,7 +440,7 @@ function hideDialogError() {
 // Opens the dialog. With a job: "Edit job". Without: "Add a job" with empty fields.
 function openEditor(job) {
   state.editingId = job ? job.id : null;
-  dialogTitle.textContent = job ? 'Edit job' : 'Add a job';
+  updateDialogTitle();
 
   fTitle.value = job ? job.title || '' : '';
   fCompany.value = job ? job.company || '' : '';
@@ -463,12 +475,12 @@ async function saveEditor() {
   const values = readEditor();
 
   if (!values.title.trim()) {
-    showDialogError('Please enter a job title.');
+    showDialogError(t('errorTitleRequired'));
     fTitle.focus();
     return;
   }
   if (values.url.trim() && !safeHref(values.url)) {
-    showDialogError('The link must start with http:// or https://');
+    showDialogError(t('errorBadLink'));
     fUrl.focus();
     return;
   }
@@ -484,7 +496,7 @@ async function saveEditor() {
     });
     const duplicate = Store.findByUrl(otherJobs, values.url);
     if (duplicate) {
-      showDialogError('This link is already saved: "' + (duplicate.title || 'Untitled job') + '"');
+      showDialogError(t('errorDuplicateLink', duplicate.title || t('untitledJob')));
       fUrl.focus();
       return;
     }
@@ -495,7 +507,7 @@ async function saveEditor() {
         return saved.id === state.editingId;
       });
       if (!original) {
-        showDialogError('This job no longer exists. It may have been deleted in another tab.');
+        showDialogError(t('errorJobGone'));
         return;
       }
       job = updateJob(original, values);
@@ -508,7 +520,7 @@ async function saveEditor() {
     jobDialog.close();
   } catch (error) {
     console.error('Could not save the job:', error);
-    showDialogError('Could not save the job. Please try again.');
+    showDialogError(t('errorSaveFailed'));
   } finally {
     dialogSaveBtn.disabled = false;
   }
@@ -529,9 +541,22 @@ function csvCell(value) {
   return '"' + text.replace(/"/g, '""') + '"';
 }
 
+// The invisible "Byte Order Mark" at the start of the file (see buildCsv).
+const BOM = String.fromCharCode(0xfeff);
+
 // Makes the whole CSV text: a header row, then all jobs, newest saved first.
+// The column names and the status names are in the chosen language.
 function buildCsv(jobs) {
-  const header = ['Title', 'Company', 'Location', 'Status', 'Date saved', 'Date applied', 'Link', 'Notes'];
+  const header = [
+    t('csvTitle'),
+    t('csvCompany'),
+    t('csvLocation'),
+    t('csvStatus'),
+    t('csvDateSaved'),
+    t('csvDateApplied'),
+    t('csvLink'),
+    t('csvNotes')
+  ];
   const rows = jobs
     .slice()
     .sort(byNewestSaved)
@@ -552,9 +577,9 @@ function buildCsv(jobs) {
     return row.map(csvCell).join(',');
   });
 
-  // ﻿ (the BOM) tells Excel the file is UTF-8, so Arabic shows correctly.
+  // The BOM tells Excel the file is UTF-8, so Arabic shows correctly.
   // \r\n is the Windows line break, which Excel expects.
-  return '﻿' + lines.join('\r\n') + '\r\n';
+  return BOM + lines.join('\r\n') + '\r\n';
 }
 
 // Saves text as a file, using a temporary link. Needs no extra permission.
@@ -573,7 +598,7 @@ function downloadFile(text, fileName) {
 // Exports ALL jobs (not only the filtered ones).
 function exportCsv() {
   if (state.jobs.length === 0) {
-    alert('There are no jobs to export yet.');
+    alert(t('alertNoJobsToExport'));
     return;
   }
   downloadFile(buildCsv(state.jobs), 'job-applications-' + todayStr() + '.csv');
@@ -613,8 +638,6 @@ fStatus.addEventListener('change', function () {
 // Hide the error as soon as the user starts fixing the form.
 dialogForm.addEventListener('input', hideDialogError);
 
-buildStatusOptions();
-
 searchInput.addEventListener('input', function () {
   state.search = searchInput.value;
   render();
@@ -627,16 +650,62 @@ sortSelect.addEventListener('change', function () {
 
 // When jobs change anywhere (the popup, another dashboard tab, or this page),
 // Chrome tells us here, and we draw the list again.
-chrome.storage.onChanged.addListener(function (changes, areaName) {
-  if (areaName === 'local' && changes.jobs) {
+// The same for the language: if it changes in another tab, this page follows.
+chrome.storage.onChanged.addListener(async function (changes, areaName) {
+  if (areaName !== 'local') {
+    return;
+  }
+  if (changes.jobs) {
     const jobs = changes.jobs.newValue;
     state.jobs = Array.isArray(jobs) ? jobs : [];
     render();
   }
+  const language = changes[LANGUAGE_SETTING_KEY];
+  if (language && language.newValue && language.newValue !== I18n.lang) {
+    await I18n.use(language.newValue);
+    refreshLanguage();
+  }
 });
 
-// Loads the saved jobs and draws the page for the first time.
+// ---------------------------------------------------------------------------
+// Language
+// ---------------------------------------------------------------------------
+
+// Fills the language picker. Each language is shown in its own name.
+function buildLanguageOptions() {
+  languageSelect.replaceChildren(
+    ...LANGUAGES.map(function (language) {
+      return h('option', { value: language.code, lang: language.code.replace(/_/g, '-') }, language.name);
+    })
+  );
+  languageSelect.value = I18n.lang;
+}
+
+// Updates everything that is not filled by data-i18n.
+// (I18n.use() already filled the data-i18n texts and set <html lang dir>.)
+function refreshLanguage() {
+  languageSelect.value = I18n.lang;
+  buildStatusOptions();
+  if (jobDialog.open) {
+    updateDialogTitle();
+  }
+  render();
+}
+
+languageSelect.addEventListener('change', async function () {
+  try {
+    await I18n.setLanguage(languageSelect.value);
+  } catch (error) {
+    console.error('Could not change the language:', error);
+  }
+  refreshLanguage();
+});
+
+// Loads the translations and the saved jobs, and draws the page for the first time.
 async function init() {
+  await I18n.init();
+  buildLanguageOptions();
+  buildStatusOptions();
   sortSelect.value = state.sort;
   try {
     state.jobs = await Store.all();

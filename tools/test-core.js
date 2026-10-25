@@ -126,11 +126,42 @@ test('Dates: toDateStr and parseDateStr use local time', function () {
 });
 
 test('Dates: formatDate and daysSince', function () {
-  assertEqual(formatDate('2026-10-24'), '24 Oct 2026');
+  assertEqual(formatDate('2026-10-24'), 'Oct 24, 2026', 'English (default language)');
   assertEqual(formatDate(''), '—');
   assertEqual(daysSince(todayStr()), 0);
   assertEqual(daysSince(daysAgo(8)), 8);
   assertEqual(daysSince(''), null);
+});
+
+test('i18n: placeholders, plurals and English fallback', function () {
+  const saved = { lang: I18n.lang, messages: I18n.messages, fallback: I18n.fallback };
+  try {
+    I18n.fallback = {
+      hello: { message: 'Hello $NAME$, you have $$5', placeholders: { name: { content: '$1' } } },
+      itemOne: { message: '1 item', placeholders: { count: { content: '$1' } } },
+      itemOther: { message: '$COUNT$ items', placeholders: { count: { content: '$1' } } },
+      onlyEnglish: { message: 'Only in English' },
+      statusApplied: { message: 'Applied' }
+    };
+    I18n.messages = { statusApplied: { message: 'تم التقديم' } };
+    I18n.lang = 'ar';
+
+    assertEqual(t('hello', 'Omar'), 'Hello Omar, you have $5', 'placeholder and $$');
+    assertEqual(tCount('item', 1), '1 item');
+    assertEqual(tCount('item', 4), '4 items');
+    assertEqual(t('onlyEnglish'), 'Only in English', 'missing key falls back to English');
+    assertEqual(t('noSuchKey'), 'noSuchKey', 'unknown key returns the key');
+    assertEqual(statusLabel('applied'), 'تم التقديم', 'status label is translated');
+    assertEqual(I18n.locale(), 'ar');
+    assertEqual(I18n.isRtl(), true);
+    assertEqual(I18n.match('en-US'), 'en');
+    assertEqual(I18n.match('ar-AE'), 'ar');
+    assertEqual(I18n.match('xx'), null);
+  } finally {
+    I18n.lang = saved.lang;
+    I18n.messages = saved.messages;
+    I18n.fallback = saved.fallback;
+  }
 });
 
 test('cleanFields: trims, collapses, limits, rejects bad values', function () {

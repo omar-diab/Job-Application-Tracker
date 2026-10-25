@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Job Application Tracker</title>
+  <title data-i18n="extName">Job Application Tracker</title>
   <link rel="icon" href="../icons/icon16.png">
   <link rel="stylesheet" href="../shared/base.css">
   <link rel="stylesheet" href="dashboard.css">
@@ -13,29 +13,30 @@
     <div class="topbar-inner">
       <img class="logo" src="../icons/icon48.png" alt="" width="36" height="36">
       <div class="brand">
-        <h1>Job Application Tracker</h1>
-        <p id="totalCount" class="total-count">0 jobs</p>
+        <h1 data-i18n="extName">Job Application Tracker</h1>
+        <p id="totalCount" class="total-count"></p>
       </div>
       <div class="topbar-actions">
-        <button type="button" id="exportBtn" class="btn">Export CSV</button>
-        <button type="button" id="addBtn" class="btn btn-primary">+ Add job</button>
+        <select id="languageSelect" class="language-select" aria-label="Language" data-i18n-aria="languageLabel"></select>
+        <button type="button" id="exportBtn" class="btn" data-i18n="exportCsv">Export CSV</button>
+        <button type="button" id="addBtn" class="btn btn-primary" data-i18n="addJob">+ Add job</button>
       </div>
     </div>
   </header>
 
   <main class="page">
-    <section class="toolbar" aria-label="Filter and sort">
-      <div id="filters" class="filters" role="group" aria-label="Filter by status"></div>
+    <section class="toolbar" aria-label="Filter and sort" data-i18n-aria="toolbarLabel">
+      <div id="filters" class="filters" role="group" aria-label="Filter by status" data-i18n-aria="filtersLabel"></div>
       <div class="toolbar-controls">
-        <input id="search" type="search" dir="auto" placeholder="Search title, company, location, notes" aria-label="Search jobs" autocomplete="off">
-        <select id="sort" aria-label="Sort jobs">
-          <option value="saved-desc">Newest saved</option>
-          <option value="saved-asc">Oldest saved</option>
-          <option value="applied-desc">Recently applied</option>
-          <option value="updated-desc">Recently updated</option>
-          <option value="company-asc">Company A–Z</option>
-          <option value="title-asc">Title A–Z</option>
-          <option value="status">Status</option>
+        <input id="search" type="search" dir="auto" placeholder="Search title, company, location, notes" aria-label="Search jobs" data-i18n-placeholder="searchPlaceholder" data-i18n-aria="searchLabel" autocomplete="off">
+        <select id="sort" aria-label="Sort jobs" data-i18n-aria="sortLabel">
+          <option value="saved-desc" data-i18n="sortSavedDesc">Newest saved</option>
+          <option value="saved-asc" data-i18n="sortSavedAsc">Oldest saved</option>
+          <option value="applied-desc" data-i18n="sortAppliedDesc">Recently applied</option>
+          <option value="updated-desc" data-i18n="sortUpdatedDesc">Recently updated</option>
+          <option value="company-asc" data-i18n="sortCompanyAsc">Company A–Z</option>
+          <option value="title-asc" data-i18n="sortTitleAsc">Title A–Z</option>
+          <option value="status" data-i18n="sortStatus">Status</option>
         </select>
       </div>
     </section>
@@ -46,13 +47,13 @@
       <table class="jobs-table">
         <thead>
           <tr>
-            <th scope="col" class="col-title">Title</th>
-            <th scope="col">Company</th>
-            <th scope="col">Location</th>
-            <th scope="col">Status</th>
-            <th scope="col">Saved</th>
-            <th scope="col">Applied</th>
-            <th scope="col" class="col-actions"><span class="visually-hidden">Actions</span></th>
+            <th scope="col" class="col-title" data-i18n="colTitle">Title</th>
+            <th scope="col" data-i18n="colCompany">Company</th>
+            <th scope="col" data-i18n="colLocation">Location</th>
+            <th scope="col" data-i18n="colStatus">Status</th>
+            <th scope="col" data-i18n="colSaved">Saved</th>
+            <th scope="col" data-i18n="colApplied">Applied</th>
+            <th scope="col" class="col-actions"><span class="visually-hidden" data-i18n="colActions">Actions</span></th>
           </tr>
         </thead>
         <tbody id="jobsBody"></tbody>
@@ -67,52 +68,53 @@
 
   <dialog id="jobDialog" class="job-dialog" aria-labelledby="dialogTitle">
     <form id="dialogForm" novalidate>
-      <h2 id="dialogTitle" class="dialog-title">Add a job</h2>
+      <h2 id="dialogTitle" class="dialog-title"></h2>
 
       <div class="dialog-grid">
         <div class="field span-2">
-          <label for="f-title">Job title <span class="required" aria-hidden="true">*</span></label>
+          <label for="f-title"><span data-i18n="fieldTitle">Job title</span> <span class="required" aria-hidden="true">*</span></label>
           <input id="f-title" type="text" dir="auto" maxlength="300" required autocomplete="off">
         </div>
 
         <div class="field">
-          <label for="f-company">Company</label>
+          <label for="f-company" data-i18n="fieldCompany">Company</label>
           <input id="f-company" type="text" dir="auto" maxlength="200" autocomplete="off">
         </div>
         <div class="field">
-          <label for="f-location">Location</label>
+          <label for="f-location" data-i18n="fieldLocation">Location</label>
           <input id="f-location" type="text" dir="auto" maxlength="200" autocomplete="off">
         </div>
 
         <div class="field span-2">
-          <label for="f-url">Link</label>
+          <label for="f-url" data-i18n="fieldLink">Link</label>
           <input id="f-url" type="url" dir="ltr" maxlength="2000" placeholder="https://" autocomplete="off">
         </div>
 
         <div class="field">
-          <label for="f-status">Status</label>
+          <label for="f-status" data-i18n="fieldStatus">Status</label>
           <select id="f-status"></select>
         </div>
         <div class="field">
-          <label for="f-dateApplied">Date applied</label>
+          <label for="f-dateApplied" data-i18n="fieldDateApplied">Date applied</label>
           <input id="f-dateApplied" type="date">
         </div>
 
         <div class="field span-2">
-          <label for="f-notes">Notes</label>
-          <textarea id="f-notes" dir="auto" maxlength="5000" rows="4" placeholder="Recruiter, salary, next step..."></textarea>
+          <label for="f-notes" data-i18n="fieldNotes">Notes</label>
+          <textarea id="f-notes" dir="auto" maxlength="5000" rows="4" placeholder="Recruiter, salary, next step..." data-i18n-placeholder="notesPlaceholder"></textarea>
         </div>
       </div>
 
       <p id="dialogError" class="form-error" role="alert" hidden></p>
 
       <div class="dialog-actions">
-        <button type="button" id="cancelBtn" class="btn">Cancel</button>
-        <button type="submit" id="dialogSaveBtn" class="btn btn-primary">Save</button>
+        <button type="button" id="cancelBtn" class="btn" data-i18n="cancel">Cancel</button>
+        <button type="submit" id="dialogSaveBtn" class="btn btn-primary" data-i18n="save">Save</button>
       </div>
     </form>
   </dialog>
 
+  <script src="../shared/i18n.js"></script>
   <script src="../shared/core.js"></script>
   <script src="dashboard.js"></script>
 </body>
