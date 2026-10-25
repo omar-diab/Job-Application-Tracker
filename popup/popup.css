@@ -151,6 +151,30 @@ body {
   outline-offset: 2px;
 }
 
+/* --- Premium link (free users only) ----------------------------------------- */
+
+.premium-row {
+  margin: 10px 0 0;
+  text-align: center;
+}
+
+.premium-link {
+  padding: 2px 6px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.premium-link:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
 /* --- Notices ----------------------------------------------------------------- */
 
 .notice {

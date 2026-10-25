@@ -23,6 +23,9 @@ if (!(window.chrome && chrome.storage && chrome.storage.local)) {
         Object.keys(items).forEach(function (key) {
           memory[key] = structuredClone(items[key]);
         });
+      },
+      async remove(key) {
+        delete memory[key];
       }
     }
   };
@@ -268,6 +271,121 @@ test('h(): attributes, true/false values, dataset and events', function () {
   assertEqual(button.className, 'btn');
   assertEqual(button.dataset.id, '42');
   assertEqual(clicks, 1);
+});
+
+// ---------------------------------------------------------------------------
+// Premium (with a fake Dodo server, so no internet is needed)
+// ---------------------------------------------------------------------------
+
+// The fake Dodo license server. fakeDodo.keys maps a key to 'active', 'disabled' or 'full'.
+const fakeDodo = { keys: {}, networkDown: false, validateCalls: 0 };
+
+window.fetch = async function (url, options) {
+  if (fakeDodo.networkDown) {
+    throw new TypeError('Failed to fetch');
+  }
+  const body = JSON.parse(options.body);
+  const state = fakeDodo.keys[body.license_key];
+  const reply = function (status, data) {
+    return new Response(JSON.stringify(data), { status: status, headers: { 'Content-Type': 'application/json' } });
+  };
+  if (url.endsWith('/licenses/activate')) {
+    if (!state) return reply(404, { code: 'NOT_FOUND' });
+    if (state === 'disabled') return reply(403, { code: 'INACTIVE' });
+    if (state === 'full') return reply(422, { code: 'LIMIT' });
+    return reply(200, { id: 'lki_test_1', name: body.name });
+  }
+  if (url.endsWith('/licenses/validate')) {
+    fakeDodo.validateCalls++;
+    return reply(200, { valid: state === 'active' });
+  }
+  if (url.endsWith('/licenses/deactivate')) {
+    return reply(200, {});
+  }
+  return reply(404, {});
+};
+
+async function resetLicense() {
+  await chrome.storage.local.set({ license: null });
+  fakeDodo.keys = {};
+  fakeDodo.networkDown = false;
+  fakeDodo.validateCalls = 0;
+}
+
+// Runs fn and returns the error code it throws (or 'no error').
+async function errorCode(fn) {
+  try {
+    await fn();
+    return 'no error';
+  } catch (error) {
+    return error.code;
+  }
+}
+
+test('Premium: free by default, premium after activating a key', async function () {
+  await resetLicense();
+  assertEqual(await isPremium(), false, 'no license saved yet');
+
+  fakeDodo.keys['GOOD-KEY-1234'] = 'active';
+  const license = await activateLicense('  GOOD-KEY-1234  ');
+  assertEqual(license.premium, true);
+  assertEqual(license.licenseKey, 'GOOD-KEY-1234', 'spaces are removed');
+  assertEqual(license.instanceId, 'lki_test_1');
+  assertEqual(await isPremium(), true);
+  assertEqual(maskLicenseKey(license.licenseKey), '•••• 1234', 'only the end of the key is shown');
+});
+
+test('Premium: wrong, disabled, full and empty keys give clear errors', async function () {
+  await resetLicense();
+  fakeDodo.keys['OLD-KEY'] = 'disabled';
+  fakeDodo.keys['FULL-KEY'] = 'full';
+  assertEqual(await errorCode(() => activateLicense('NO-SUCH-KEY')), 'not_found');
+  assertEqual(await errorCode(() => activateLicense('OLD-KEY')), 'inactive');
+  assertEqual(await errorCode(() => activateLicense('FULL-KEY')), 'limit');
+  assertEqual(await errorCode(() => activateLicense('   ')), 'empty');
+  fakeDodo.networkDown = true;
+  assertEqual(await errorCode(() => activateLicense('ANY-KEY')), 'network');
+  assertEqual(await isPremium(), false, 'a failed activation never gives Premium');
+});
+
+test('Premium: no internet keeps the saved Premium', async function () {
+  await resetLicense();
+  fakeDodo.keys['GOOD-KEY'] = 'active';
+  await activateLicense('GOOD-KEY');
+
+  fakeDodo.networkDown = true;
+  await refreshLicense({ force: true });
+  assertEqual(await isPremium(), true, 'a network error must never remove Premium');
+});
+
+test('Premium: checks online at most every 12 hours', async function () {
+  await resetLicense();
+  fakeDodo.keys['GOOD-KEY'] = 'active';
+  await activateLicense('GOOD-KEY');
+
+  await refreshLicense();
+  assertEqual(fakeDodo.validateCalls, 0, 'a fresh license is not checked again');
+
+  const saved = (await chrome.storage.local.get('license')).license;
+  saved.checkedAt = new Date(Date.now() - 13 * 60 * 60 * 1000).toISOString();
+  await chrome.storage.local.set({ license: saved });
+  await refreshLicense();
+  assertEqual(fakeDodo.validateCalls, 1, 'a license older than 12 hours is checked again');
+});
+
+test('Premium: an ended subscription removes Premium, removing the key frees it', async function () {
+  await resetLicense();
+  fakeDodo.keys['GOOD-KEY'] = 'active';
+  await activateLicense('GOOD-KEY');
+
+  fakeDodo.keys['GOOD-KEY'] = 'disabled';
+  const license = await refreshLicense({ force: true });
+  assertEqual(license.premium, false, 'Dodo disabled the key');
+
+  await removeLicense();
+  assertEqual(await isPremium(), false);
+  assertEqual((await chrome.storage.local.get('license')).license, undefined, 'license removed');
+  await resetLicense();
 });
 
 // ---------------------------------------------------------------------------

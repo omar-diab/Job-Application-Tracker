@@ -45,6 +45,14 @@ jobs:
             }
           }
 
+          // No content scripts: pages are read only with activeTab + scripting, after a click.
+          if (manifest.content_scripts && manifest.content_scripts.length) {
+            problems.push('content_scripts are not allowed. Found: ' + JSON.stringify(manifest.content_scripts));
+          }
+          if (manifest.externally_connectable) {
+            problems.push('externally_connectable is not allowed');
+          }
+
           if (problems.length) {
             problems.forEach((problem) => console.error('::error file=manifest.json::' + problem));
             process.exit(1);

@@ -38,7 +38,8 @@ This extension does the boring part for you. Open a job post, click the icon, an
 - 📤 **CSV export** that opens correctly in Excel, including Arabic text.
 - 🌙 **Light and dark mode**, following your system.
 - 🌍 **Arabic and right-to-left text** work in every field.
-- 🔒 **100% local**: no account, no server, no tracking.
+- 🔒 **100% local**: no account, no server, no tracking. Your job data never leaves your computer.
+- ⭐ **Optional Premium** to support the project (AI features coming soon). Every feature above stays free.
 
 ## Screenshots
 
@@ -59,10 +60,10 @@ A site doesn't read correctly? [Open a "Site not working" issue](https://github.
 
 ## Privacy
 
-Your data never leaves your computer.
+Your job data never leaves your computer.
 
-- Jobs are saved only in `chrome.storage.local`, inside your browser.
-- No server, no account, no analytics, no ads.
+- Jobs are saved only in `chrome.storage.local`, inside your browser. They are never sent anywhere.
+- No account, no analytics, no tracking, no ads.
 - The page is read **only when you click the icon**.
 
 The extension asks for only 3 permissions:
@@ -72,6 +73,12 @@ The extension asks for only 3 permissions:
 | `storage` | Save your jobs on your computer. |
 | `activeTab` | Read the tab you are on, only after you click the icon. No access to "all websites". |
 | `scripting` | Run the small page reader in that tab to find the job details. |
+
+### Premium and payments
+
+- Payments are handled by **[Dodo Payments](https://dodopayments.com)** (merchant of record). **We never see your card details.**
+- After you pay, Dodo emails you a **license key**. You paste it in the Premium window.
+- The extension talks to Dodo only to check this license key: when you enter it, and at most once every 12 hours. Your jobs and notes are never sent.
 
 Read the full [privacy policy](PRIVACY.md).
 
@@ -105,11 +112,14 @@ No build step and no `npm install`. The code runs as it is.
 ```
 job-application-tracker/
 ├── manifest.json            Extension settings and the 3 permissions
+├── _locales/                Translations (one messages.json per language)
 ├── icons/                   Extension icons (16, 48, 128 px)
 ├── shared/
 │   ├── base.css             Shared design: colors, dark mode, status colors, fields, buttons
+│   ├── i18n.js              Translations: t(), language picker, right-to-left
 │   ├── core.js              Statuses, safe h() element helper, dates, links, jobs, storage
-│   └── extractor.js         Reads the job from a page (LinkedIn, Indeed, JSON-LD, title)
+│   ├── extractor.js         Reads the job from a page (LinkedIn, Indeed, JSON-LD, title)
+│   └── premium.js           Premium: plans, Dodo checkout, license key activation and checks
 ├── popup/
 │   ├── popup.html           The popup window
 │   ├── popup.css            Popup styles
@@ -136,6 +146,7 @@ Click icon → popup.js → chrome.scripting.executeScript(extractJobInfo) → r
 - `extractJobInfo` is fully self-contained, because Chrome copies only that one function into the page.
 - All text is added with `textContent` (through a small `h()` helper), never `innerHTML`, so a job title can never inject HTML.
 - Links are normalized (`/jobs/view/123/`, `?jk=...`, tracking parameters removed), so the same job is never saved twice.
+- **Premium:** the license key is activated with Dodo Payments' public license API (no secret key in the extension) and the result is saved in `chrome.storage.local`. The popup and the dashboard read this saved value, so they open fast and work offline.
 
 ## Running the tests
 

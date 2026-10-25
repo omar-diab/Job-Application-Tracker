@@ -17,6 +17,7 @@
         <p id="totalCount" class="total-count"></p>
       </div>
       <div class="topbar-actions">
+        <button type="button" id="premiumBtn" class="btn premium-btn" hidden></button>
         <select id="languageSelect" class="language-select" aria-label="Language" data-i18n-aria="languageLabel"></select>
         <button type="button" id="exportBtn" class="btn" data-i18n="exportCsv">Export CSV</button>
         <button type="button" id="addBtn" class="btn btn-primary" data-i18n="addJob">+ Add job</button>
@@ -114,8 +115,19 @@
     </form>
   </dialog>
 
+  <dialog id="premiumDialog" class="job-dialog premium-dialog" aria-labelledby="premiumTitle">
+    <div class="premium-content">
+      <h2 id="premiumTitle" class="dialog-title" data-i18n="premiumTitle">⭐ Premium</h2>
+      <div id="premiumBody"></div>
+      <div class="dialog-actions">
+        <button type="button" id="premiumCloseBtn" class="btn" data-i18n="close">Close</button>
+      </div>
+    </div>
+  </dialog>
+
   <script src="../shared/i18n.js"></script>
   <script src="../shared/core.js"></script>
+  <script src="../shared/premium.js"></script>
   <script src="dashboard.js"></script>
 </body>
 </html>

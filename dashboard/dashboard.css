@@ -381,7 +381,8 @@ a.job-title:hover {
   background: rgba(15, 23, 42, 0.55);
 }
 
-.job-dialog form {
+/* Only the dialog's own form (not a form inside it, like the license form). */
+.job-dialog > form {
   padding: 20px 22px;
 }
 
@@ -429,6 +430,159 @@ a.job-title:hover {
   justify-content: flex-end;
   gap: 8px;
   margin-top: 18px;
+}
+
+/* --- Premium ------------------------------------------------------------------------ */
+
+/* Gold colors for the Premium button and badge. */
+:root {
+  --premium-bg: #fef3c7;
+  --premium-fg: #92400e;
+  --premium-border: #fcd34d;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --premium-bg: rgba(245, 158, 11, 0.16);
+    --premium-fg: #fcd34d;
+    --premium-border: rgba(245, 158, 11, 0.45);
+  }
+}
+
+.premium-btn {
+  border-color: var(--premium-border);
+  background: var(--premium-bg);
+  color: var(--premium-fg);
+}
+
+.premium-btn:hover {
+  border-color: var(--premium-fg);
+  background: var(--premium-bg);
+}
+
+/* For Premium users the button looks like a small badge. */
+.premium-btn.is-premium {
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+.premium-content {
+  padding: 20px 22px;
+}
+
+.premium-intro,
+.premium-active {
+  margin: 0 0 12px;
+}
+
+.premium-active {
+  color: var(--status-offer-fg);
+  font-weight: 600;
+}
+
+.premium-heading {
+  margin: 16px 0 8px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.premium-benefits {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.premium-benefits li {
+  padding: 3px 0;
+}
+
+.premium-benefits li::before {
+  content: "✓";
+  margin-inline-end: 8px;
+  color: var(--status-offer-fg);
+  font-weight: 700;
+}
+
+.plan-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.plan-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.plan-name {
+  font-weight: 700;
+}
+
+.plan-price {
+  margin-bottom: 4px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.plan-card .btn {
+  margin-top: auto;
+}
+
+.premium-muted {
+  margin: 0 0 8px;
+  color: var(--muted);
+}
+
+/* "Already bought Premium?" license key form. */
+.license-form {
+  margin-top: 16px;
+}
+
+.license-label {
+  display: block;
+}
+
+.license-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.license-row .license-input {
+  flex: 1;
+  min-width: 0;
+  font-family: ui-monospace, Menlo, monospace;
+}
+
+.license-row .btn {
+  flex-shrink: 0;
+}
+
+.license-key {
+  margin-top: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.premium-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.premium-note {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 12px;
 }
 
 /* --- Small screens: each row becomes a card ------------------------------------- */

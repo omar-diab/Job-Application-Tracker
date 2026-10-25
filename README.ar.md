@@ -40,7 +40,8 @@
 - 📤 **تصدير CSV** يُفتح بشكل صحيح في Excel، مع النص العربي.
 - 🌙 **وضع فاتح وداكن** حسب إعدادات جهازك.
 - 🌍 **دعم العربية والكتابة من اليمين لليسار** في كل الحقول.
-- 🔒 **محلي 100%**: بدون حساب، بدون خادم، بدون تتبع.
+- 🔒 **محلي 100%**: بدون حساب، بدون خادم، بدون تتبع. بيانات وظائفك لا تغادر جهازك.
+- ⭐ **اشتراك Premium اختياري** لدعم المشروع (مزايا الذكاء الاصطناعي قريبًا). كل المزايا السابقة تبقى مجانية.
 
 ## صور الشاشة
 
@@ -61,10 +62,10 @@
 
 ## الخصوصية
 
-بياناتك لا تغادر جهازك أبدًا.
+بيانات وظائفك لا تغادر جهازك أبدًا.
 
-- تُحفظ الوظائف فقط في `chrome.storage.local` داخل متصفحك.
-- لا خادم، لا حساب، لا إحصاءات، لا إعلانات.
+- تُحفظ الوظائف فقط في `chrome.storage.local` داخل متصفحك، ولا تُرسل إلى أي مكان.
+- لا حساب، لا إحصاءات، لا تتبع، لا إعلانات.
 - تُقرأ الصفحة **فقط عندما تضغط على الأيقونة**.
 
 تطلب الإضافة 3 صلاحيات فقط:
@@ -74,6 +75,12 @@
 | `storage` | حفظ وظائفك على جهازك. |
 | `activeTab` | قراءة التبويب الذي أنت فيه، فقط بعد الضغط على الأيقونة. لا وصول إلى «كل المواقع». |
 | `scripting` | تشغيل قارئ الصفحة الصغير في ذلك التبويب لإيجاد تفاصيل الوظيفة. |
+
+### اشتراك Premium والدفع
+
+- تتم عمليات الدفع عبر **[Dodo Payments](https://dodopayments.com)** (التاجر المسجّل). **لا نرى بيانات بطاقتك أبدًا.**
+- بعد الدفع، ترسل Dodo إليك **مفتاح ترخيص** بالبريد الإلكتروني، فتلصقه في نافذة Premium.
+- تتصل الإضافة بـ Dodo فقط للتحقق من مفتاح الترخيص: عند إدخاله، ومرة واحدة كل 12 ساعة على الأكثر. وظائفك وملاحظاتك لا تُرسل أبدًا.
 
 اقرأ [سياسة الخصوصية](PRIVACY.md) كاملة.
 
@@ -115,11 +122,14 @@ git clone https://github.com/omar-diab/job-application-tracker.git
 ```
 job-application-tracker/
 ├── manifest.json            Extension settings and the 3 permissions
+├── _locales/                Translations (one messages.json per language)
 ├── icons/                   Extension icons (16, 48, 128 px)
 ├── shared/
 │   ├── base.css             Shared design: colors, dark mode, status colors, fields, buttons
+│   ├── i18n.js              Translations: t(), language picker, right-to-left
 │   ├── core.js              Statuses, safe h() element helper, dates, links, jobs, storage
-│   └── extractor.js         Reads the job from a page (LinkedIn, Indeed, JSON-LD, title)
+│   ├── extractor.js         Reads the job from a page (LinkedIn, Indeed, JSON-LD, title)
+│   └── premium.js           Premium: plans, Dodo checkout, license key activation and checks
 ├── popup/
 │   ├── popup.html           The popup window
 │   ├── popup.css            Popup styles
@@ -157,6 +167,7 @@ Click icon → popup.js → chrome.scripting.executeScript(extractJobInfo) → r
 - الدالة `extractJobInfo` مستقلة تمامًا، لأن Chrome ينسخ هذه الدالة وحدها إلى الصفحة.
 - كل النصوص تُضاف باستخدام `textContent` (عبر الدالة المساعدة `h()`)، وليس `innerHTML` أبدًا، فلا يمكن لعنوان وظيفة أن يحقن كود HTML.
 - تُوحَّد الروابط (`/jobs/view/123/` و`?jk=...` وحذف معاملات التتبع)، فلا تُحفظ الوظيفة نفسها مرتين.
+- **Premium:** يُفعَّل مفتاح الترخيص عبر واجهة التراخيص العامة في Dodo Payments (دون أي مفتاح سرّي داخل الإضافة)، وتُحفظ النتيجة في `chrome.storage.local`. تقرأ النافذة المنبثقة ولوحة التحكم هذه القيمة المحفوظة، فتفتحان بسرعة وتعملان دون إنترنت.
 
 ## تشغيل الاختبارات
 
