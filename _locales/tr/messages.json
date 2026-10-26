@@ -555,5 +555,21 @@
   "adRemoveAds": {
     "message": "Reklamları kaldır ⭐",
     "description": "Small link on an ad card. Opens the Premium window."
+  },
+  "adFromDeveloper": {
+    "message": "Geliştiriciden",
+    "description": "Small label on a card that promotes our own project (not a paid ad)."
+  },
+  "starTitle": {
+    "message": "Bu eklentiyi beğendiniz mi?",
+    "description": "Title of the card that asks users to star the project on GitHub."
+  },
+  "starText": {
+    "message": "Yeni sürümleri ve güncellemeleri takip etmek için GitHub'da yıldız verin.",
+    "description": "Text of the GitHub star card. Keep \"GitHub\"."
+  },
+  "starCta": {
+    "message": "★ GitHub'da yıldız ver",
+    "description": "Button of the GitHub star card. Keep \"GitHub\" and the ★."
   }
 }

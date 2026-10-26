@@ -2,7 +2,8 @@
 //   node tools/check-ads.js
 //
 // For every ad it checks:
-// - id, title and cta are there, and every id is different,
+// - id, title (or titleKey) and cta (or ctaKey) are there, and every id is different,
+// - "sponsored" (optional) is true or false (false = our own card, labeled "From the developer"),
 // - url is "#premium" or a normal http:// or https:// link,
 // - image (optional) is a file in icons/ads/ that really exists,
 // - endDate (optional) is a real date written as YYYY-MM-DD,
@@ -61,6 +62,7 @@ if (!Array.isArray(ads)) {
 }
 
 const languages = fs.readdirSync(path.join(ROOT, '_locales'));
+const englishMessages = JSON.parse(fs.readFileSync(path.join(ROOT, '_locales', 'en', 'messages.json'), 'utf8'));
 const ids = new Set();
 
 ads.forEach(function (ad, index) {
@@ -70,13 +72,24 @@ ads.forEach(function (ad, index) {
     return;
   }
 
-  ['id', 'title', 'cta'].forEach(function (field) {
-    if (typeof ad[field] !== 'string' || !ad[field].trim()) {
-      problems.push(name + ': "' + field + '" is missing');
+  if (typeof ad.id !== 'string' || !ad.id.trim()) {
+    problems.push(name + ': "id" is missing');
+  }
+  // Each text is fixed ("title") or a translation key ("titleKey") from _locales/en/messages.json.
+  ['title', 'cta', 'text'].forEach(function (field) {
+    const key = ad[field + 'Key'];
+    if (key !== undefined) {
+      if (typeof key !== 'string' || !englishMessages[key]) {
+        problems.push(name + ': "' + field + 'Key" must be a key from _locales/en/messages.json');
+      }
+    } else if (field !== 'text' && (typeof ad[field] !== 'string' || !ad[field].trim())) {
+      problems.push(name + ': "' + field + '" (or "' + field + 'Key") is missing');
+    } else if (field === 'text' && ad.text !== undefined && typeof ad.text !== 'string') {
+      problems.push(name + ': "text" must be text');
     }
   });
-  if (ad.text !== undefined && typeof ad.text !== 'string') {
-    problems.push(name + ': "text" must be text');
+  if (ad.sponsored !== undefined && typeof ad.sponsored !== 'boolean') {
+    problems.push(name + ': "sponsored" must be true or false');
   }
 
   if (ids.has(ad.id)) {

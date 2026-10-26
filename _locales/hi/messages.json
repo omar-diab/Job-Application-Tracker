@@ -555,5 +555,21 @@
   "adRemoveAds": {
     "message": "विज्ञापन हटाएँ ⭐",
     "description": "Small link on an ad card. Opens the Premium window."
+  },
+  "adFromDeveloper": {
+    "message": "डेवलपर की ओर से",
+    "description": "Small label on a card that promotes our own project (not a paid ad)."
+  },
+  "starTitle": {
+    "message": "यह एक्सटेंशन पसंद आया?",
+    "description": "Title of the card that asks users to star the project on GitHub."
+  },
+  "starText": {
+    "message": "नए वर्ज़न और अपडेट देखते रहने के लिए GitHub पर स्टार दें।",
+    "description": "Text of the GitHub star card. Keep \"GitHub\"."
+  },
+  "starCta": {
+    "message": "★ GitHub पर स्टार दें",
+    "description": "Button of the GitHub star card. Keep \"GitHub\" and the ★."
   }
 }

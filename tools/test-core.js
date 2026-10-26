@@ -413,6 +413,22 @@ test('Ads: unsafe or broken ads are rejected', function () {
   assertEqual(isValidAd(Object.assign({}, good, { endDate: '2026-02-31' })), false, 'wrong date');
 });
 
+test('Ads: translated texts and "From the developer" label', function () {
+  const own = { id: 'star', titleKey: 'starTitle', ctaKey: 'starCta', url: 'https://example.com', sponsored: false };
+  assertEqual(isValidAd(own), true, 'texts can be translation keys');
+  assertEqual(isValidAd(Object.assign({}, own, { titleKey: 'bad key!' })), false, 'bad key');
+  assertEqual(isValidAd(Object.assign({}, own, { sponsored: 'no' })), false, 'sponsored must be true or false');
+
+  const ownCard = buildAdCard(own, {});
+  assertEqual(ownCard.querySelector('.ad-label').textContent, t('adFromDeveloper'), 'own card label');
+  assertEqual(ownCard.querySelector('.ad-title').textContent, t('starTitle'), 'translated title');
+  assertEqual(ownCard.querySelector('a').rel, 'noopener noreferrer', 'own link is not marked sponsored');
+
+  const paid = buildAdCard({ id: 'paid', title: 'Paid', cta: 'Go', url: 'https://example.com' }, {});
+  assertEqual(paid.querySelector('.ad-label').textContent, t('adSponsored'), 'paid ads say Sponsored');
+  assertEqual(paid.querySelector('a').rel, 'noopener noreferrer sponsored');
+});
+
 test('Ads: language and end date filters', function () {
   const ads = [
     { id: 'all', title: 't', cta: 'c', url: 'https://example.com' },

@@ -555,5 +555,21 @@
   "adRemoveAds": {
     "message": "Hapus iklan ⭐",
     "description": "Small link on an ad card. Opens the Premium window."
+  },
+  "adFromDeveloper": {
+    "message": "Dari pengembang",
+    "description": "Small label on a card that promotes our own project (not a paid ad)."
+  },
+  "starTitle": {
+    "message": "Suka ekstensi ini?",
+    "description": "Title of the card that asks users to star the project on GitHub."
+  },
+  "starText": {
+    "message": "Beri bintang di GitHub untuk mengikuti versi dan pembaruan baru.",
+    "description": "Text of the GitHub star card. Keep \"GitHub\"."
+  },
+  "starCta": {
+    "message": "★ Bintang di GitHub",
+    "description": "Button of the GitHub star card. Keep \"GitHub\" and the ★."
   }
 }

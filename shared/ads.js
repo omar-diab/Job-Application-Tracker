@@ -25,13 +25,26 @@ const AD_IMAGE_PATTERN = /^icons\/ads\/[a-z0-9_-]+\.(png|jpg|jpeg|webp|svg)$/i;
 
 let adsCache = null;
 
+function isFilledText(value) {
+  return typeof value === 'string' && value.trim() !== '';
+}
+
+// A translation key, like "starTitle" (see _locales/en/messages.json).
+function isMessageKey(value) {
+  return typeof value === 'string' && /^[A-Za-z0-9_]+$/.test(value);
+}
+
 // True if an ad from ads.json has everything it needs and nothing unsafe.
+// Texts are either fixed ("title") or a translation key ("titleKey"), so one card
+// can be shown in every language.
 function isValidAd(ad) {
   return Boolean(ad) &&
     typeof ad.id === 'string' && ad.id !== '' &&
-    typeof ad.title === 'string' && ad.title.trim() !== '' &&
-    typeof ad.cta === 'string' && ad.cta.trim() !== '' &&
+    (isFilledText(ad.title) || isMessageKey(ad.titleKey)) &&
+    (isFilledText(ad.cta) || isMessageKey(ad.ctaKey)) &&
     (ad.text === undefined || typeof ad.text === 'string') &&
+    (ad.textKey === undefined || isMessageKey(ad.textKey)) &&
+    (ad.sponsored === undefined || typeof ad.sponsored === 'boolean') &&
     (ad.url === PREMIUM_AD_URL || safeHref(ad.url) !== null) &&
     (ad.image === undefined || AD_IMAGE_PATTERN.test(ad.image)) &&
     (ad.endDate === undefined || isDateStr(ad.endDate)) &&
@@ -103,26 +116,39 @@ async function pickAd(lang) {
   return ad;
 }
 
+// The text of an ad field: translated when the ad uses a key ("titleKey"), else the fixed text.
+function adText(ad, field) {
+  const key = ad[field + 'Key'];
+  return key ? t(key) : ad[field] || '';
+}
+
 // Builds one card with h() only (never innerHTML).
 // compact: one line for the popup. onRemoveAds: opens the Premium window.
+// An ad with "sponsored": false is our own (like "Star on GitHub" or Premium),
+// so it is labeled "From the developer" instead of "Sponsored".
 function buildAdCard(ad, options) {
   const isPremiumAd = ad.url === PREMIUM_AD_URL;
+  const isSponsored = ad.sponsored !== false;
+  const labelText = t(isSponsored ? 'adSponsored' : 'adFromDeveloper');
+  const title = adText(ad, 'title');
+  const text = adText(ad, 'text');
+  const ctaText = adText(ad, 'cta');
 
   const cta = isPremiumAd
-    ? h('button', { type: 'button', class: 'ad-cta', onclick: options.onRemoveAds }, ad.cta)
+    ? h('button', { type: 'button', class: 'ad-cta', onclick: options.onRemoveAds }, ctaText)
     : h('a', {
         class: 'ad-cta',
         href: safeHref(ad.url),
         target: '_blank',
-        rel: 'noopener noreferrer sponsored'
-      }, ad.cta);
+        rel: isSponsored ? 'noopener noreferrer sponsored' : 'noopener noreferrer'
+      }, ctaText);
 
   // The Premium ad already says "Go Premium", so it does not need a second link.
   const remove = isPremiumAd
     ? null
     : h('button', { type: 'button', class: 'ad-remove', onclick: options.onRemoveAds }, t('adRemoveAds'));
 
-  const label = h('span', { class: 'ad-label', text: t('adSponsored') });
+  const label = h('span', { class: 'ad-label', text: labelText });
 
   if (options.compact) {
     // One line is short, so "Remove ads" is only the ⭐ icon here (the full text is the tooltip).
@@ -135,20 +161,20 @@ function buildAdCard(ad, options) {
           'aria-label': t('adRemoveAds'),
           onclick: options.onRemoveAds
         }, '⭐');
-    return h('aside', { class: 'ad-card ad-compact', 'aria-label': t('adSponsored') },
+    return h('aside', { class: 'ad-card ad-compact', 'aria-label': labelText },
       label,
-      h('span', { class: 'ad-title', dir: 'auto', title: ad.title, text: ad.title }),
+      h('span', { class: 'ad-title', dir: 'auto', title: title, text: title }),
       cta,
       removeIcon
     );
   }
 
-  return h('aside', { class: 'ad-card', 'aria-label': t('adSponsored') },
+  return h('aside', { class: 'ad-card', 'aria-label': labelText },
     ad.image ? h('img', { class: 'ad-image', src: chrome.runtime.getURL(ad.image), alt: '', width: 40, height: 40 }) : null,
     h('div', { class: 'ad-body' },
       label,
-      h('p', { class: 'ad-title', dir: 'auto', text: ad.title }),
-      ad.text ? h('p', { class: 'ad-text', dir: 'auto', text: ad.text }) : null
+      h('p', { class: 'ad-title', dir: 'auto', text: title }),
+      text ? h('p', { class: 'ad-text', dir: 'auto', text: text }) : null
     ),
     h('div', { class: 'ad-actions' }, cta, remove)
   );

@@ -5,7 +5,8 @@
     "text": "Support the project and get the AI features when they arrive.",
     "url": "#premium",
     "cta": "⭐ Go Premium",
-    "languages": ["en"]
+    "languages": ["en"],
+    "sponsored": false
   },
   {
     "id": "premium-ar",
@@ -13,14 +14,16 @@
     "text": "ادعم المشروع واحصل على مزايا الذكاء الاصطناعي عند توفرها.",
     "url": "#premium",
     "cta": "⭐ اشترك في Premium",
-    "languages": ["ar"]
+    "languages": ["ar"],
+    "sponsored": false
   },
   {
     "id": "github-star",
-    "title": "Like this extension? Star it on GitHub",
-    "text": "A star helps other job seekers find it. It's free.",
+    "titleKey": "starTitle",
+    "textKey": "starText",
+    "ctaKey": "starCta",
     "url": "https://github.com/omar-diab/Job-Application-Tracker",
-    "cta": "★ Star",
-    "image": "icons/ads/star.svg"
+    "image": "icons/ads/star.svg",
+    "sponsored": false
   }
 ]

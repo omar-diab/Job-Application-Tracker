@@ -555,5 +555,21 @@
   "adRemoveAds": {
     "message": "去除广告 ⭐",
     "description": "Small link on an ad card. Opens the Premium window."
+  },
+  "adFromDeveloper": {
+    "message": "来自开发者",
+    "description": "Small label on a card that promotes our own project (not a paid ad)."
+  },
+  "starTitle": {
+    "message": "喜欢这个扩展吗？",
+    "description": "Title of the card that asks users to star the project on GitHub."
+  },
+  "starText": {
+    "message": "在 GitHub 上点个星标，关注新版本和更新。",
+    "description": "Text of the GitHub star card. Keep \"GitHub\"."
+  },
+  "starCta": {
+    "message": "★ 在 GitHub 上加星",
+    "description": "Button of the GitHub star card. Keep \"GitHub\" and the ★."
   }
 }

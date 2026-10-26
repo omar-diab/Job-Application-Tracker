@@ -555,5 +555,21 @@
   "adRemoveAds": {
     "message": "Quitar anuncios ⭐",
     "description": "Small link on an ad card. Opens the Premium window."
+  },
+  "adFromDeveloper": {
+    "message": "Del desarrollador",
+    "description": "Small label on a card that promotes our own project (not a paid ad)."
+  },
+  "starTitle": {
+    "message": "¿Te gusta esta extensión?",
+    "description": "Title of the card that asks users to star the project on GitHub."
+  },
+  "starText": {
+    "message": "Dale una estrella en GitHub para seguir las nuevas versiones y novedades.",
+    "description": "Text of the GitHub star card. Keep \"GitHub\"."
+  },
+  "starCta": {
+    "message": "★ Estrella en GitHub",
+    "description": "Button of the GitHub star card. Keep \"GitHub\" and the ★."
   }
 }

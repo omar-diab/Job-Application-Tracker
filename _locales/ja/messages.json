@@ -555,5 +555,21 @@
   "adRemoveAds": {
     "message": "広告を非表示 ⭐",
     "description": "Small link on an ad card. Opens the Premium window."
+  },
+  "adFromDeveloper": {
+    "message": "開発者より",
+    "description": "Small label on a card that promotes our own project (not a paid ad)."
+  },
+  "starTitle": {
+    "message": "この拡張機能は気に入りましたか？",
+    "description": "Title of the card that asks users to star the project on GitHub."
+  },
+  "starText": {
+    "message": "GitHub でスターを付けて、新しいバージョンや更新をチェックしましょう。",
+    "description": "Text of the GitHub star card. Keep \"GitHub\"."
+  },
+  "starCta": {
+    "message": "★ GitHub でスター",
+    "description": "Button of the GitHub star card. Keep \"GitHub\" and the ★."
   }
 }
