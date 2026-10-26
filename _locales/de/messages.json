@@ -377,12 +377,183 @@
     "message": "Notizen",
     "description": "CSV file column header: notes."
   },
+  "goPremium": {
+    "message": "⭐ Premium holen",
+    "description": "Top bar button for free users. Opens the Premium window."
+  },
+  "premiumBadge": {
+    "message": "⭐ Premium",
+    "description": "Top bar badge for Premium users. Opens the Premium window."
+  },
+  "premiumTitle": {
+    "message": "⭐ Premium",
+    "description": "Title of the Premium window."
+  },
+  "premiumIntro": {
+    "message": "Unterstütze das Projekt und erhalte zusätzliche Funktionen. Alle bisherigen Funktionen bleiben kostenlos.",
+    "description": "Intro text in the Premium window for free users."
+  },
+  "premiumActive": {
+    "message": "✓ Du hast Premium. Danke für deine Unterstützung!",
+    "description": "Message in the Premium window for Premium users."
+  },
+  "premiumIncluded": {
+    "message": "Das ist enthalten",
+    "description": "Heading above the list of Premium benefits."
+  },
+  "premiumNoAds": {
+    "message": "Keine Werbung",
+    "description": "Premium benefit."
+  },
+  "premiumSupport": {
+    "message": "Unterstützung des Projekts",
+    "description": "Premium benefit: the money helps the developer."
+  },
+  "premiumAiSoon": {
+    "message": "KI-Funktionen (bald verfügbar)",
+    "description": "Premium benefit that is not ready yet."
+  },
+  "premiumChoosePlan": {
+    "message": "Wähle einen Plan",
+    "description": "Heading above the list of plans."
+  },
+  "planMonthly": {
+    "message": "Monatlich",
+    "description": "Name of a plan paid every month."
+  },
+  "planYearly": {
+    "message": "Jährlich",
+    "description": "Name of a plan paid every year."
+  },
+  "planOnce": {
+    "message": "Einmalzahlung",
+    "description": "Name of a plan paid only once (lifetime)."
+  },
+  "pricePerMonth": {
+    "message": "$PRICE$ / Monat",
+    "description": "Price of a monthly plan. $PRICE$ is a formatted price like $4.99.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "pricePerYear": {
+    "message": "$PRICE$ / Jahr",
+    "description": "Price of a yearly plan.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "pricePerMonths": {
+    "message": "$PRICE$ alle $COUNT$ Monate",
+    "description": "Price of a plan paid every few months.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" },
+      "count": { "content": "$2", "example": "3" }
+    }
+  },
+  "pricePerYears": {
+    "message": "$PRICE$ alle $COUNT$ Jahre",
+    "description": "Price of a plan paid every few years.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" },
+      "count": { "content": "$2", "example": "2" }
+    }
+  },
+  "priceOnce": {
+    "message": "$PRICE$ einmalig",
+    "description": "Price of a one-time plan.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "choosePlan": {
+    "message": "Wählen",
+    "description": "Button to buy a plan."
+  },
+  "choosePlanLabel": {
+    "message": "Plan $PLAN$ wählen",
+    "description": "Accessible label of the Choose button. $PLAN$ is a plan name like Monthly.",
+    "placeholders": {
+      "plan": { "content": "$1", "example": "Monthly" }
+    }
+  },
+  "premiumSecureNote": {
+    "message": "Zahlungen werden sicher über Dodo Payments abgewickelt. Wir sehen deine Kartendaten nie.",
+    "description": "Small note under the plans. Keep the name Dodo Payments."
+  },
   "close": {
     "message": "Schließen",
     "description": "Button that closes a window."
   },
+  "popupPremiumLink": {
+    "message": "⭐ Premium",
+    "description": "Small link at the bottom of the popup for free users."
+  },
+  "licenseHaveKey": {
+    "message": "Premium schon gekauft? Gib deinen Lizenzschlüssel ein",
+    "description": "Label above the license key field."
+  },
+  "licensePlaceholder": {
+    "message": "Lizenzschlüssel einfügen",
+    "description": "Example text inside the empty license key field."
+  },
+  "licenseActivate": {
+    "message": "Aktivieren",
+    "description": "Button that checks and activates the license key."
+  },
+  "licenseActivating": {
+    "message": "Wird geprüft…",
+    "description": "Button text while the license key is being checked."
+  },
+  "licenseEmailHint": {
+    "message": "Nach der Zahlung schickt dir Dodo Payments den Lizenzschlüssel per E-Mail.",
+    "description": "Help text under the license key field. Keep the name Dodo Payments."
+  },
+  "licenseRequired": {
+    "message": "Bitte füge deinen Lizenzschlüssel ein.",
+    "description": "Error when the license key field is empty."
+  },
+  "licenseInvalid": {
+    "message": "Dieser Lizenzschlüssel wurde nicht gefunden. Bitte prüfe ihn und versuche es erneut.",
+    "description": "Error when the license key does not exist."
+  },
+  "licenseInactive": {
+    "message": "Dieser Lizenzschlüssel ist nicht aktiv. Vielleicht ist das Abo abgelaufen.",
+    "description": "Error when the license key exists but is disabled."
+  },
+  "licenseLimit": {
+    "message": "Dieser Schlüssel wird schon auf der maximalen Anzahl von Computern genutzt. Entferne ihn zuerst von einem anderen Computer.",
+    "description": "Error when the key has no free activations left."
+  },
+  "licenseNetworkError": {
+    "message": "Der Schlüssel konnte nicht geprüft werden. Bitte prüfe deine Internetverbindung und versuche es erneut.",
+    "description": "Error when the license server cannot be reached."
+  },
+  "licenseOnThisComputer": {
+    "message": "Lizenzschlüssel auf diesem Computer: $KEY$",
+    "description": "Shows the end of the saved license key. $KEY$ is like •••• 5678.",
+    "placeholders": {
+      "key": { "content": "$1", "example": "•••• 5678" }
+    }
+  },
+  "manageHint": {
+    "message": "Um dein Abo zu ändern oder zu kündigen, nutze den Link in der E-Mail von Dodo Payments.",
+    "description": "Help text for Premium users. Keep the name Dodo Payments."
+  },
+  "licenseRemove": {
+    "message": "Lizenz von diesem Computer entfernen",
+    "description": "Button that frees the license so it can be used on another computer."
+  },
+  "licenseRemoveConfirm": {
+    "message": "Lizenz von diesem Computer entfernen? Du kannst sie später mit demselben Schlüssel wieder aktivieren.",
+    "description": "Confirmation question before removing the license."
+  },
   "adSponsored": {
     "message": "Gesponsert",
     "description": "Small label on every ad card. It must be clear that the card is an ad."
+  },
+  "adRemoveAds": {
+    "message": "Werbung entfernen ⭐",
+    "description": "Small link on an ad card. Opens the Premium window."
   }
 }

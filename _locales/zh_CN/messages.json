@@ -377,12 +377,183 @@
     "message": "备注",
     "description": "CSV file column header: notes."
   },
+  "goPremium": {
+    "message": "⭐ 升级 Premium",
+    "description": "Top bar button for free users. Opens the Premium window."
+  },
+  "premiumBadge": {
+    "message": "⭐ Premium",
+    "description": "Top bar badge for Premium users. Opens the Premium window."
+  },
+  "premiumTitle": {
+    "message": "⭐ Premium",
+    "description": "Title of the Premium window."
+  },
+  "premiumIntro": {
+    "message": "支持本项目并解锁更多功能。现有的所有功能仍然免费。",
+    "description": "Intro text in the Premium window for free users."
+  },
+  "premiumActive": {
+    "message": "✓ 你已拥有 Premium。感谢你的支持！",
+    "description": "Message in the Premium window for Premium users."
+  },
+  "premiumIncluded": {
+    "message": "包含内容",
+    "description": "Heading above the list of Premium benefits."
+  },
+  "premiumNoAds": {
+    "message": "无广告",
+    "description": "Premium benefit."
+  },
+  "premiumSupport": {
+    "message": "支持本项目",
+    "description": "Premium benefit: the money helps the developer."
+  },
+  "premiumAiSoon": {
+    "message": "AI 功能（即将推出）",
+    "description": "Premium benefit that is not ready yet."
+  },
+  "premiumChoosePlan": {
+    "message": "选择方案",
+    "description": "Heading above the list of plans."
+  },
+  "planMonthly": {
+    "message": "按月",
+    "description": "Name of a plan paid every month."
+  },
+  "planYearly": {
+    "message": "按年",
+    "description": "Name of a plan paid every year."
+  },
+  "planOnce": {
+    "message": "一次性付款",
+    "description": "Name of a plan paid only once (lifetime)."
+  },
+  "pricePerMonth": {
+    "message": "$PRICE$ / 月",
+    "description": "Price of a monthly plan. $PRICE$ is a formatted price like $4.99.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "pricePerYear": {
+    "message": "$PRICE$ / 年",
+    "description": "Price of a yearly plan.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "pricePerMonths": {
+    "message": "每 $COUNT$ 个月 $PRICE$",
+    "description": "Price of a plan paid every few months.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" },
+      "count": { "content": "$2", "example": "3" }
+    }
+  },
+  "pricePerYears": {
+    "message": "每 $COUNT$ 年 $PRICE$",
+    "description": "Price of a plan paid every few years.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" },
+      "count": { "content": "$2", "example": "2" }
+    }
+  },
+  "priceOnce": {
+    "message": "一次性 $PRICE$",
+    "description": "Price of a one-time plan.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "choosePlan": {
+    "message": "选择",
+    "description": "Button to buy a plan."
+  },
+  "choosePlanLabel": {
+    "message": "选择 $PLAN$ 方案",
+    "description": "Accessible label of the Choose button. $PLAN$ is a plan name like Monthly.",
+    "placeholders": {
+      "plan": { "content": "$1", "example": "Monthly" }
+    }
+  },
+  "premiumSecureNote": {
+    "message": "付款由 Dodo Payments 安全处理。我们永远看不到你的银行卡信息。",
+    "description": "Small note under the plans. Keep the name Dodo Payments."
+  },
   "close": {
     "message": "关闭",
     "description": "Button that closes a window."
   },
+  "popupPremiumLink": {
+    "message": "⭐ Premium",
+    "description": "Small link at the bottom of the popup for free users."
+  },
+  "licenseHaveKey": {
+    "message": "已购买 Premium？请输入你的许可证密钥",
+    "description": "Label above the license key field."
+  },
+  "licensePlaceholder": {
+    "message": "粘贴你的许可证密钥",
+    "description": "Example text inside the empty license key field."
+  },
+  "licenseActivate": {
+    "message": "激活",
+    "description": "Button that checks and activates the license key."
+  },
+  "licenseActivating": {
+    "message": "正在检查…",
+    "description": "Button text while the license key is being checked."
+  },
+  "licenseEmailHint": {
+    "message": "付款后，Dodo Payments 会通过电子邮件发送你的许可证密钥。",
+    "description": "Help text under the license key field. Keep the name Dodo Payments."
+  },
+  "licenseRequired": {
+    "message": "请粘贴你的许可证密钥。",
+    "description": "Error when the license key field is empty."
+  },
+  "licenseInvalid": {
+    "message": "找不到此许可证密钥，请检查后重试。",
+    "description": "Error when the license key does not exist."
+  },
+  "licenseInactive": {
+    "message": "此许可证密钥未激活，订阅可能已结束。",
+    "description": "Error when the license key exists but is disabled."
+  },
+  "licenseLimit": {
+    "message": "此密钥已在最大数量的电脑上使用，请先从另一台电脑上移除。",
+    "description": "Error when the key has no free activations left."
+  },
+  "licenseNetworkError": {
+    "message": "无法检查密钥，请检查网络连接后重试。",
+    "description": "Error when the license server cannot be reached."
+  },
+  "licenseOnThisComputer": {
+    "message": "本机的许可证密钥：$KEY$",
+    "description": "Shows the end of the saved license key. $KEY$ is like •••• 5678.",
+    "placeholders": {
+      "key": { "content": "$1", "example": "•••• 5678" }
+    }
+  },
+  "manageHint": {
+    "message": "如需更改或取消订阅，请使用 Dodo Payments 邮件中的链接。",
+    "description": "Help text for Premium users. Keep the name Dodo Payments."
+  },
+  "licenseRemove": {
+    "message": "从本机移除许可证",
+    "description": "Button that frees the license so it can be used on another computer."
+  },
+  "licenseRemoveConfirm": {
+    "message": "要从本机移除许可证吗？以后可以用同一个密钥重新激活。",
+    "description": "Confirmation question before removing the license."
+  },
   "adSponsored": {
     "message": "赞助",
     "description": "Small label on every ad card. It must be clear that the card is an ad."
+  },
+  "adRemoveAds": {
+    "message": "去除广告 ⭐",
+    "description": "Small link on an ad card. Opens the Premium window."
   }
 }

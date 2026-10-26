@@ -1,5 +1,21 @@
 [
   {
+    "id": "premium-en",
+    "title": "Go Premium to remove ads",
+    "text": "Support the project and get the AI features when they arrive.",
+    "url": "#premium",
+    "cta": "⭐ Go Premium",
+    "languages": ["en"]
+  },
+  {
+    "id": "premium-ar",
+    "title": "اشترك في Premium لإزالة الإعلانات",
+    "text": "ادعم المشروع واحصل على مزايا الذكاء الاصطناعي عند توفرها.",
+    "url": "#premium",
+    "cta": "⭐ اشترك في Premium",
+    "languages": ["ar"]
+  },
+  {
     "id": "github-star",
     "title": "Like this extension? Star it on GitHub",
     "text": "A star helps other job seekers find it. It's free.",

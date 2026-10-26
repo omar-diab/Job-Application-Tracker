@@ -377,12 +377,183 @@
     "message": "Catatan",
     "description": "CSV file column header: notes."
   },
+  "goPremium": {
+    "message": "⭐ Jadi Premium",
+    "description": "Top bar button for free users. Opens the Premium window."
+  },
+  "premiumBadge": {
+    "message": "⭐ Premium",
+    "description": "Top bar badge for Premium users. Opens the Premium window."
+  },
+  "premiumTitle": {
+    "message": "⭐ Premium",
+    "description": "Title of the Premium window."
+  },
+  "premiumIntro": {
+    "message": "Dukung proyek ini dan buka fitur tambahan. Semua fitur yang ada tetap gratis.",
+    "description": "Intro text in the Premium window for free users."
+  },
+  "premiumActive": {
+    "message": "✓ Anda sudah Premium. Terima kasih atas dukungan Anda!",
+    "description": "Message in the Premium window for Premium users."
+  },
+  "premiumIncluded": {
+    "message": "Yang termasuk",
+    "description": "Heading above the list of Premium benefits."
+  },
+  "premiumNoAds": {
+    "message": "Tanpa iklan",
+    "description": "Premium benefit."
+  },
+  "premiumSupport": {
+    "message": "Mendukung proyek",
+    "description": "Premium benefit: the money helps the developer."
+  },
+  "premiumAiSoon": {
+    "message": "Fitur AI (segera hadir)",
+    "description": "Premium benefit that is not ready yet."
+  },
+  "premiumChoosePlan": {
+    "message": "Pilih paket",
+    "description": "Heading above the list of plans."
+  },
+  "planMonthly": {
+    "message": "Bulanan",
+    "description": "Name of a plan paid every month."
+  },
+  "planYearly": {
+    "message": "Tahunan",
+    "description": "Name of a plan paid every year."
+  },
+  "planOnce": {
+    "message": "Sekali bayar",
+    "description": "Name of a plan paid only once (lifetime)."
+  },
+  "pricePerMonth": {
+    "message": "$PRICE$ / bulan",
+    "description": "Price of a monthly plan. $PRICE$ is a formatted price like $4.99.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "pricePerYear": {
+    "message": "$PRICE$ / tahun",
+    "description": "Price of a yearly plan.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "pricePerMonths": {
+    "message": "$PRICE$ setiap $COUNT$ bulan",
+    "description": "Price of a plan paid every few months.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" },
+      "count": { "content": "$2", "example": "3" }
+    }
+  },
+  "pricePerYears": {
+    "message": "$PRICE$ setiap $COUNT$ tahun",
+    "description": "Price of a plan paid every few years.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" },
+      "count": { "content": "$2", "example": "2" }
+    }
+  },
+  "priceOnce": {
+    "message": "$PRICE$ sekali",
+    "description": "Price of a one-time plan.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "choosePlan": {
+    "message": "Pilih",
+    "description": "Button to buy a plan."
+  },
+  "choosePlanLabel": {
+    "message": "Pilih paket $PLAN$",
+    "description": "Accessible label of the Choose button. $PLAN$ is a plan name like Monthly.",
+    "placeholders": {
+      "plan": { "content": "$1", "example": "Monthly" }
+    }
+  },
+  "premiumSecureNote": {
+    "message": "Pembayaran diproses dengan aman oleh Dodo Payments. Kami tidak pernah melihat data kartu Anda.",
+    "description": "Small note under the plans. Keep the name Dodo Payments."
+  },
   "close": {
     "message": "Tutup",
     "description": "Button that closes a window."
   },
+  "popupPremiumLink": {
+    "message": "⭐ Premium",
+    "description": "Small link at the bottom of the popup for free users."
+  },
+  "licenseHaveKey": {
+    "message": "Sudah membeli Premium? Masukkan kunci lisensi Anda",
+    "description": "Label above the license key field."
+  },
+  "licensePlaceholder": {
+    "message": "Tempel kunci lisensi Anda",
+    "description": "Example text inside the empty license key field."
+  },
+  "licenseActivate": {
+    "message": "Aktifkan",
+    "description": "Button that checks and activates the license key."
+  },
+  "licenseActivating": {
+    "message": "Memeriksa…",
+    "description": "Button text while the license key is being checked."
+  },
+  "licenseEmailHint": {
+    "message": "Setelah membayar, Dodo Payments mengirim kunci lisensi ke email Anda.",
+    "description": "Help text under the license key field. Keep the name Dodo Payments."
+  },
+  "licenseRequired": {
+    "message": "Tempel kunci lisensi Anda.",
+    "description": "Error when the license key field is empty."
+  },
+  "licenseInvalid": {
+    "message": "Kunci lisensi ini tidak ditemukan. Periksa lalu coba lagi.",
+    "description": "Error when the license key does not exist."
+  },
+  "licenseInactive": {
+    "message": "Kunci lisensi ini tidak aktif. Mungkin langganan sudah berakhir.",
+    "description": "Error when the license key exists but is disabled."
+  },
+  "licenseLimit": {
+    "message": "Kunci ini sudah dipakai di jumlah komputer maksimum. Hapus dulu dari komputer lain.",
+    "description": "Error when the key has no free activations left."
+  },
+  "licenseNetworkError": {
+    "message": "Kunci tidak bisa diperiksa. Periksa koneksi internet lalu coba lagi.",
+    "description": "Error when the license server cannot be reached."
+  },
+  "licenseOnThisComputer": {
+    "message": "Kunci lisensi di komputer ini: $KEY$",
+    "description": "Shows the end of the saved license key. $KEY$ is like •••• 5678.",
+    "placeholders": {
+      "key": { "content": "$1", "example": "•••• 5678" }
+    }
+  },
+  "manageHint": {
+    "message": "Untuk mengubah atau membatalkan langganan, gunakan tautan di email dari Dodo Payments.",
+    "description": "Help text for Premium users. Keep the name Dodo Payments."
+  },
+  "licenseRemove": {
+    "message": "Hapus lisensi dari komputer ini",
+    "description": "Button that frees the license so it can be used on another computer."
+  },
+  "licenseRemoveConfirm": {
+    "message": "Hapus lisensi dari komputer ini? Anda bisa mengaktifkannya lagi nanti dengan kunci yang sama.",
+    "description": "Confirmation question before removing the license."
+  },
   "adSponsored": {
     "message": "Bersponsor",
     "description": "Small label on every ad card. It must be clear that the card is an ad."
+  },
+  "adRemoveAds": {
+    "message": "Hapus iklan ⭐",
+    "description": "Small link on an ad card. Opens the Premium window."
   }
 }

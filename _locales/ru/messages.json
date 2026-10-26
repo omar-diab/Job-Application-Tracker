@@ -377,12 +377,183 @@
     "message": "Заметки",
     "description": "CSV file column header: notes."
   },
+  "goPremium": {
+    "message": "⭐ Получить Premium",
+    "description": "Top bar button for free users. Opens the Premium window."
+  },
+  "premiumBadge": {
+    "message": "⭐ Premium",
+    "description": "Top bar badge for Premium users. Opens the Premium window."
+  },
+  "premiumTitle": {
+    "message": "⭐ Premium",
+    "description": "Title of the Premium window."
+  },
+  "premiumIntro": {
+    "message": "Поддержите проект и откройте дополнительные функции. Все текущие функции остаются бесплатными.",
+    "description": "Intro text in the Premium window for free users."
+  },
+  "premiumActive": {
+    "message": "✓ У вас Premium. Спасибо за поддержку!",
+    "description": "Message in the Premium window for Premium users."
+  },
+  "premiumIncluded": {
+    "message": "Что входит",
+    "description": "Heading above the list of Premium benefits."
+  },
+  "premiumNoAds": {
+    "message": "Без рекламы",
+    "description": "Premium benefit."
+  },
+  "premiumSupport": {
+    "message": "Поддержка проекта",
+    "description": "Premium benefit: the money helps the developer."
+  },
+  "premiumAiSoon": {
+    "message": "Функции ИИ (скоро)",
+    "description": "Premium benefit that is not ready yet."
+  },
+  "premiumChoosePlan": {
+    "message": "Выберите план",
+    "description": "Heading above the list of plans."
+  },
+  "planMonthly": {
+    "message": "Ежемесячно",
+    "description": "Name of a plan paid every month."
+  },
+  "planYearly": {
+    "message": "Ежегодно",
+    "description": "Name of a plan paid every year."
+  },
+  "planOnce": {
+    "message": "Разовый платёж",
+    "description": "Name of a plan paid only once (lifetime)."
+  },
+  "pricePerMonth": {
+    "message": "$PRICE$ / месяц",
+    "description": "Price of a monthly plan. $PRICE$ is a formatted price like $4.99.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "pricePerYear": {
+    "message": "$PRICE$ / год",
+    "description": "Price of a yearly plan.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "pricePerMonths": {
+    "message": "$PRICE$ раз в $COUNT$ мес.",
+    "description": "Price of a plan paid every few months.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" },
+      "count": { "content": "$2", "example": "3" }
+    }
+  },
+  "pricePerYears": {
+    "message": "$PRICE$ раз в $COUNT$ г.",
+    "description": "Price of a plan paid every few years.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" },
+      "count": { "content": "$2", "example": "2" }
+    }
+  },
+  "priceOnce": {
+    "message": "$PRICE$ один раз",
+    "description": "Price of a one-time plan.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "choosePlan": {
+    "message": "Выбрать",
+    "description": "Button to buy a plan."
+  },
+  "choosePlanLabel": {
+    "message": "Выбрать план: $PLAN$",
+    "description": "Accessible label of the Choose button. $PLAN$ is a plan name like Monthly.",
+    "placeholders": {
+      "plan": { "content": "$1", "example": "Monthly" }
+    }
+  },
+  "premiumSecureNote": {
+    "message": "Платежи безопасно обрабатывает Dodo Payments. Мы никогда не видим данные вашей карты.",
+    "description": "Small note under the plans. Keep the name Dodo Payments."
+  },
   "close": {
     "message": "Закрыть",
     "description": "Button that closes a window."
   },
+  "popupPremiumLink": {
+    "message": "⭐ Premium",
+    "description": "Small link at the bottom of the popup for free users."
+  },
+  "licenseHaveKey": {
+    "message": "Уже купили Premium? Введите лицензионный ключ",
+    "description": "Label above the license key field."
+  },
+  "licensePlaceholder": {
+    "message": "Вставьте лицензионный ключ",
+    "description": "Example text inside the empty license key field."
+  },
+  "licenseActivate": {
+    "message": "Активировать",
+    "description": "Button that checks and activates the license key."
+  },
+  "licenseActivating": {
+    "message": "Проверка…",
+    "description": "Button text while the license key is being checked."
+  },
+  "licenseEmailHint": {
+    "message": "После оплаты Dodo Payments пришлёт лицензионный ключ на вашу почту.",
+    "description": "Help text under the license key field. Keep the name Dodo Payments."
+  },
+  "licenseRequired": {
+    "message": "Вставьте лицензионный ключ.",
+    "description": "Error when the license key field is empty."
+  },
+  "licenseInvalid": {
+    "message": "Такой лицензионный ключ не найден. Проверьте его и попробуйте ещё раз.",
+    "description": "Error when the license key does not exist."
+  },
+  "licenseInactive": {
+    "message": "Этот лицензионный ключ не активен. Возможно, подписка закончилась.",
+    "description": "Error when the license key exists but is disabled."
+  },
+  "licenseLimit": {
+    "message": "Этот ключ уже используется на максимальном числе компьютеров. Сначала удалите его с другого компьютера.",
+    "description": "Error when the key has no free activations left."
+  },
+  "licenseNetworkError": {
+    "message": "Не удалось проверить ключ. Проверьте подключение к интернету и попробуйте ещё раз.",
+    "description": "Error when the license server cannot be reached."
+  },
+  "licenseOnThisComputer": {
+    "message": "Лицензионный ключ на этом компьютере: $KEY$",
+    "description": "Shows the end of the saved license key. $KEY$ is like •••• 5678.",
+    "placeholders": {
+      "key": { "content": "$1", "example": "•••• 5678" }
+    }
+  },
+  "manageHint": {
+    "message": "Чтобы изменить или отменить подписку, используйте ссылку из письма Dodo Payments.",
+    "description": "Help text for Premium users. Keep the name Dodo Payments."
+  },
+  "licenseRemove": {
+    "message": "Удалить лицензию с этого компьютера",
+    "description": "Button that frees the license so it can be used on another computer."
+  },
+  "licenseRemoveConfirm": {
+    "message": "Удалить лицензию с этого компьютера? Позже её можно снова активировать тем же ключом.",
+    "description": "Confirmation question before removing the license."
+  },
   "adSponsored": {
     "message": "Реклама",
     "description": "Small label on every ad card. It must be clear that the card is an ad."
+  },
+  "adRemoveAds": {
+    "message": "Убрать рекламу ⭐",
+    "description": "Small link on an ad card. Opens the Premium window."
   }
 }

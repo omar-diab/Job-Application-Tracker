@@ -377,12 +377,183 @@
     "message": "メモ",
     "description": "CSV file column header: notes."
   },
+  "goPremium": {
+    "message": "⭐ Premium にする",
+    "description": "Top bar button for free users. Opens the Premium window."
+  },
+  "premiumBadge": {
+    "message": "⭐ Premium",
+    "description": "Top bar badge for Premium users. Opens the Premium window."
+  },
+  "premiumTitle": {
+    "message": "⭐ Premium",
+    "description": "Title of the Premium window."
+  },
+  "premiumIntro": {
+    "message": "プロジェクトを応援して、追加機能を使えるようにしましょう。今ある機能はすべて無料のままです。",
+    "description": "Intro text in the Premium window for free users."
+  },
+  "premiumActive": {
+    "message": "✓ Premium をご利用中です。ご支援ありがとうございます！",
+    "description": "Message in the Premium window for Premium users."
+  },
+  "premiumIncluded": {
+    "message": "含まれるもの",
+    "description": "Heading above the list of Premium benefits."
+  },
+  "premiumNoAds": {
+    "message": "広告なし",
+    "description": "Premium benefit."
+  },
+  "premiumSupport": {
+    "message": "プロジェクトの応援",
+    "description": "Premium benefit: the money helps the developer."
+  },
+  "premiumAiSoon": {
+    "message": "AI 機能（近日公開）",
+    "description": "Premium benefit that is not ready yet."
+  },
+  "premiumChoosePlan": {
+    "message": "プランを選択",
+    "description": "Heading above the list of plans."
+  },
+  "planMonthly": {
+    "message": "月額",
+    "description": "Name of a plan paid every month."
+  },
+  "planYearly": {
+    "message": "年額",
+    "description": "Name of a plan paid every year."
+  },
+  "planOnce": {
+    "message": "一回払い",
+    "description": "Name of a plan paid only once (lifetime)."
+  },
+  "pricePerMonth": {
+    "message": "$PRICE$ / 月",
+    "description": "Price of a monthly plan. $PRICE$ is a formatted price like $4.99.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "pricePerYear": {
+    "message": "$PRICE$ / 年",
+    "description": "Price of a yearly plan.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "pricePerMonths": {
+    "message": "$COUNT$ か月ごとに $PRICE$",
+    "description": "Price of a plan paid every few months.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" },
+      "count": { "content": "$2", "example": "3" }
+    }
+  },
+  "pricePerYears": {
+    "message": "$COUNT$ 年ごとに $PRICE$",
+    "description": "Price of a plan paid every few years.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" },
+      "count": { "content": "$2", "example": "2" }
+    }
+  },
+  "priceOnce": {
+    "message": "一回 $PRICE$",
+    "description": "Price of a one-time plan.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "choosePlan": {
+    "message": "選択",
+    "description": "Button to buy a plan."
+  },
+  "choosePlanLabel": {
+    "message": "$PLAN$ プランを選択",
+    "description": "Accessible label of the Choose button. $PLAN$ is a plan name like Monthly.",
+    "placeholders": {
+      "plan": { "content": "$1", "example": "Monthly" }
+    }
+  },
+  "premiumSecureNote": {
+    "message": "お支払いは Dodo Payments が安全に処理します。カード情報を私たちが見ることはありません。",
+    "description": "Small note under the plans. Keep the name Dodo Payments."
+  },
   "close": {
     "message": "閉じる",
     "description": "Button that closes a window."
   },
+  "popupPremiumLink": {
+    "message": "⭐ Premium",
+    "description": "Small link at the bottom of the popup for free users."
+  },
+  "licenseHaveKey": {
+    "message": "Premium を購入済みですか？ライセンスキーを入力してください",
+    "description": "Label above the license key field."
+  },
+  "licensePlaceholder": {
+    "message": "ライセンスキーを貼り付け",
+    "description": "Example text inside the empty license key field."
+  },
+  "licenseActivate": {
+    "message": "有効にする",
+    "description": "Button that checks and activates the license key."
+  },
+  "licenseActivating": {
+    "message": "確認中…",
+    "description": "Button text while the license key is being checked."
+  },
+  "licenseEmailHint": {
+    "message": "お支払い後、Dodo Payments からライセンスキーがメールで届きます。",
+    "description": "Help text under the license key field. Keep the name Dodo Payments."
+  },
+  "licenseRequired": {
+    "message": "ライセンスキーを貼り付けてください。",
+    "description": "Error when the license key field is empty."
+  },
+  "licenseInvalid": {
+    "message": "このライセンスキーは見つかりません。確認してもう一度お試しください。",
+    "description": "Error when the license key does not exist."
+  },
+  "licenseInactive": {
+    "message": "このライセンスキーは有効ではありません。サブスクリプションが終了した可能性があります。",
+    "description": "Error when the license key exists but is disabled."
+  },
+  "licenseLimit": {
+    "message": "このキーは使用できるパソコンの上限に達しています。先に別のパソコンから削除してください。",
+    "description": "Error when the key has no free activations left."
+  },
+  "licenseNetworkError": {
+    "message": "キーを確認できませんでした。インターネット接続を確認して、もう一度お試しください。",
+    "description": "Error when the license server cannot be reached."
+  },
+  "licenseOnThisComputer": {
+    "message": "このパソコンのライセンスキー：$KEY$",
+    "description": "Shows the end of the saved license key. $KEY$ is like •••• 5678.",
+    "placeholders": {
+      "key": { "content": "$1", "example": "•••• 5678" }
+    }
+  },
+  "manageHint": {
+    "message": "サブスクリプションの変更や解約は、Dodo Payments からのメールにあるリンクから行ってください。",
+    "description": "Help text for Premium users. Keep the name Dodo Payments."
+  },
+  "licenseRemove": {
+    "message": "このパソコンからライセンスを削除",
+    "description": "Button that frees the license so it can be used on another computer."
+  },
+  "licenseRemoveConfirm": {
+    "message": "このパソコンからライセンスを削除しますか？あとで同じキーで再び有効にできます。",
+    "description": "Confirmation question before removing the license."
+  },
   "adSponsored": {
     "message": "スポンサー",
     "description": "Small label on every ad card. It must be clear that the card is an ad."
+  },
+  "adRemoveAds": {
+    "message": "広告を非表示 ⭐",
+    "description": "Small link on an ad card. Opens the Premium window."
   }
 }

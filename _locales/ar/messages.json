@@ -377,12 +377,183 @@
     "message": "ملاحظات",
     "description": "CSV file column header: notes."
   },
+  "goPremium": {
+    "message": "⭐ اشترك في Premium",
+    "description": "Top bar button for free users. Opens the Premium window."
+  },
+  "premiumBadge": {
+    "message": "⭐ Premium",
+    "description": "Top bar badge for Premium users. Opens the Premium window."
+  },
+  "premiumTitle": {
+    "message": "⭐ Premium",
+    "description": "Title of the Premium window."
+  },
+  "premiumIntro": {
+    "message": "ادعم المشروع واحصل على مزايا إضافية. كل المزايا الحالية تبقى مجانية.",
+    "description": "Intro text in the Premium window for free users."
+  },
+  "premiumActive": {
+    "message": "✓ لديك اشتراك Premium. شكرًا لدعمك!",
+    "description": "Message in the Premium window for Premium users."
+  },
+  "premiumIncluded": {
+    "message": "ماذا يشمل",
+    "description": "Heading above the list of Premium benefits."
+  },
+  "premiumNoAds": {
+    "message": "بدون إعلانات",
+    "description": "Premium benefit."
+  },
+  "premiumSupport": {
+    "message": "دعم المشروع",
+    "description": "Premium benefit: the money helps the developer."
+  },
+  "premiumAiSoon": {
+    "message": "مزايا الذكاء الاصطناعي (قريبًا)",
+    "description": "Premium benefit that is not ready yet."
+  },
+  "premiumChoosePlan": {
+    "message": "اختر خطة",
+    "description": "Heading above the list of plans."
+  },
+  "planMonthly": {
+    "message": "شهري",
+    "description": "Name of a plan paid every month."
+  },
+  "planYearly": {
+    "message": "سنوي",
+    "description": "Name of a plan paid every year."
+  },
+  "planOnce": {
+    "message": "دفعة واحدة",
+    "description": "Name of a plan paid only once (lifetime)."
+  },
+  "pricePerMonth": {
+    "message": "$PRICE$ / شهريًا",
+    "description": "Price of a monthly plan. $PRICE$ is a formatted price like $4.99.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "pricePerYear": {
+    "message": "$PRICE$ / سنويًا",
+    "description": "Price of a yearly plan.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "pricePerMonths": {
+    "message": "$PRICE$ كل $COUNT$ أشهر",
+    "description": "Price of a plan paid every few months.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" },
+      "count": { "content": "$2", "example": "3" }
+    }
+  },
+  "pricePerYears": {
+    "message": "$PRICE$ كل $COUNT$ سنوات",
+    "description": "Price of a plan paid every few years.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" },
+      "count": { "content": "$2", "example": "2" }
+    }
+  },
+  "priceOnce": {
+    "message": "$PRICE$ مرة واحدة",
+    "description": "Price of a one-time plan.",
+    "placeholders": {
+      "price": { "content": "$1", "example": "$4.99" }
+    }
+  },
+  "choosePlan": {
+    "message": "اختيار",
+    "description": "Button to buy a plan."
+  },
+  "choosePlanLabel": {
+    "message": "اختيار الخطة: $PLAN$",
+    "description": "Accessible label of the Choose button. $PLAN$ is a plan name like Monthly.",
+    "placeholders": {
+      "plan": { "content": "$1", "example": "Monthly" }
+    }
+  },
+  "premiumSecureNote": {
+    "message": "تتم عمليات الدفع بأمان عبر Dodo Payments. لا نرى بيانات بطاقتك أبدًا.",
+    "description": "Small note under the plans. Keep the name Dodo Payments."
+  },
   "close": {
     "message": "إغلاق",
     "description": "Button that closes a window."
   },
+  "popupPremiumLink": {
+    "message": "⭐ Premium",
+    "description": "Small link at the bottom of the popup for free users."
+  },
+  "licenseHaveKey": {
+    "message": "اشتريت Premium من قبل؟ أدخل مفتاح الترخيص",
+    "description": "Label above the license key field."
+  },
+  "licensePlaceholder": {
+    "message": "الصق مفتاح الترخيص",
+    "description": "Example text inside the empty license key field."
+  },
+  "licenseActivate": {
+    "message": "تفعيل",
+    "description": "Button that checks and activates the license key."
+  },
+  "licenseActivating": {
+    "message": "جارٍ التحقق…",
+    "description": "Button text while the license key is being checked."
+  },
+  "licenseEmailHint": {
+    "message": "بعد الدفع، ترسل Dodo Payments مفتاح الترخيص إلى بريدك الإلكتروني.",
+    "description": "Help text under the license key field. Keep the name Dodo Payments."
+  },
+  "licenseRequired": {
+    "message": "يُرجى لصق مفتاح الترخيص.",
+    "description": "Error when the license key field is empty."
+  },
+  "licenseInvalid": {
+    "message": "لم يتم العثور على مفتاح الترخيص هذا. يُرجى التحقق منه والمحاولة مرة أخرى.",
+    "description": "Error when the license key does not exist."
+  },
+  "licenseInactive": {
+    "message": "مفتاح الترخيص هذا غير مفعّل. ربما انتهى الاشتراك.",
+    "description": "Error when the license key exists but is disabled."
+  },
+  "licenseLimit": {
+    "message": "هذا المفتاح مستخدم على الحد الأقصى من الأجهزة. أزِله من جهاز آخر أولًا.",
+    "description": "Error when the key has no free activations left."
+  },
+  "licenseNetworkError": {
+    "message": "تعذّر التحقق من المفتاح. يُرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.",
+    "description": "Error when the license server cannot be reached."
+  },
+  "licenseOnThisComputer": {
+    "message": "مفتاح الترخيص على هذا الجهاز: $KEY$",
+    "description": "Shows the end of the saved license key. $KEY$ is like •••• 5678.",
+    "placeholders": {
+      "key": { "content": "$1", "example": "•••• 5678" }
+    }
+  },
+  "manageHint": {
+    "message": "لتغيير اشتراكك أو إلغائه، استخدم الرابط الموجود في رسالة Dodo Payments في بريدك الإلكتروني.",
+    "description": "Help text for Premium users. Keep the name Dodo Payments."
+  },
+  "licenseRemove": {
+    "message": "إزالة الترخيص من هذا الجهاز",
+    "description": "Button that frees the license so it can be used on another computer."
+  },
+  "licenseRemoveConfirm": {
+    "message": "هل تريد إزالة الترخيص من هذا الجهاز؟ يمكنك تفعيله لاحقًا بالمفتاح نفسه.",
+    "description": "Confirmation question before removing the license."
+  },
   "adSponsored": {
     "message": "إعلان مموَّل",
     "description": "Small label on every ad card. It must be clear that the card is an ad."
+  },
+  "adRemoveAds": {
+    "message": "إزالة الإعلانات ⭐",
+    "description": "Small link on an ad card. Opens the Premium window."
   }
 }
