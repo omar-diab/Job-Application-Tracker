@@ -4,6 +4,57 @@ Thank you for helping! Bug reports, ideas and pull requests are all welcome.
 
 **Selector updates are especially welcome.** LinkedIn and Indeed change their pages often. When they do, the extension may stop reading a field. A small pull request that fixes a selector helps everyone.
 
+## Versions and branches
+
+- **Released versions** are on the [Releases](https://github.com/omar-diab/Job-Application-Tracker/releases) page. Each release has a zip with only the extension files (built by `.github/workflows/release.yml` when a tag like `v1.0.0` is pushed).
+- **`main`** is the development version. It can contain work that is not released yet.
+
+## How it works
+
+```
+Click icon → popup.js → chrome.scripting.executeScript(extractJobInfo) → reads the job page
+          → core.js cleans the data and checks for duplicates → chrome.storage.local
+          → dashboard.js listens to chrome.storage.onChanged → the list updates by itself
+```
+
+- `extractJobInfo` is fully self-contained, because Chrome copies only that one function into the page.
+- All text is added with `textContent` (through the `h()` helper), never `innerHTML`.
+- Links are normalized (`/jobs/view/123/`, `?jk=...`, tracking parameters removed), so the same job is never saved twice.
+- Translations use Chrome's `_locales` format and are loaded by `shared/i18n.js`, so the user can choose the language.
+
+## Project structure
+
+```
+job-application-tracker/
+├── manifest.json            Extension settings and the 3 permissions
+├── _locales/                Translations (one messages.json per language)
+├── icons/                   Extension icons (16, 48, 128 px), and icons/ads/ for ad images
+├── shared/
+│   ├── base.css             Shared design: colors, dark mode, status colors, menus, buttons
+│   ├── i18n.js              Translations: t(), language picker, right-to-left
+│   ├── core.js              Statuses, safe h() element helper, dates, links, jobs, storage
+│   ├── extractor.js         Reads the job from a page (LinkedIn, Indeed, JSON-LD, title)
+│   ├── ads.js               Sponsored cards (no tracking, no ad network)
+│   ├── ads.json             The list of sponsored cards
+│   └── premium.js           Premium plan (Dodo Payments license keys), development only
+├── popup/                   The popup window (html, css, js)
+├── dashboard/               The full-page dashboard (html, css, js)
+├── tools/                   Helpers for developers (NOT part of the extension)
+│   ├── make-icons.html/.js  Draws the icons and downloads them as PNG
+│   ├── test-core.html/.js   Tests for core.js, i18n.js, premium.js and ads.js
+│   ├── test-extractor.html/.js  Tests for extractor.js
+│   ├── check-locales.js     Checks all translations (node tools/check-locales.js)
+│   └── check-ads.js         Checks shared/ads.json (node tools/check-ads.js)
+├── docs/screenshots/        Images for the README
+└── docs/store/              Chrome Web Store screenshots (1280×800)
+```
+
+## Sponsored cards (`shared/ads.json`)
+
+- The cards are inside the extension: no ad network, no code from the internet, no tracking, no cookies. They are **never** shown on other websites.
+- Each card: `id`, `title`, `text`, `url` (or `"#premium"` to open the Premium window), `cta` (button text), optional `image` (a file in `icons/ads/`), optional `languages` (like `["ar"]`) and optional `endDate` (like `"2027-12-31"`).
+- After editing `ads.json`, run `node tools/check-ads.js`. Changes reach users with the next release.
+
 ## Run the extension locally
 
 1. Fork and clone the repository.

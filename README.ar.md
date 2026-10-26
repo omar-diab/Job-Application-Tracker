@@ -3,236 +3,139 @@
 [English](README.md) | **العربية**
 
 <p align="center">
-  <img src="icons/icon128.png" width="96" height="96" alt="أيقونة متتبع طلبات التوظيف">
+  <img src="icons/icon128.png" width="110" height="110" alt="متتبع طلبات التوظيف">
 </p>
 
 <h1 align="center">متتبع طلبات التوظيف</h1>
 
+<h3 align="center">لا تُضيّع طلبات توظيفك بعد اليوم.</h3>
+
 <p align="center">
-  <b>احفظ الوظائف من LinkedIn وIndeed وأي موقع توظيف بنقرة واحدة،<br>وتابع كل طلباتك في لوحة واحدة خاصة بك.</b>
+  احفظ أي وظيفة من LinkedIn أو Indeed أو أي موقع توظيف <b>بنقرة واحدة</b>،<br>
+  وشاهد كل طلباتك في <b>لوحة واحدة مرتّبة</b>.
 </p>
 
 <p align="center">
-  <a href="https://github.com/omar-diab/Job-Application-Tracker/releases/latest"><img src="https://img.shields.io/github/v/release/omar-diab/Job-Application-Tracker?label=version&color=4f46e5" alt="الإصدار الحالي"></a>
-  <img src="https://img.shields.io/badge/Chrome%20Web%20Store-in%20review-f59e0b?logo=googlechrome&logoColor=white" alt="قيد المراجعة في سوق Chrome الإلكتروني">
-  <img src="https://img.shields.io/badge/Manifest-V3-4f46e5" alt="Manifest V3">
-  <img src="https://img.shields.io/badge/languages-13-0ea5e9" alt="13 لغة">
-  <img src="https://img.shields.io/badge/tracking-none-16a34a" alt="بدون تتبع">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-22c55e" alt="الرخصة: MIT"></a>
-  <a href="https://github.com/omar-diab/Job-Application-Tracker/actions/workflows/check.yml"><img src="https://github.com/omar-diab/Job-Application-Tracker/actions/workflows/check.yml/badge.svg" alt="الفحوصات"></a>
+  <img src="https://img.shields.io/badge/Chrome%20Web%20Store-coming%20soon-4f46e5?style=for-the-badge&logo=googlechrome&logoColor=white" alt="قريبًا في سوق Chrome الإلكتروني">
+  <img src="https://img.shields.io/badge/price-free-16a34a?style=for-the-badge" alt="مجانية">
+  <img src="https://img.shields.io/badge/languages-13-0ea5e9?style=for-the-badge" alt="13 لغة">
 </p>
 
 <p align="center">
-  <a href="https://github.com/omar-diab/Job-Application-Tracker/releases/latest"><b>⬇️ تنزيل الإصدار 1.0.0</b></a> ·
-  <a href="#-التثبيت">التثبيت</a> ·
-  <a href="PRIVACY.md">الخصوصية</a> ·
-  <a href="CHANGELOG.md">سجل التغييرات</a> ·
-  <a href="https://github.com/omar-diab/Job-Application-Tracker/issues/new/choose">الإبلاغ عن مشكلة</a>
+  <img src="docs/store/4-arabic.png" width="860" alt="لوحة تحكم متتبع طلبات التوظيف">
 </p>
 
-<p align="center">
-  <img src="docs/store/4-arabic.png" width="820" alt="لوحة تحكم متتبع طلبات التوظيف باللغة العربية">
-</p>
+---
 
-> [!NOTE]
-> **الإصدار 1.0.0 — الإصدار الأول.** مجاني للجميع، 13 لغة، وضع فاتح وداكن، وبيانات وظائفك تبقى على جهازك. الإضافة الآن **قيد المراجعة في سوق Chrome الإلكتروني**.
+## 😩 البحث عن عمل مُرهِق
 
-## لماذا هذه الإضافة؟
+تتقدّم إلى 20 أو 50 أو 100 وظيفة. الروابط تضيع بين التبويبات، والحالات في رأسك فقط، وتنسى لمن يجب أن تُرسل متابعة.
 
-عندما تبحث عن عمل، تتقدّم إلى أماكن كثيرة. وبعد فترة قصيرة يصبح عندك جدول فيه 50 صفًا، وروابط منسوخة، وحالات غير صحيحة، ولا تعرف لمن يجب أن تُرسل متابعة.
+**متتبع طلبات التوظيف يجمع كل شيء في مكان واحد، تلقائيًا.**
 
-**متتبع طلبات التوظيف يقوم بالعمل المُمل بدلًا منك.** افتح إعلان الوظيفة، واضغط على الأيقونة، فتجد المسمّى الوظيفي والشركة والموقع والرابط جاهزة. كل شيء يُحفظ في لوحة واحدة واضحة ترى فيها حالة كل طلب.
-
-## ✨ المزايا
-
-| | |
-| --- | --- |
-| 🖱️ **حفظ بنقرة واحدة** | تقرأ المسمّى الوظيفي والشركة والموقع والرابط من الصفحة المفتوحة. |
-| 🔁 **بدون تكرار** | إذا كانت الوظيفة محفوظة، تعرض النافذة حالتها لتحدّثها. |
-| 🎨 **5 حالات ملوّنة** | محفوظة، تم التقديم، مقابلة، عرض عمل، مرفوضة. غيّرها مباشرة من القائمة. |
-| 🔍 **تصفية وبحث وترتيب** | التصفية حسب الحالة مع العدد، والبحث في كل شيء، و7 طرق للترتيب. |
-| ⏰ **تذكير بالمتابعة** | تنبيه لطيف عندما يمرّ 7 أيام أو أكثر على طلب بحالة «تم التقديم» دون رد. |
-| 📤 **تصدير CSV** | يُفتح بشكل صحيح في Excel وGoogle Sheets، مع النص العربي. |
-| 🌍 **13 لغة** | مع اختيار اللغة، والكتابة من اليمين لليسار للعربية، وتنسيق التواريخ المحلي. |
-| 🌙 **وضع فاتح وداكن** | يتبع إعدادات جهازك تلقائيًا. |
-| 🔒 **الخصوصية أولًا** | بدون حساب، بدون خادم، بدون تتبع. وظائفك لا تغادر جهازك. |
-| 🆓 **مجانية** | مدعومة ببطاقة صغيرة واحدة مكتوب عليها «إعلان مموَّل» داخل الإضافة. |
-
-## 📸 صور الشاشة
+## ⚡ كيف يعمل؟
 
 <table>
   <tr>
-    <td width="50%" align="center"><img src="docs/store/2-popup.png" alt="حفظ وظيفة بنقرة واحدة من النافذة المنبثقة"><br><sub><b>احفظ الوظيفة بنقرة واحدة</b></sub></td>
-    <td width="50%" align="center"><img src="docs/store/3-dark-mode.png" alt="لوحة التحكم في الوضع الداكن"><br><sub><b>الوضع الداكن</b></sub></td>
-  </tr>
-  <tr>
-    <td width="50%" align="center"><img src="docs/store/1-dashboard.png" alt="لوحة التحكم باللغة الإنجليزية"><br><sub><b>لوحة التحكم</b></sub></td>
-    <td width="50%" align="center"><img src="docs/screenshots/popup.png" width="240" alt="النافذة المنبثقة"><br><sub><b>النافذة المنبثقة</b></sub></td>
+    <td width="55%">
+      <h3>1. افتح أي إعلان وظيفة</h3>
+      <p>LinkedIn أو Indeed أو صفحة وظائف أي شركة.</p>
+      <h3>2. اضغط على الأيقونة</h3>
+      <p>المسمّى الوظيفي والشركة والموقع والرابط <b>تُعبّأ تلقائيًا</b>. اختر الحالة، وأضف ملاحظة، واحفظ.</p>
+      <h3>3. تابع كل شيء</h3>
+      <p>افتح لوحة التحكم لترى كل طلباتك، وصفّها حسب الحالة، واعرف بالضبط ما خطوتك التالية.</p>
+    </td>
+    <td width="45%" align="center">
+      <img src="docs/screenshots/popup.png" width="300" alt="احفظ الوظيفة بنقرة واحدة">
+    </td>
   </tr>
 </table>
 
-## 🌐 المواقع المدعومة
+## ✨ كل ما تحتاجه، بدون تعقيد
 
-| الموقع | طريقة قراءة الوظيفة |
+| | |
 | --- | --- |
-| **LinkedIn** | المسمّى والشركة والموقع من صفحة الوظيفة |
-| **Indeed** (كل الدول، مثل `ae.indeed.com` و`indeed.co.uk`) | المسمّى والشركة والموقع من صفحة الوظيفة |
-| **أي موقع توظيف فيه [بيانات JobPosting](https://schema.org/JobPosting)** (مواقع شركات كثيرة، Workday، Lever، ...) | البيانات المنظّمة التي تنشرها المواقع لـ Google |
-| **أي صفحة أخرى** | عنوان الصفحة، حتى تستطيع حفظها وتصحيح الحقول |
+| 🖱️ **حفظ بنقرة واحدة** | بدون نسخ ولصق. التفاصيل تُقرأ من الصفحة. |
+| 🎨 **حالات واضحة** | محفوظة، تم التقديم، مقابلة، عرض عمل، مرفوضة — لكل حالة لونها. |
+| 🔁 **بدون تكرار** | حفظت الوظيفة من قبل؟ تظهر لك حالتها فورًا. |
+| ⏰ **تذكير بالمتابعة** | اعرف أي الطلبات لم يصلك رد عليها بعد 7 أيام. |
+| 🔍 **بحث وتصفية** | جِد أي وظيفة في ثوانٍ، ورتّبها كما تريد. |
+| 📤 **تصدير إلى Excel** | بنقرة واحدة إلى ملف CSV يُفتح بشكل ممتاز في Excel وGoogle Sheets. |
+| 🌙 **وضع فاتح وداكن** | تصميم جميل في الليل والنهار. |
+| 🌍 **13 لغة** | مع دعم كامل للعربية والكتابة من اليمين لليسار. |
 
-موقع لا يُقرأ بشكل صحيح؟ [افتح بلاغ «Site not working»](https://github.com/omar-diab/Job-Application-Tracker/issues/new/choose).
+## 📸 شاهدها وهي تعمل
 
-**اللغات:** English، English (UK)، العربية، Deutsch، Español، Français، Bahasa Indonesia، Português (Brasil)، Русский، Türkçe، हिन्दी، 简体中文، 日本語.
+<table>
+  <tr>
+    <td width="50%" align="center"><img src="docs/store/2-popup.png" alt="احفظ أي وظيفة بنقرة واحدة"><br><sub><b>احفظ أي وظيفة بنقرة واحدة</b></sub></td>
+    <td width="50%" align="center"><img src="docs/store/3-dark-mode.png" alt="الوضع الداكن"><br><sub><b>جميلة في الوضع الداكن</b></sub></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><img src="docs/store/1-dashboard.png" width="640" alt="لوحة التحكم"><br><sub><b>تتحدث لغتك — العربية وTürkçe وEnglish وEspañol وDeutsch وFrançais وغيرها</b></sub></td>
+  </tr>
+</table>
 
-## 🔒 الخصوصية
+## 🌐 تعمل حيث تبحث
 
-بيانات وظائفك لا تغادر جهازك أبدًا.
+**LinkedIn** · **Indeed** (في كل الدول) · **صفحات وظائف الشركات** · وتقريبًا أي موقع توظيف.
+إذا لم تُقرأ صفحة ما، تستطيع حفظ الوظيفة وكتابة التفاصيل بنفسك.
 
-- تُحفظ الوظائف فقط في `chrome.storage.local` داخل متصفحك، ولا تُرسل إلى أي مكان.
-- لا حساب، لا إحصاءات، لا تتبع، لا شبكات إعلانية.
-- تُقرأ الصفحة **فقط عندما تضغط على الأيقونة**.
-- تعرض الإضافة **بطاقة صغيرة واحدة «إعلان مموَّل»** داخل نافذتها ولوحة التحكم فقط (وليس على أي موقع). هذه البطاقة موجودة داخل الإضافة نفسها ولا تتتبّع أي شيء.
+## 🔒 بياناتك ملكك
 
-3 صلاحيات فقط:
+- وظائفك تُحفظ **على جهازك فقط**. لا تُرسل إلى أي خادم، ولا تُشارك مع أحد.
+- **بدون حساب**، بدون تسجيل، بدون تتبّع.
+- الإضافة تقرأ الصفحة **فقط عندما تضغط على أيقونتها**.
 
-| الصلاحية | السبب |
-| --- | --- |
-| `storage` | حفظ وظائفك على جهازك. |
-| `activeTab` | قراءة التبويب الذي أنت فيه، فقط بعد الضغط على الأيقونة. لا وصول إلى «كل المواقع». |
-| `scripting` | تشغيل قارئ الصفحة الصغير في ذلك التبويب لإيجاد تفاصيل الوظيفة. |
+[اقرأ سياسة الخصوصية](PRIVACY.md)
 
-اقرأ [سياسة الخصوصية](PRIVACY.md) كاملة.
-
-## 📦 التثبيت
-
-### من سوق Chrome الإلكتروني
-
-الإضافة **قيد المراجعة**. سنضيف رابط المتجر هنا فور نشرها.
-
-### من صفحة الإصدارات (يعمل الآن)
-
-1. نزّل الملف **`job-application-tracker-1.0.0.zip`** من [آخر إصدار](https://github.com/omar-diab/Job-Application-Tracker/releases/latest) وفُكّ ضغطه.
-2. افتح `chrome://extensions` وفعّل **Developer mode** (وضع المطوّر) في الأعلى.
-3. اضغط **Load unpacked** واختر المجلد الذي فككت ضغطه.
-4. ثبّت الإضافة في الشريط: اضغط أيقونة قطعة الأحجية 🧩 ثم الدبوس 📌.
-
-### للمطوّرين
-
-<div dir="ltr">
-
-```bash
-git clone https://github.com/omar-diab/Job-Application-Tracker.git
-```
-
-</div>
-
-ثم حمّل مجلد المشروع عبر **Load unpacked**. لا توجد خطوة بناء ولا `npm install`.
-
-> الفرع `main` هو نسخة التطوير (الآن **1.1.0** مع اشتراك Premium قيد التطوير). للحصول على النسخة المنشورة، استخدم ملف zip من [صفحة الإصدارات](https://github.com/omar-diab/Job-Application-Tracker/releases).
-
-## 🚀 طريقة الاستخدام
-
-1. افتح إعلان وظيفة (LinkedIn أو Indeed أو صفحة وظائف شركة).
-2. اضغط على أيقونة الإضافة. راجع الحقول، واختر الحالة، وأضف ملاحظاتك.
-3. اضغط **حفظ الوظيفة**.
-4. اضغط **لوحة التحكم** لترى كل وظائفك، وغيّر الحالة مباشرة من القائمة.
-5. اضغط **تصدير CSV** لفتح قائمتك في Excel أو Google Sheets.
-
-## 🗺️ الخطط القادمة
-
-- [x] **الإصدار 1.0.0** — حفظ بنقرة واحدة، لوحة تحكم، حالات، تذكير بالمتابعة، تصدير CSV، 13 لغة، وضع داكن، بطاقات إعلانية
-- [ ] **الإصدار 1.1.0** — اشتراك **Premium** اختياري (شهري أو سنوي) يزيل البطاقات الإعلانية، والدفع عبر [Dodo Payments](https://dodopayments.com) *(قيد التطوير)*
-- [ ] لغات أكثر (40 لغة أخرى)
-- [ ] مواعيد المقابلات والتذكيرات
-- [ ] الاستيراد من CSV، والنسخ الاحتياطي والاستعادة
-- [ ] مواقع توظيف أكثر: Bayt وGlassdoor وWellfound وNaukrigulf وGreenhouse
-- [ ] مساعدة بالذكاء الاصطناعي لرسائل التقديم والتدرّب على المقابلات
-- [ ] نسخة لمتصفح Firefox
-
-نرحّب بأفكارك وملاحظاتك: [افتح بلاغًا](https://github.com/omar-diab/Job-Application-Tracker/issues/new/choose).
-
-## 🛠️ للمطوّرين
+## 💬 أسئلة شائعة
 
 <details>
-<summary><b>كيف تعمل؟</b></summary>
+<summary><b>هل هي مجانية؟</b></summary>
 
-<div dir="ltr">
-
-```
-Click icon → popup.js → chrome.scripting.executeScript(extractJobInfo) → reads the job page
-          → core.js cleans the data and checks for duplicates → chrome.storage.local
-          → dashboard.js listens to chrome.storage.onChanged → the list updates by itself
-```
-
-</div>
-
-- الدالة `extractJobInfo` مستقلة تمامًا، لأن Chrome ينسخ هذه الدالة وحدها إلى الصفحة.
-- كل النصوص تُضاف باستخدام `textContent` (عبر الدالة `h()`)، وليس `innerHTML` أبدًا، فلا يمكن لعنوان وظيفة أن يحقن كود HTML.
-- تُوحَّد الروابط (`/jobs/view/123/` و`?jk=...` وحذف معاملات التتبع)، فلا تُحفظ الوظيفة نفسها مرتين.
-- الترجمات بصيغة `_locales` الخاصة بـ Chrome، ويحمّلها `shared/i18n.js` ليستطيع المستخدم اختيار اللغة.
-
+نعم. متتبع طلبات التوظيف مجاني، ويعرض بطاقة صغيرة واحدة مكتوب عليها «إعلان مموَّل» داخل الإضافة فقط — وليس على المواقع التي تزورها.
 </details>
 
 <details>
-<summary><b>بنية المشروع</b></summary>
+<summary><b>هل تستطيعون رؤية طلبات توظيفي؟</b></summary>
 
-<div dir="ltr">
-
-```
-job-application-tracker/
-├── manifest.json            Extension settings and the 3 permissions
-├── _locales/                Translations (one messages.json per language)
-├── icons/                   Extension icons (16, 48, 128 px), and icons/ads/ for ad images
-├── shared/
-│   ├── base.css             Shared design: colors, dark mode, status colors, menus, buttons
-│   ├── i18n.js              Translations: t(), language picker, right-to-left
-│   ├── core.js              Statuses, safe h() element helper, dates, links, jobs, storage
-│   ├── extractor.js         Reads the job from a page (LinkedIn, Indeed, JSON-LD, title)
-│   ├── ads.js               Sponsored cards (no tracking, no ad network)
-│   ├── ads.json             The list of sponsored cards (edit this file to change the ads)
-│   └── premium.js           Premium for v1.1.0 (Dodo checkout, license keys) — not in v1.0.0
-├── popup/                   The popup window (html, css, js)
-├── dashboard/               The full-page dashboard (html, css, js)
-├── tools/                   Helpers for developers (NOT part of the extension)
-├── docs/screenshots/        Images for this README
-└── docs/store/              Chrome Web Store screenshots (1280×800)
-```
-
-</div>
-
+لا. كل شيء يُحفظ في متصفحك وعلى جهازك أنت. لا يُرسل أي شيء إلينا أو إلى أي أحد.
 </details>
 
 <details>
-<summary><b>الاختبارات والفحوصات</b></summary>
+<summary><b>مع أي مواقع تعمل؟</b></summary>
 
-لا تحتاج إلى تثبيت أي شيء. افتح هذه الملفات في Chrome، ويجب أن تكون كل الأسطر خضراء:
-
-- `tools/test-core.html` (26 اختبارًا)
-- `tools/test-extractor.html` (12 اختبارًا)
-
-وفي الطرفية:
-
-<div dir="ltr">
-
-```bash
-node tools/check-locales.js   # all translations are complete
-node tools/check-ads.js       # the ads file is valid
-```
-
-</div>
-
-ومع كل `push`، يفحص GitHub Actions ملف `manifest.json` وصحة كود JavaScript والصلاحيات والترجمات والإعلانات.
-
+LinkedIn وIndeed ومعظم صفحات وظائف الشركات. في أي صفحة أخرى يُستخدم عنوان الصفحة، ويمكنك تعديل التفاصيل قبل الحفظ.
 </details>
 
-## 🤝 المساهمة
+<details>
+<summary><b>هل أستطيع نقل قائمتي إلى Excel؟</b></summary>
 
-المساهمات مرحّب بها، وخاصة **تحديث المحدِّدات عندما يغيّر LinkedIn أو Indeed صفحاتهما** و**الترجمات**. اقرأ [CONTRIBUTING.md](CONTRIBUTING.md) للبدء.
+نعم. اضغط <b>تصدير CSV</b> في لوحة التحكم. الملف يُفتح بشكل صحيح في Excel وGoogle Sheets، مع النص العربي.
+</details>
 
-وجدت مشكلة أمنية؟ اقرأ [SECURITY.md](SECURITY.md) وأبلغ عنها بشكل خاص.
+<details>
+<summary><b>ما اللغات المتوفرة؟</b></summary>
 
-## 📄 الرخصة
+English، English (UK)، العربية، Deutsch، Español، Français، Bahasa Indonesia، Português (Brasil)، Русский، Türkçe، हिन्दी، 简体中文 و日本語.
+</details>
 
-[MIT](LICENSE) © 2026 Omar Diab
+## 📦 احصل عليها
+
+**قريبًا في سوق Chrome الإلكتروني.**
+
+لا تستطيع الانتظار؟ [نزّل الإصدار 1.0](https://github.com/omar-diab/Job-Application-Tracker/releases/latest)، وفُكّ ضغطه، وافتح `chrome://extensions`، وفعّل **Developer mode**، ثم اضغط **Load unpacked**.
+
+---
+
+<p align="center">
+  <a href="https://github.com/omar-diab/Job-Application-Tracker/issues/new/choose">تحتاج مساعدة أو وجدت مشكلة؟</a> ·
+  <a href="PRIVACY.md">الخصوصية</a> ·
+  <a href="CONTRIBUTING.md">للمطوّرين</a> ·
+  <a href="LICENSE">رخصة MIT</a>
+</p>
+
+<p align="center"><sub>صُنع بـ ❤️ بواسطة Omar Diab · © 2026</sub></p>
 
 </div>
