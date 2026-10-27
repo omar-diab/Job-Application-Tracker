@@ -14,9 +14,13 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Chrome%20Web%20Store-coming%20soon-4f46e5?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Coming soon to the Chrome Web Store">
+  <a href="https://chromewebstore.google.com/detail/job-application-tracker/jicanlgigidhbdialoaadiedbojoclee"><img src="https://img.shields.io/chrome-web-store/v/jicanlgigidhbdialoaadiedbojoclee?style=for-the-badge&logo=googlechrome&logoColor=white&label=Chrome%20Web%20Store&color=4f46e5" alt="Chrome Web Store version"></a>
   <img src="https://img.shields.io/badge/price-free-16a34a?style=for-the-badge" alt="Free">
   <img src="https://img.shields.io/badge/languages-13-0ea5e9?style=for-the-badge" alt="13 languages">
+</p>
+
+<p align="center">
+  <a href="https://chromewebstore.google.com/detail/job-application-tracker/jicanlgigidhbdialoaadiedbojoclee"><img src="https://img.shields.io/badge/Add%20to%20Chrome-it's%20free-4f46e5?style=for-the-badge&logo=googlechrome&logoColor=white" height="44" alt="Add to Chrome — it's free"></a>
 </p>
 
 <p align="center">
@@ -121,9 +125,15 @@ English, English (UK), العربية, Deutsch, Español, Français, Bahasa Indo
 
 ## 📦 Get it
 
-**Coming soon to the Chrome Web Store.**
+**Available now on the Chrome Web Store — free.**
 
-Can't wait? [Download version 1.0](https://github.com/omar-diab/Job-Application-Tracker/releases/latest), unzip it, open `chrome://extensions`, turn on **Developer mode** and click **Load unpacked**.
+<p align="center">
+  <a href="https://chromewebstore.google.com/detail/job-application-tracker/jicanlgigidhbdialoaadiedbojoclee"><img src="https://img.shields.io/badge/Add%20to%20Chrome-it's%20free-4f46e5?style=for-the-badge&logo=googlechrome&logoColor=white" height="44" alt="Add to Chrome — it's free"></a>
+</p>
+
+1. Open the [Chrome Web Store page](https://chromewebstore.google.com/detail/job-application-tracker/jicanlgigidhbdialoaadiedbojoclee).
+2. Click **Add to Chrome**.
+3. Pin it: click the puzzle icon 🧩 in the toolbar, then the pin 📌. That's it!
 
 ---
 

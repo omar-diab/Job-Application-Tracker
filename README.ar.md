@@ -16,9 +16,13 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Chrome%20Web%20Store-coming%20soon-4f46e5?style=for-the-badge&logo=googlechrome&logoColor=white" alt="قريبًا في سوق Chrome الإلكتروني">
+  <a href="https://chromewebstore.google.com/detail/job-application-tracker/jicanlgigidhbdialoaadiedbojoclee"><img src="https://img.shields.io/chrome-web-store/v/jicanlgigidhbdialoaadiedbojoclee?style=for-the-badge&logo=googlechrome&logoColor=white&label=Chrome%20Web%20Store&color=4f46e5" alt="الإصدار في سوق Chrome الإلكتروني"></a>
   <img src="https://img.shields.io/badge/price-free-16a34a?style=for-the-badge" alt="مجانية">
   <img src="https://img.shields.io/badge/languages-13-0ea5e9?style=for-the-badge" alt="13 لغة">
+</p>
+
+<p align="center">
+  <a href="https://chromewebstore.google.com/detail/job-application-tracker/jicanlgigidhbdialoaadiedbojoclee"><img src="https://img.shields.io/badge/Add%20to%20Chrome-it's%20free-4f46e5?style=for-the-badge&logo=googlechrome&logoColor=white" height="44" alt="أضِفها إلى Chrome مجانًا"></a>
 </p>
 
 <p align="center">
@@ -123,9 +127,15 @@ English، English (UK)، العربية، Deutsch، Español، Français، Bahas
 
 ## 📦 احصل عليها
 
-**قريبًا في سوق Chrome الإلكتروني.**
+**متوفرة الآن في سوق Chrome الإلكتروني — مجانًا.**
 
-لا تستطيع الانتظار؟ [نزّل الإصدار 1.0](https://github.com/omar-diab/Job-Application-Tracker/releases/latest)، وفُكّ ضغطه، وافتح `chrome://extensions`، وفعّل **Developer mode**، ثم اضغط **Load unpacked**.
+<p align="center">
+  <a href="https://chromewebstore.google.com/detail/job-application-tracker/jicanlgigidhbdialoaadiedbojoclee"><img src="https://img.shields.io/badge/Add%20to%20Chrome-it's%20free-4f46e5?style=for-the-badge&logo=googlechrome&logoColor=white" height="44" alt="أضِفها إلى Chrome مجانًا"></a>
+</p>
+
+1. افتح [صفحة الإضافة في سوق Chrome](https://chromewebstore.google.com/detail/job-application-tracker/jicanlgigidhbdialoaadiedbojoclee).
+2. اضغط **Add to Chrome** (إضافة إلى Chrome).
+3. ثبّتها في الشريط: اضغط أيقونة قطعة الأحجية 🧩 ثم الدبوس 📌. هذا كل شيء!
 
 ---
 
